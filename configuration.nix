@@ -16,6 +16,7 @@
   ];
 
   home-manager.users.treyt = import ./home.nix;
+  home-manager.backupFileExtension = ".bak";
 
   nix.settings.experimental-features = [
     "nix-command"
