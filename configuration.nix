@@ -62,20 +62,20 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   # If your nixpkgs marks it insecure:
-  nixpkgs.config.allowInsecurePredicate = pkg: builtins.elem (lib.getName pkg) [ "broadcom-sta" ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
-  boot.kernelModules = [ "wl" ];
-  boot.blacklistedKernelModules = [
-    "b43"
-    "bcma"
-    "brcmsmac"
-    "ssb"
-    "brcmfmac"
-    "brcmutil"
-  ];
-  boot.extraModprobeConfig = ''
-    options snd-hda-intel model=imac27_122
-  '';
+#    nixpkgs.config.allowInsecurePredicate = pkg: builtins.elem (lib.getName pkg) [ "broadcom-sta" ];
+#    boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
+#    boot.kernelModules = [ "wl" ];
+#    boot.blacklistedKernelModules = [
+#      "b43"
+#      "bcma"
+#      "brcmsmac"
+#      "ssb"
+#      "brcmfmac"
+#      "brcmutil"
+#    ];
+#    boot.extraModprobeConfig = ''
+#      options snd-hda-intel model=imac27_122
+#    '';
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -208,6 +208,7 @@
     fzf
     gnumake
     (import ./packages/new-nix-shell.nix { inherit pkgs; })
+    gh
 
     # EDITORS 
     neovim
