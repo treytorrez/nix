@@ -48,11 +48,12 @@
     feh
     sxiv
     zoom-us
+    pinta
 
     # BROWSERS
     firefox
+    firefoxpwa
     qutebrowser
-    hyprland
 
     # AUDIO
     pulseaudio
@@ -63,7 +64,9 @@
     wlr-randr
     brightnessctl
     wl-clipboard
-    firefoxpwa
+    voxtype
+    mouseless
+    webcamoid
 
     # PRODUCTIVITY
     libreoffice-qt6-fresh
@@ -77,8 +80,7 @@
 
     protonvpn-gui
     osu-lazer-bin
-    mouseless
-    webcamoid
     home-manager
+    hyprland
   ];
 }

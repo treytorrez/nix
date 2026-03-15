@@ -8,6 +8,8 @@
     ./starship.nix
     ./vscode.nix
     ./kitty.nix
+    ./canon.nix
+    ./voxtype.nix
   ];
 
   home.packages = [ ];

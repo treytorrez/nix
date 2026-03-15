@@ -22,4 +22,5 @@
 
   services.printing.enable = true;
   services.openssh.enable = true;
+  documentation.man.generateCaches = true;
 }
