@@ -36,6 +36,8 @@
     uv
     arduino-ide
     codex
+    opencode
+    nixfmt
 
     # LAUNCHERS
     tofi
@@ -45,6 +47,7 @@
     # MEDIA
     mpv
     tidal-hifi
+    high-tide
     feh
     sxiv
     zoom-us
@@ -64,9 +67,10 @@
     wlr-randr
     brightnessctl
     wl-clipboard
-    voxtype
     mouseless
     webcamoid
+    wev
+    evtest
 
     # PRODUCTIVITY
     libreoffice-qt6-fresh

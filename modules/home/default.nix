@@ -2,7 +2,7 @@
 {
   imports = [
     nixcord.homeModules.nixcord
-    ./firefox.nix
+    ./firefoxpwa.nix
     ./nixcord.nix
     ./zsh.nix
     ./starship.nix

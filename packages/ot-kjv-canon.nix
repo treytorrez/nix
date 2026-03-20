@@ -1,4 +1,9 @@
-{ stdenv, fetchFromGitHub, lib, ... }:
+{
+  stdenv,
+  fetchFromGitHub,
+  lib,
+  ...
+}:
 
 stdenv.mkDerivation {
   pname = "ot-kjv-canon";

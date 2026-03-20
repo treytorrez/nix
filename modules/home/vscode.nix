@@ -4,7 +4,8 @@
     enable = true;
     mutableExtensionsDir = false;
     profiles.default.extensions =
-      with pkgs.vscode-extensions; [
+      with pkgs.vscode-extensions;
+      [
         ms-python.python
         ms-python.vscode-pylance
         ms-python.debugpy

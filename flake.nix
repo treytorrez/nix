@@ -24,10 +24,20 @@
   };
 
   outputs =
-    inputs@{ self, nixpkgs, home-manager, nixcord, canonSrc, voxtype, ... }:
+    inputs@{
+      self,
+      nixpkgs,
+      home-manager,
+      nixcord,
+      canonSrc,
+      voxtype,
+      ...
+    }:
     let
       system = "x86_64-linux";
-        mkHost = hostname: nixpkgs.lib.nixosSystem {
+      mkHost =
+        hostname:
+        nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
           modules = [
@@ -36,7 +46,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { inherit nixcord; };
+              home-manager.extraSpecialArgs = { inherit nixcord voxtype; };
               home-manager.sharedModules = [ voxtype.homeManagerModules.default ];
               nixpkgs.overlays = [
                 (final: prev: {

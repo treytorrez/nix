@@ -1,4 +1,9 @@
-{ lib, buildGoModule, fetchFromGitHub, canonSrc }:
+{
+  lib,
+  buildGoModule,
+  fetchFromGitHub,
+  canonSrc,
+}:
 
 buildGoModule rec {
   pname = "canon";

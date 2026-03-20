@@ -21,9 +21,11 @@
     ];
 
     shellAliases = {
+      ls = "ls -FG --color=tty";
       ll = "ls --color=tty -l";
       update = "echo \"rebuilding as $(hostname)\"; sudo nixos-rebuild switch --flake /etc/nixos#$(hostname)";
       nixvim = "sudo nix run ~/nixvim-flake -- \"$@\"";
+      psgrep = "ps aux | rg";
     };
 
     sessionVariables = {
@@ -33,6 +35,7 @@
 
     profileExtra = ''
       eval "$(starship init zsh)"
+      batcanon() { canon "$@" | sed 's/ \([0-9]*\) /\1. /' | bat -l md --theme Nord --style=-numbers }
     '';
   };
 }
