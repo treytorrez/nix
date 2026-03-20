@@ -22,6 +22,7 @@
     fzf
     gnumake
     (import ../../packages/new-nix-shell.nix { inherit pkgs; })
+    (import ../../packages/git-autocommit.nix { inherit pkgs; })
     gh
     canon # Added via nixpkgs overlay
 
@@ -35,6 +36,7 @@
     git
     uv
     arduino-ide
+    arduino
     codex
     opencode
     nixfmt

@@ -1,8 +1,6 @@
 # packages/new-nix-shell.nix
 { pkgs }:
-{
-  environment.systemPackages = [
-    (pkgs.writeShellApplication {
+pkgs.writeShellApplication {
       name = "update";
       runtimeInputs = [ pkgs.git ];
       text = ''
@@ -14,6 +12,4 @@
           git restore .
         fi
       '';
-    })
-  ];
-}
+    }
