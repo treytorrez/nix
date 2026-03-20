@@ -1,88 +1,51 @@
 { pkgs, ... }:
 {
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-  nixpkgs.config.allowUnfree = true;
-
-  programs.zsh.enable = true;
-
-  home-manager.users.treyt = {
-    programs.firefox = {
-      enable = true;
-      package = pkgs.librewolf;
-      nativeMessagingHosts = [
-        pkgs.tridactyl-native
-        pkgs.firefoxpwa
-      ];
-      profiles = {
-        default = {
-          bookmarks = {
-            force = true;
-            settings = [
-              {
-                name = "Nix";
-                toolbar = true;
-                bookmarks = [
-                  {
-                    name = "Nixpkgs Repo";
-                    url = "https://github.com/NixOS/nixpkgs";
-                  }
-                  {
-                    name = "Home Manager Manual";
-                    url = "https://nix-community.github.io/home-manager/options.xhtml";
-                  }
-                  {
-                    name = "NixOS Package Search";
-                    url = "https://search.nixos.org/packages";
-                  }
-                ];
-              }
-              {
-                name = "BYUI";
-                toolbar = true;
-                bookmarks = [
-                  {
-                    name = "Canvas";
-                    url = "https://byui.instructure.edu";
-                  }
-                  {
-                    name = "My BYUI";
-                    url = "https://my.byui.edu";
-                  }
-                ];
-              }
-            ];
+  programs.firefox = {
+    enable = true;
+    package = pkgs.librewolf;
+    nativeMessagingHosts.packages = [
+      pkgs.tridactyl-native
+      pkgs.firefoxpwa
+    ];
+    profiles = {
+      default = {
+        bookmarks = {
+          "Nix" = {
+            toolbar = true;
+            bookmarks = {
+              "Nixpkgs Repo" = {
+                url = "https://github.com/NixOS/nixpkgs";
+              };
+              "Home Manager Manual" = {
+                url = "https://nix-community.github.io/home-manager/options.xhtml";
+              };
+              "NixOS Package Search" = {
+                url = "https://search.nixos.org/packages";
+              };
+            };
+          };
+          "BYUI" = {
+            toolbar = true;
+            bookmarks = {
+              "Canvas" = {
+                url = "https://byui.instructure.edu";
+              };
+              "My BYUI" = {
+                url = "https://my.byui.edu";
+              };
+            };
           };
         };
-        school = {
-          id = 1;
-          bookmarks = { };
-        };
-        work = {
-          id = 2;
-          bookmarks = { };
-        };
-        pwas = {
-          id = 3;
-
-        };
       };
+      school = {
+        bookmarks = { };
+      };
+      work = {
+        bookmarks = { };
+      };
+      pwas = { };
     };
   };
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-    localNetworkGameTransfers.openFirewall = true;
-    gamescopeSession.enable = true;
-  };
-
-  services.printing.enable = true;
-  services.openssh.enable = true;
-  documentation.man.generateCaches = true;
-
   environment.etc."librewolf/policies/policies.json".text = builtins.toJSON {
     policies = {
       DefaultDownloadDirectory = "\${home}/Downloads";

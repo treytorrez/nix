@@ -62,20 +62,20 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   # If your nixpkgs marks it insecure:
-#    nixpkgs.config.allowInsecurePredicate = pkg: builtins.elem (lib.getName pkg) [ "broadcom-sta" ];
-#    boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
-#    boot.kernelModules = [ "wl" ];
-#    boot.blacklistedKernelModules = [
-#      "b43"
-#      "bcma"
-#      "brcmsmac"
-#      "ssb"
-#      "brcmfmac"
-#      "brcmutil"
-#    ];
-#    boot.extraModprobeConfig = ''
-#      options snd-hda-intel model=imac27_122
-#    '';
+  #    nixpkgs.config.allowInsecurePredicate = pkg: builtins.elem (lib.getName pkg) [ "broadcom-sta" ];
+  #    boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
+  #    boot.kernelModules = [ "wl" ];
+  #    boot.blacklistedKernelModules = [
+  #      "b43"
+  #      "bcma"
+  #      "brcmsmac"
+  #      "ssb"
+  #      "brcmfmac"
+  #      "brcmutil"
+  #    ];
+  #    boot.extraModprobeConfig = ''
+  #      options snd-hda-intel model=imac27_122
+  #    '';
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -210,7 +210,7 @@
     (import ./packages/new-nix-shell.nix { inherit pkgs; })
     gh
 
-    # EDITORS 
+    # EDITORS
     neovim
     emacs
     nano
@@ -269,11 +269,11 @@
   ];
 
   # { pkgs, ... }:
-  # 
+  #
   # let
   #   toggleSudo = pkgs.writeShellScriptBin "toggle-sudo" ''
   #     PID_FILE="/tmp/sudo-keepalive-$USER.pid"
-  # 
+  #
   #     # Check if the process is already running
   #     if [ -f "$PID_FILE" ] && kill -0 "$(cat "$PID_FILE")" 2>/dev/null; then
   #       kill "$(cat "$PID_FILE")"
@@ -288,7 +288,7 @@
   #         done
   #         rm -f "$PID_FILE"
   #       ) &
-  #       
+  #
   #       echo $! > "$PID_FILE"
   #       echo "Sudo keep-alive STARTED for this session (PID: $!)."
   #     fi

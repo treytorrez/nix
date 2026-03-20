@@ -23,7 +23,7 @@
     shellAliases = {
       ls = "ls -FG --color=tty";
       ll = "ls --color=tty -l";
-      update = "echo \"rebuilding as $(hostname)\"; sudo nixos-rebuild switch --flake /etc/nixos#$(hostname)";
+      #update = "echo \"rebuilding as $(hostname)\"; sudo nixos-rebuild switch --flake /etc/nixos#$(hostname)";
       nixvim = "sudo nix run ~/nixvim-flake -- \"$@\"";
       psgrep = "ps aux | rg";
     };
