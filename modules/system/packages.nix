@@ -56,7 +56,6 @@
     pinta
 
     # BROWSERS
-    firefox
     firefoxpwa
     qutebrowser
 

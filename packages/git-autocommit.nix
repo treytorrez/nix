@@ -4,6 +4,7 @@ pkgs.writeShellApplication {
       name = "update";
       runtimeInputs = [ pkgs.git ];
       text = ''
+	echo "building for $(hostname)"
         cd /etc/nixos
         git add .
         if nixos-rebuild switch --flake ".#$(hostname)"; then
