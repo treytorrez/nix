@@ -21,6 +21,7 @@
     btop
     fzf
     gnumake
+    unzip
     (import ../../packages/new-nix-shell.nix { inherit pkgs; })
     (import ../../packages/git-autocommit.nix { inherit pkgs; })
     gh
