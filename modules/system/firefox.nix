@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
-  home-manager.users.treyt = {
+  home-manager.users.treyt = {lib, ...}: {
     programs.firefox = {
       enable = true;
       package = pkgs.librewolf;
@@ -62,7 +62,6 @@
         };
       };
     };
-  };
   # EXPERIMENTAL
   # firefoxpwa expects a binary named "firefox" in its runtime directory.
   # Rather than letting it download its own Firefox, I point it at our
@@ -74,6 +73,9 @@
   ln -sf ${pkgs.librewolf}/lib/librewolf/librewolf \
     $HOME/.local/share/firefoxpwa/runtime/firefox
 '';
+  
+  };
+
 
 
   environment.etc."librewolf/policies/policies.json".text = builtins.toJSON {

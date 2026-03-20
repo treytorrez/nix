@@ -1,5 +1,7 @@
 { pkgs, ... }:
 {
+  imports = [ ./firefox.nix ];
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
@@ -7,6 +9,7 @@
   nixpkgs.config.allowUnfree = true;
 
   programs.zsh.enable = true;
+  
 
   programs.steam = {
     enable = true;
