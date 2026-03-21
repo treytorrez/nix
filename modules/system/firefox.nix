@@ -132,6 +132,20 @@
           installation_mode = "force_installed";
           private_browsing = true;
         };
+        # imagus
+        "{00000f2a-7cde-4f20-83ed-434fcb420d71}" = {
+          default_area = "menupanel";
+          install_url = "https://addons.mozilla.org/firefox/downloads/file/3547888/imagus-0.9.8.74.xpi";
+          installation_mode = "force_installed";
+          private_browsing = true;
+        };
+        # sideberry
+        "{3c078156-979c-498b-8990-85f7987dd929}" = {
+          default_area = "menupanel";
+          install_url = "https://addons.mozilla.org/firefox/downloads/file/4688454/sidebery-5.5.0.xpi";
+          installation_mode = "force_installed";
+          private_browsing = true;
+        };
       };
     };
   };

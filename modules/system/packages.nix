@@ -27,6 +27,7 @@
     (import ../../packages/git-autocommit.nix { inherit pkgs; })
     gh
     canon # Added via nixpkgs overlay
+    figlet
 
     # EDITORS
     neovim
