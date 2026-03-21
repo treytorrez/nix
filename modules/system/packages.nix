@@ -1,0 +1,84 @@
+{ pkgs, ... }:
+{
+  environment.systemPackages = with pkgs; [
+    # TERMINALS
+    kitty
+    foot
+
+    # SHELLS
+    zsh
+
+    # SHELL UTILITIES
+    tmux
+    curl
+    wget
+    ripgrep
+    ripgrep-all
+    starship
+    bat
+    pciutils
+    yazi
+    btop
+    fzf
+    gnumake
+    (import ../../packages/new-nix-shell.nix { inherit pkgs; })
+    gh
+    canon # Added via nixpkgs overlay
+
+    # EDITORS
+    neovim
+    emacs
+    nano
+    neovide
+
+    # DEVELOPMENT
+    git
+    uv
+    arduino-ide
+    codex
+
+    # LAUNCHERS
+    tofi
+    wofi
+    wmenu
+
+    # MEDIA
+    mpv
+    tidal-hifi
+    feh
+    sxiv
+    zoom-us
+
+    # BROWSERS
+    firefox
+    qutebrowser
+    hyprland
+
+    # AUDIO
+    pulseaudio
+    pavucontrol
+    easyeffects
+
+    # SYSTEM UTILS
+    wlr-randr
+    brightnessctl
+    wl-clipboard
+    firefoxpwa
+
+    # PRODUCTIVITY
+    libreoffice-qt6-fresh
+    protonmail-desktop
+    gnumeric
+    obsidian
+
+    # LIBRARIES
+    hunspell
+    hunspellDicts.en_US
+
+    protonvpn-gui
+    osu-lazer-bin
+    mouseless
+    webcamoid
+    home-manager
+  ];
+}

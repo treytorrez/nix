@@ -22,34 +22,32 @@
   };
 
   outputs =
-    inputs@{
-      self,
-      nixpkgs,
-      home-manager,
-      nixcord,
-      ...
-    }:
+    inputs@{ self, nixpkgs, home-manager, nixcord, ... }:
     let
       system = "x86_64-linux";
+        mkHost = hostname: nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/${hostname}
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = { inherit nixcord; };
+              nixpkgs.overlays = [
+                (final: prev: {
+                  canon = final.callPackage ./packages/canon.nix {};
+                })
+              ];
+            }
+          ];
+        };
     in
     {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        inherit system;
-
-        modules = [
-          ./configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-
-            # This makes `{ inputs, ... }: { ... }` work in home.nix
-            home-manager.extraSpecialArgs = {
-              nixcord = inputs.nixcord;
-              # or whatever you actually use
-            };
-          }
-        ];
+      nixosConfigurations = {
+        laptop = mkHost "laptop";
+        # desktop = mkHost "desktop";
       };
     };
 }
