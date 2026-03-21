@@ -13,6 +13,12 @@
       url = "github:FlameFlag/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # in flake.nix inputs add
+    nixcraft = {
+      url = "github:loystonpais/nixcraft";
+      inputs.nixpkgs.follows = "nixpkgs"; # Set correct nixpkgs name
+    };
+
   };
 
   outputs =

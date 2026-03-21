@@ -108,13 +108,6 @@
   # Enable Hyprland Window Manager
   programs.hyprland.enable = true;
 
-  # Enable the COSMIC login manager
-  # Enable the COSMIC desktop environment
-  # Enable the system76 scheduler
-  services.displayManager.cosmic-greeter.enable = true;
-  services.desktopManager.cosmic.enable = true;
-  services.system76-scheduler.enable = true;
-
   programs.firefox.preferences = {
     # disable libadwaita theming for Firefox
     "widget.gtk.libadwaita-colors.enabled" = false;
@@ -208,6 +201,7 @@
     fzf
     gnumake
     (import ./packages/new-nix-shell.nix { inherit pkgs; })
+    gh
 
     # EDITORS 
     neovim
@@ -229,6 +223,7 @@
     # MEDIA
     mpv
     tidal-hifi
+    high-tide
     feh
     sxiv
     zoom-us
