@@ -90,5 +90,6 @@
     osu-lazer-bin
     home-manager
     hyprland
+    lightdm
   ];
 }

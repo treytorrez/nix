@@ -1,82 +1,83 @@
 { pkgs, lib, ... }:
 {
-  home-manager.users.treyt = {lib, ...}: {
-    programs.firefox = {
-      enable = true;
-      package = pkgs.librewolf;
-      nativeMessagingHosts = [
-        pkgs.tridactyl-native
-        pkgs.firefoxpwa
-      ];
-      profiles = {
-        default = {
-          bookmarks = {
-            force = true;
-            settings = [
-              {
-                name = "Nix";
-                toolbar = true;
-                bookmarks = [
-                  {
-                    name = "Nixpkgs Repo";
-                    url = "https://github.com/NixOS/nixpkgs";
-                  }
-                  {
-                    name = "Home Manager Manual";
-                    url = "https://nix-community.github.io/home-manager/options.xhtml";
-                  }
-                  {
-                    name = "NixOS Package Search";
-                    url = "https://search.nixos.org/packages";
-                  }
-                ];
-              }
-              {
-                name = "BYUI";
-                toolbar = true;
-                bookmarks = [
-                  {
-                    name = "Canvas";
-                    url = "https://byui.instructure.edu";
-                  }
-                  {
-                    name = "My BYUI";
-                    url = "https://my.byui.edu";
-                  }
-                ];
-              }
-            ];
+  home-manager.users.treyt =
+    { lib, ... }:
+    {
+      programs.firefox = {
+        enable = true;
+        package = pkgs.librewolf;
+        nativeMessagingHosts = [
+          pkgs.tridactyl-native
+          pkgs.firefoxpwa
+        ];
+        profiles = {
+          default = {
+            bookmarks = {
+              force = true;
+              settings = [
+                {
+                  name = "Nix";
+                  toolbar = true;
+                  bookmarks = [
+                    {
+                      name = "Nixpkgs Repo";
+                      url = "https://github.com/NixOS/nixpkgs";
+                    }
+                    {
+                      name = "Home Manager Manual";
+                      url = "https://nix-community.github.io/home-manager/options.xhtml";
+                    }
+                    {
+                      name = "NixOS Package Search";
+                      url = "https://search.nixos.org/packages";
+                    }
+                  ];
+                }
+                {
+                  name = "BYUI";
+                  toolbar = true;
+                  bookmarks = [
+                    {
+                      name = "Canvas";
+                      url = "https://byui.instructure.edu";
+                    }
+                    {
+                      name = "My BYUI";
+                      url = "https://my.byui.edu";
+                    }
+                  ];
+                }
+              ];
+            };
+          };
+          school = {
+            id = 1;
+            bookmarks = { };
+
+          };
+          work = {
+            id = 2;
+            bookmarks = { };
+          };
+          pwas = {
+            id = 3;
+
           };
         };
-        school = {
-          id = 1;
-          bookmarks = { };
-        };
-        work = {
-          id = 2;
-          bookmarks = { };
-        };
-        pwas = {
-          id = 3;
-
-        };
       };
+      # EXPERIMENTAL
+      # firefoxpwa expects a binary named "firefox" in its runtime directory.
+      # Rather than letting it download its own Firefox, I point it at our
+      # Nix-managed LibreWolf binary instead. We use an activation script
+      # (runs on every rebuild) rather than home.file because I only need
+      # a single symlink inside the directory, not the whole thing read-only.
+      home.activation.firefoxpwaRuntime = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        mkdir -p $HOME/.local/share/firefoxpwa/runtime
+        ln -sf ${pkgs.librewolf}/lib/librewolf/librewolf \
+          $HOME/.local/share/firefoxpwa/runtime/firefox
+      '';
+
     };
-  # EXPERIMENTAL
-  # firefoxpwa expects a binary named "firefox" in its runtime directory.
-  # Rather than letting it download its own Firefox, I point it at our
-  # Nix-managed LibreWolf binary instead. We use an activation script
-  # (runs on every rebuild) rather than home.file because I only need
-  # a single symlink inside the directory, not the whole thing read-only.
-  home.activation.firefoxpwaRuntime = lib.hm.dag.entryAfter ["writeBoundary"] ''
-  mkdir -p $HOME/.local/share/firefoxpwa/runtime
-  ln -sf ${pkgs.librewolf}/lib/librewolf/librewolf \
-    $HOME/.local/share/firefoxpwa/runtime/firefox
-'';
-  
-  };
-
-
 
   environment.etc."librewolf/policies/policies.json".text = builtins.toJSON {
     policies = {
@@ -147,6 +148,64 @@
           private_browsing = true;
         };
       };
+      engines = {
+        "Nix Packages" = {
+          urls = [
+            {
+              template = "https://search.nixos.org/packages";
+              params = [
+                {
+                  name = "channel";
+                  value = "unstable";
+                }
+                {
+                  name = "query";
+                  value = "{searchTerms}";
+                }
+              ];
+            }
+          ];
+          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+          definedAliases = [ "@np" ];
+        };
+
+        "Nix Options" = {
+          urls = [
+            {
+              template = "https://search.nixos.org/options";
+              params = [
+                {
+                  name = "channel";
+                  value = "unstable";
+                }
+                {
+                  name = "query";
+                  value = "{searchTerms}";
+                }
+              ];
+            }
+          ];
+          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+          definedAliases = [ "@no" ];
+        };
+
+        "NixOS Wiki" = {
+          urls = [
+            {
+              template = "https://wiki.nixos.org/w/index.php";
+              params = [
+                {
+                  name = "search";
+                  value = "{searchTerms}";
+                }
+              ];
+            }
+          ];
+          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+          definedAliases = [ "@nw" ];
+        };
+      };
     };
+
   };
 }
