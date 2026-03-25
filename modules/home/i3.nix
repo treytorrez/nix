@@ -35,13 +35,13 @@ in
       terminal = term;
       menu = menu;
       fonts = { names = [ "AtkynsonMono Nerd Font" "monospace" ]; size = 10.0; };
-      gaps = { inner = 8; outer = 4; smartGaps = true; smartBorders = "on"; };
-      focus.followMouse = false;
+      gaps = { inner = 0; outer = 0; smartGaps = true; smartBorders = "on"; };
+      focus.followMouse = true;
       floating.modifier = mod;
 
       keybindings = lib.mkOptionDefault {
         "${mod}+Return"       = "exec ${term}";
-        "${mod}+d"            = "exec ${menu}";
+        "${mod}"              = "exec ${menu}";
         "${mod}Shift+d"       = "exec ${runner}";
         "${mod}+space"        = "floating toggle";
         "${mod}+q"            = "kill";
