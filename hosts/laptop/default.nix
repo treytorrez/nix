@@ -10,6 +10,7 @@
     ../../modules/system/programs.nix
     ../../modules/system/packages.nix
     ../../modules/system/users.nix
+    ../../modules/system/fonts.nix
   ];
 
   networking.hostName = "laptop";
