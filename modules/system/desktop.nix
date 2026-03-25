@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs,  ... }:
 {
   # Display managers
   # services.displayManager.sddm.enable = true;
