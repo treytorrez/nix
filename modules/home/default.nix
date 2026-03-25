@@ -12,6 +12,7 @@
     ./voxtype.nix
     ./i3.nix
     ./lxqt.nix
+    ./xdg.nix
   ];
 
   home.packages = [ ];

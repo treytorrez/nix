@@ -12,18 +12,17 @@
 {...}:
 {
 
-
-  {
+xdg.desktopEntries = {
     st = {
       name = "Simple Terminal";
       genericName = "Terminal";
-      Comment = "Suckless terminal emulator for X";
-      exec ="st -t \"Simple Terminal"\" -f \"AtkynsonMono Nerd Font:style=Semibold:size=12\"";
+      comment = "Suckless terminal emulator for X";
+      exec ="st -t \"Simple Termina\" -f \"AtkynsonMono Nerd Font:style=Semibold:size=12\"";
       terminal = false;
       type = "Application";
-      Icon = "utilities-terminal";
+      icon = "utilities-terminal";
       categories = [ "System" "TerminalEmulator" ];
-      Keywords = [ "shell" "prompt" "command" "commandline" "cmd" ];
+      #keywords = [ "shell" "prompt" "command" "commandline" "cmd" ];
     };
   };
 
