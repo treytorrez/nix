@@ -10,6 +10,8 @@
     ./kitty.nix
     ./canon.nix
     ./voxtype.nix
+    ./i3.nix
+    ./lxqt.nix
   ];
 
   home.packages = [ ];
