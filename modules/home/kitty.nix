@@ -4,7 +4,7 @@
     font = {
         packages = pkgs.nerd-fonts.atkynson-mono;
         name = "AtkynsonMono Nerd Font";
-	size = 15;
+	size = 20;
       };
     settings = {
       shell_integration = "enabled";
