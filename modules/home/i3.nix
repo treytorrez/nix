@@ -41,7 +41,7 @@ in
 
       keybindings = lib.mkOptionDefault {
         "${mod}+Return"       = "exec ${term}";
-        "${mod}"              = "exec ${menu}";
+        "--release ${mod}"              = "exec ${menu}";
         "${mod}Shift+d"       = "exec ${runner}";
         "${mod}+space"        = "floating toggle";
         "${mod}+q"            = "kill";
