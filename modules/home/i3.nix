@@ -140,8 +140,7 @@ in
 
       bars = [{
         position = "top";
-        statusCommand = "i3status-rs"; 
-        #statusCommand = "i3status-rs ~/.config/i3status-rust/config.toml";
+        statusCommand = "i3status-rs ~/.config/i3status-rust/config-default.toml";
         fonts = { names = [ "AtkynsonMono Nerd Font" "monospace" ]; size = 10.0; };
         colors = {
           background      = gruvbox.bg;
