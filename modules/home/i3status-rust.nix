@@ -16,8 +16,7 @@
 	  block = "custom";
 	  command = "echo";
 	  interval = "once";
-	  width = 40;
-	  format = "$text";
+	  format = "$text.str(w:40)";
         }
         {
           block = "time";
