@@ -41,6 +41,7 @@
         {
           block = "sound";
           format = " $icon $volume ";
+	  driver = "pulseaudio";
         }
       ];
     };
