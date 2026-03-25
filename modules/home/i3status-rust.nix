@@ -12,12 +12,12 @@
         {
           block = "focused_window";
         }
-        {
-	  block = "custom";
-	  command = "echo";
-	  interval = "once";
-	  format = "$text.str(w:80)";
-        }
+        #  {
+	  #  block = "custom";
+	  #  command = "echo";
+	  #  interval = "once";
+	  #  format = "$text.str(w:80)";
+        #  }
         {
           block = "time";
           interval = 1;
@@ -30,13 +30,13 @@
         {
           block = "bluetooth";
           mac = "XX:XX:XX:XX:XX:XX"; # replace with your device MAC
-          format = " BT: $percentage ";
+          format = " $icon $percentage ";
           disconnected_format = " BT: off ";
         }
         {
           block = "net";
-          format = " $ssid $signal_strength ";
-          missing_format = " no wifi ";
+          format = " $icon $ssid  ";
+          missing_format = "  no wifi  ";
           interval = 5;
         }
         {
