@@ -73,6 +73,8 @@
     wlr-randr
     brightnessctl
     wl-clipboard
+    xclip
+    clipmenu
     mouseless
     webcamoid
     wev
