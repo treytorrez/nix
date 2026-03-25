@@ -40,7 +40,7 @@
         }
         {
           block = "sound";
-          format = " $icon $volume ";
+          format =" $icon {$volume.eng(w:2) }";
 	  driver = "pulseaudio";
         }
       ];
