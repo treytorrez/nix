@@ -1,6 +1,13 @@
-{ ... }:
+{ pkgs, ... }:
 {
-  programs.kitty.settings = {
-    shell_integration = "enabled";
+  programs.kitty = {
+    font = {
+        packages = pkgs.nerd-fonts.atkynson-mono;
+        name = "AtkynsonMono Nerd Font";
+	size = 15;
+      };
+    settings = {
+      shell_integration = "enabled";
+    };
   };
 }
