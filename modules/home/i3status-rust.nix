@@ -31,7 +31,7 @@
           block = "bluetooth";
           mac = "XX:XX:XX:XX:XX:XX"; # replace with your device MAC
           format = " $icon $percentage ";
-          disconnected_format = " BT: off ";
+          disconnected_format = " $icon off ";
         }
         {
           block = "net";
