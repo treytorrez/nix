@@ -18,8 +18,13 @@ let
   };
 in
 {
-  home.packages = with pkgs; [ rofi picom dunst ];
-  fonts.packages = [ pkgs.nerd-fonts ];
+  home.packages = with pkgs; [
+    rofi
+    picom
+    dunst
+    # i3status-rust is pulled in by programs.i3status-rust.enable
+  ];
+
   xsession.windowManager.i3 = {
     enable = true;
     package = pkgs.i3-gaps;
@@ -28,7 +33,7 @@ in
       modifier = mod;
       terminal = term;
       menu = menu;
-      fonts = { names = [ "monospace" ]; size = 10.0; };
+      fonts = { names = [ "AtkynsonMono Nerd Font" "monospace" ]; size = 10.0; };
       gaps = { inner = 8; outer = 4; smartGaps = true; smartBorders = "on"; };
       focus.followMouse = false;
       floating.modifier = mod;
@@ -112,6 +117,20 @@ in
         background      = gruvbox.bg;
       };
 
+      assigns = {
+        "1" = [
+          { class = "^LibreWolf$"; }
+          { class = "^firefox$"; }
+        ];
+        "2" = [
+          { class = "^st$"; }
+        ];
+        "3" = [
+          { class = "^tidal-hifi$"; }
+          { class = "^high-tide$"; }
+        ];
+      };
+
       startup = [
         { command = "picom --daemon";  notification = false; }
         { command = "nm-applet";       notification = false; }
@@ -122,7 +141,7 @@ in
       bars = [{
         position = "top";
         statusCommand = "i3status-rs ~/.config/i3status-rust/config.toml";
-        fonts = { names = [ "monospace" ]; size = 10.0; };
+        fonts = { names = [ "AtkynsonMono Nerd Font" "monospace" ]; size = 10.0; };
         colors = {
           background      = gruvbox.bg;
           statusline      = gruvbox.fg;
