@@ -13,6 +13,10 @@
           block = "focused_window";
         }
         {
+	  block = "custom";
+	  command = "echo";
+	  interval = "once";
+	  width = 40;
         }
         {
           block = "time";
