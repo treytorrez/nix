@@ -11,7 +11,6 @@
       blocks = [
         {
           block = "focused_window";
-          max_width = 40;
         }
         {
           block = "time";
