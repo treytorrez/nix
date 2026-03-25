@@ -17,7 +17,7 @@ xdg.desktopEntries = {
       name = "Simple Terminal";
       genericName = "Terminal";
       comment = "Suckless terminal emulator for X";
-      exec ="st -t \"Simple Termina\" -f \"AtkynsonMono Nerd Font:style=Semibold:size=16\"";
+      exec ="st -t \"Simple Termina\" -f \"AtkynsonMono Nerd Font:style=Semibold:size=35\"";
       terminal = false;
       type = "Application";
       icon = "utilities-terminal";
