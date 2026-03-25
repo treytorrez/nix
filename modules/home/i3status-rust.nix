@@ -11,7 +11,8 @@
       blocks = [
         {
           block = "focused_window";
-	  align = "center";
+        }
+        {
         }
         {
           block = "time";
