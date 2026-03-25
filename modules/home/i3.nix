@@ -2,7 +2,7 @@
 
 let
   mod = "Mod4";
-  term = "st";
+  term = "kitty";
   menu = "rofi -show drun";
 
   gruvbox = {
@@ -22,7 +22,7 @@ in
     rofi
     picom
     dunst
-    # i3status-rust is pulled in by programs.i3status-rust.enable
+    i3status-rust # is pulled in by programs.i3status-rust.enable
   ];
 
   xsession.windowManager.i3 = {
