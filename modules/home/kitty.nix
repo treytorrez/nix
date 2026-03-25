@@ -1,8 +1,9 @@
 { pkgs, ... }:
 {
   programs.kitty = {
+  enable = true;
     font = {
-        packages = pkgs.nerd-fonts.atkynson-mono;
+        package = pkgs.nerd-fonts.atkynson-mono;
         name = "AtkynsonMono Nerd Font";
 	size = 39;
       };
