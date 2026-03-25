@@ -4,6 +4,7 @@ let
   mod = "Mod4";
   term = "kitty";
   menu = "rofi -show drun";
+  runner = "rofi -show run";
 
   gruvbox = {
     bg      = "#282828";
@@ -41,6 +42,7 @@ in
       keybindings = lib.mkOptionDefault {
         "${mod}+Return"       = "exec ${term}";
         "${mod}+d"            = "exec ${menu}";
+        "${mod}Shift+d"       = "exec ${runner}";
         "${mod}+space"        = "floating toggle";
         "${mod}+q"            = "kill";
 
