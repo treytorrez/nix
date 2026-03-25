@@ -11,6 +11,7 @@
     ./canon.nix
     ./voxtype.nix
     ./i3.nix
+    ./i3status-rust.nix
     ./lxqt.nix
     ./xdg.nix
   ];
