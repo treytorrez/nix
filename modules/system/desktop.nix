@@ -10,6 +10,7 @@
   services.xserver = {
     enable = true;
     desktopManager.lxqt.enable = true;
+    windowManager.i3.enable = true;
     displayManager.lightdm = {
       enable = true;
     

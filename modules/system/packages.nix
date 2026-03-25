@@ -4,9 +4,11 @@
     # TERMINALS
     kitty
     foot
+    st
 
     # SHELLS
     zsh
+    bash
 
     # SHELL UTILITIES
     tmux
@@ -91,5 +93,6 @@
     home-manager
     hyprland
     lightdm
+    i3
   ];
 }
