@@ -32,6 +32,7 @@
     figlet
     pandoc
     fwupd
+    p7zip
 
     # EDITORS
     neovim
