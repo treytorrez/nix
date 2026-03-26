@@ -31,6 +31,7 @@
     canon # Added via nixpkgs overlay
     figlet
     pandoc
+    fwupd
 
     # EDITORS
     neovim
