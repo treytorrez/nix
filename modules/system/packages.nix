@@ -30,6 +30,7 @@
     gh
     canon # Added via nixpkgs overlay
     figlet
+    pandoc
 
     # EDITORS
     neovim
