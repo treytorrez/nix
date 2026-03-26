@@ -1,0 +1,15 @@
+{ pkgs, ...}:
+{
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    extraLuaConfig = ''
+      vim.opt.secure = true
+      
+      vim.cmd.colorscheme("retrobox")
+      
+      -- Ctrl+Backspace deletes previous word in insert mode
+      vim.keymap.set("i", "<C-BS>", "<C-w>", { silent = true })
+    '';
+  };
+}
