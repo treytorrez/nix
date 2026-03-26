@@ -18,7 +18,7 @@
       greeters.gtk.enable = true;
     
       # Example of having background as a particular color
-      background = "#ffa07a";
+      background = "#282828";
     
       # Example of the default image background (must be an absolute path)
       #background = pkgs.nixos-artwork.wallpapers.simple-dark-gray-bottom.gnomeFilePath;
