@@ -9,10 +9,7 @@ pkgs.writeShellApplication {
     git add .
     if sudo nixos-rebuild switch --flake ".#$(hostname)"; then
       git commit -m "successful build $(date '+%Y-%m-%d %H:%M')"
-      sudo -u treyt XDG_RUNTIME_DIR="/run/user/$(id -u treyt)" \
-        systemctl --user restart nixos-autopush.timer
-      sudo -u treyt XDG_RUNTIME_DIR="/run/user/$(id -u treyt)" \
-        ${pkgs.libnotify}/bin/notify-send "NixOS" "Build successful. Pushing in 1 hour"
+      systemctl --user restart nixos-autopush.timer
     else
       git restore .
     fi
