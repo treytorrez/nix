@@ -47,7 +47,7 @@
     {
       nixosConfigurations = {
         laptop = mkHost "laptop";
-        # desktop = mkHost "desktop";
+        desktop = mkHost "desktop";
       };
     };
 }
