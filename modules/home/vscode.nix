@@ -12,6 +12,7 @@
         ms-python.black-formatter
         ms-toolsai.jupyter
         asvetliakov.vscode-neovim
+	anthropic.claude-code
       ]
       ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
