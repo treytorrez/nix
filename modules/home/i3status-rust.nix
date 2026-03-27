@@ -44,6 +44,11 @@
           interval = 10;
           format = " $icon $percentage ";
         }
+	{
+	  block = " backlight "; 
+	  format = " $icon $brightness "; 
+	  missing_format = " $icon N/A ";
+	}
         {
           block = "sound";
           format =" $icon {$volume.eng(w:2) }";
