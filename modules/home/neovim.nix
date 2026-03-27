@@ -3,6 +3,7 @@
   #---NEOVIM-----------------------------------------------------
   programs.neovim = {
     enable = true;
+    defaultEditor = true;
 
     extraLuaConfig = ''
       vim.opt.exrc = true

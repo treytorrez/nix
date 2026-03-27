@@ -1,16 +1,15 @@
-{ lib, buildGoModule, fetchFromGitHub }:
+{
+  lib,
+  buildGoModule,
+  fetchFromGitHub,
+  canonSrc,
+}:
 
 buildGoModule rec {
   pname = "canon";
   version = "unstable-2024";
 
-  src = fetchFromGitHub {
-    owner = "pgattic";
-    repo = "canon";
-    rev = "master";
-    hash = "sha256-r9trN5F93Xspn4jDxLkBjDsomedCA0iALyYSJD0Uitc="; # replace with: nix-prefetch-url --unpack <tarball-url>
-                         # or run once and let nix tell you the correct hash
-  };
+  src = canonSrc;
 
   vendorHash = null; # no third-party Go dependencies
 

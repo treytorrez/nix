@@ -13,19 +13,34 @@
       url = "github:FlameFlag/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # in flake.nix inputs add
     nixcraft = {
       url = "github:loystonpais/nixcraft";
-      inputs.nixpkgs.follows = "nixpkgs"; # Set correct nixpkgs name
+      inputs.nixpkgs.follows = "nixpkgs";
     };
-
-  };
+    canonSrc = {
+      url = "github:pgattic/canon";
+      flake = false;
+    };
+    voxtype = {
+      url = "github:peteonrails/voxtype";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };  };
 
   outputs =
-    inputs@{ self, nixpkgs, home-manager, nixcord, ... }:
+    inputs@{
+      self,
+      nixpkgs,
+      home-manager,
+      nixcord,
+      canonSrc,
+      voxtype,
+      ...
+    }:
     let
       system = "x86_64-linux";
-        mkHost = hostname: nixpkgs.lib.nixosSystem {
+      mkHost =
+        hostname:
+        nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
           modules = [
@@ -34,10 +49,11 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { inherit nixcord; };
+              home-manager.extraSpecialArgs = { inherit nixcord voxtype; };
+              home-manager.sharedModules = [ voxtype.homeManagerModules.default ];
               nixpkgs.overlays = [
                 (final: prev: {
-                  canon = final.callPackage ./packages/canon.nix {};
+                  canon = final.callPackage ./packages/canon.nix { canonSrc = inputs.canonSrc; };
                 })
               ];
             }

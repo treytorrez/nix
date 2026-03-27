@@ -4,9 +4,11 @@
     # TERMINALS
     kitty
     foot
+    st
 
     # SHELLS
     zsh
+    bash
 
     # SHELL UTILITIES
     tmux
@@ -21,9 +23,16 @@
     btop
     fzf
     gnumake
+    zip
+    unzip
     (import ../../packages/new-nix-shell.nix { inherit pkgs; })
+    (import ../../packages/git-autocommit.nix { inherit pkgs; })
     gh
     canon # Added via nixpkgs overlay
+    figlet
+    pandoc
+    fwupd
+    p7zip
 
     # EDITORS
     neovim
@@ -35,7 +44,10 @@
     git
     uv
     arduino-ide
+    arduino
     codex
+    opencode
+    nixfmt
 
     # LAUNCHERS
     tofi
@@ -45,14 +57,15 @@
     # MEDIA
     mpv
     tidal-hifi
+    high-tide
     feh
     sxiv
     zoom-us
+    pinta
 
     # BROWSERS
-    firefox
+    firefoxpwa
     qutebrowser
-    hyprland
 
     # AUDIO
     pulseaudio
@@ -63,7 +76,12 @@
     wlr-randr
     brightnessctl
     wl-clipboard
-    firefoxpwa
+    xclip
+    clipmenu
+    mouseless
+    webcamoid
+    wev
+    evtest
 
     # PRODUCTIVITY
     libreoffice-qt6-fresh
@@ -77,8 +95,9 @@
 
     protonvpn-gui
     osu-lazer-bin
-    mouseless
-    webcamoid
     home-manager
+    hyprland
+    lightdm
+    i3
   ];
 }

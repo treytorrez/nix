@@ -11,8 +11,8 @@
       frameless = true;
       plugins = {
         messageLatency.enable = true;
-        };
       };
     };
-  }
+  };
+}
 

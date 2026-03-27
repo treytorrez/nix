@@ -14,20 +14,20 @@
       palette = "normal";
 
       palettes.normal = {
-        arrow      = "#333533";
-        os         = "#16f4d0";
-        os_admin   = "#e4ff1a";
-        directory  = "#9ffff5";
-        time       = "#bdfffd";
-        node       = "#a5e6ba";
-        git        = "#f17f29";
+        arrow = "#333533";
+        os = "#16f4d0";
+        os_admin = "#e4ff1a";
+        directory = "#9ffff5";
+        time = "#bdfffd";
+        node = "#a5e6ba";
+        git = "#f17f29";
         git_status = "#DFEBED";
-        python     = "#edf67d";
-        conda      = "#70e000";
-        java       = "#F86279";
-        rust       = "#ffdac6";
-        clang      = "#caf0f8";
-        duration   = "#ce4257";
+        python = "#edf67d";
+        conda = "#70e000";
+        java = "#F86279";
+        rust = "#ffdac6";
+        clang = "#caf0f8";
+        duration = "#ce4257";
         text_color = "#EDF2F4";
         text_light = "#26272A";
       };
@@ -45,21 +45,21 @@
         style = "bold blue";
         disabled = true;
         symbols = {
-          Alpine      = " ";
-          Arch        = " ";
-          Debian      = " ";
+          Alpine = " ";
+          Arch = " ";
+          Debian = " ";
           EndeavourOS = " ";
-          Fedora      = " ";
-          Linux       = " ";
-          Macos       = " ";
-          Manjaro     = " ";
-          Mint        = " ";
-          NixOS       = " ";
-          openSUSE    = " ";
-          Pop         = " ";
-          SUSE        = " ";
-          Ubuntu      = " ";
-          Windows     = " ";
+          Fedora = " ";
+          Linux = " ";
+          Macos = " ";
+          Manjaro = " ";
+          Mint = " ";
+          NixOS = " ";
+          openSUSE = " ";
+          Pop = " ";
+          SUSE = " ";
+          Ubuntu = " ";
+          Windows = " ";
         };
       };
 
@@ -76,7 +76,7 @@
 
       character = {
         success_symbol = "[󰍟](fg:arrow)";
-        error_symbol   = "[󰍟](fg:red)";
+        error_symbol = "[󰍟](fg:red)";
       };
 
       directory = {

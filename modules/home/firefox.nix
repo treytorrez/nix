@@ -1,27 +1,104 @@
 { pkgs, ... }:
 {
-  programs.firefoxpwa = {
+  programs.firefox = {
     enable = true;
-    profiles."01KK88FE5JH5NP3304A20A3G8A" = {
-      name = "Default";
-      sites = {
-        "01KK88FT89HT2N4X806DD1ZN3M" = {
-          name = "Claude";
-          url = "https://claude.ai/";
-          manifestUrl = "https://claude.ai/manifest.json?v=3d5be240a3";
-          desktopEntry.icon = pkgs.fetchurl {
-            url = "https://claude.ai/favicon.svg";
-            sha256 = "sVCIi8clevg+O4XTwr5ClPiJhgJvgWj2wS/B/eZpc1A=";
+    package = pkgs.librewolf;
+    nativeMessagingHosts.packages = [
+      pkgs.tridactyl-native
+      pkgs.firefoxpwa
+    ];
+    profiles = {
+      default = {
+        bookmarks = {
+          "Nix" = {
+            toolbar = true;
+            bookmarks = {
+              "Nixpkgs Repo" = {
+                url = "https://github.com/NixOS/nixpkgs";
+              };
+              "Home Manager Manual" = {
+                url = "https://nix-community.github.io/home-manager/options.xhtml";
+              };
+              "NixOS Package Search" = {
+                url = "https://search.nixos.org/packages";
+              };
+            };
+          };
+          "BYUI" = {
+            toolbar = true;
+            bookmarks = {
+              "Canvas" = {
+                url = "https://byui.instructure.edu";
+              };
+              "My BYUI" = {
+                url = "https://my.byui.edu";
+              };
+            };
           };
         };
-        "01KK8E1YMGJPZ2BVR9K2841JYE" = {
-          name = "MDN Web Docs";
-          url = "https://developer.mozilla.org/";
-          manifestUrl = "https://developer.mozilla.org/manifest.f42880861b394dd4dc9b.json";
-          desktopEntry.icon = pkgs.fetchurl {
-            url = "https://developer.mozilla.org/favicon-192x192.png";
-            sha256 = "0p8zgf2ba48l2pq1gjcffwzmd9kfmj9qc0v7zpwf2qd54fndifxr";
-          };
+      };
+      school = {
+        bookmarks = { };
+      };
+      work = {
+        bookmarks = { };
+      };
+      pwas = { };
+    };
+  };
+  environment.etc."librewolf/policies/policies.json".text = builtins.toJSON {
+    policies = {
+      DefaultDownloadDirectory = "\${home}/Downloads";
+      ExtensionSettings = {
+        # uBlock Origin
+        "uBlock0@raymondhill.net" = {
+          default_area = "menupanel";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+          installation_mode = "force_installed";
+          private_browsing = true;
+        };
+        # Canvas Blocker
+        "CanvasBlocker@kkapsner.de" = {
+          # NEEDS CONFIG INSIDE EXTENSION SETTINGS
+          default_area = "menupanel";
+          install_url = "https://addons.mozilla.org/firefox/downloads/file/4691016/canvasblocker-1.12.xpi";
+          installation_mode = "force_installed";
+          private_browsing = true;
+        };
+        # Privacy Badger
+        "jid1-MnnxcxisBPnSXQ@jetpack" = {
+          default_area = "menupanel";
+          install_url = "https://addons.mozilla.org/firefox/downloads/file/4700632/privacy_badger17-2026.2.20.xpi";
+          installation_mode = "force_installed";
+          private_browsing = true;
+        };
+        # ClearURL - remove tracking info
+        "{74145f27-f039-47ce-a470-a662b129930a}" = {
+          default_area = "menupanel";
+          install_url = "https://addons.mozilla.org/firefox/downloads/file/4432106/clearurls-1.27.3.xpi";
+          installation_mode = "force_installed";
+          private_browsing = true;
+        };
+        # Multi-Account Containers
+        "@testpilot-containers" = {
+          default_area = "menupanel";
+          install_url = "https://addons.mozilla.org/firefox/downloads/file/4627302/multi_account_containers-8.3.6.xpi";
+          installation_mode = "force_installed";
+          private_browsing = true;
+        };
+        # Proton Pass
+        "78272b6fa58f4a1abaac99321d503a20@proton.me" = {
+          default_area = "menupanel";
+          install_url = "https://addons.mozilla.org/firefox/downloads/file/4686427/proton_pass-1.34.2.xpi";
+          installation_mode = "force_installed";
+          private_browsing = true;
+        };
+        # Tridactyl
+        "tridactyl.vim@cmcaine.co.uk" = {
+          default_area = "menupanel";
+          install_url = "https://addons.mozilla.org/firefox/downloads/file/4704384/tridactyl_vim-1.24.5.xpi";
+          installation_mode = "force_installed";
+          private_browsing = true;
         };
       };
     };

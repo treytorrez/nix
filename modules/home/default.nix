@@ -2,12 +2,19 @@
 {
   imports = [
     nixcord.homeModules.nixcord
-    ./firefox.nix
+    ./firefoxpwa.nix
+    ./neovim.nix
     ./nixcord.nix
     ./zsh.nix
     ./starship.nix
     ./vscode.nix
     ./kitty.nix
+    ./canon.nix
+    ./voxtype.nix
+    ./i3.nix
+    ./i3status-rust.nix
+    ./lxqt.nix
+    ./xdg.nix
   ];
 
   home.packages = [ ];
