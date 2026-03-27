@@ -35,7 +35,7 @@
         }
         {
           block = "net";
-          format = " $icon $ssid  ";
+          format = " $icon {$signal_strength $ssid $frequency|Wired connection} via $device ";
           missing_format = "  no wifi  ";
           interval = 5;
         }
