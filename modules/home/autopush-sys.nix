@@ -1,20 +1,19 @@
+{ pkgs, ... }:{
 systemd.user.services.nixos-autopush = {
-  description = "Auto-push nixos config after idle period";
-  serviceConfig = {
+  Unit.Description = "Auto-push nixos config after idle period";
+  Service = {
     Type = "oneshot";
     WorkingDirectory = "/etc/nixos";
-    ExecStart = "${pkgs.writeShellScript "nixos-autopush" ''
-      ${pkgs.libnotify}/bin/notify-send "NixOS Autopush" "Pushing config changes..."
-      ${pkgs.git}/bin/git push
-    ''}";
+    ExecStart = "...";
     Environment = "DISPLAY=:0";
   };
 };
 
 systemd.user.timers.nixos-autopush = {
-  description = "Push nixos config if idle for 1 hour";
-  timerConfig = {
+  Unit.Description = "Push nixos config if idle for 1 hour";
+  Timer = {
     OnActiveSec = "1h";
     RemainAfterElapse = false;
   };
 };
+}
