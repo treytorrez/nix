@@ -8,7 +8,7 @@ buildGoModule rec {
     owner = "pgattic";
     repo = "canon";
     rev = "master";
-    hash = lib.fakeHash; # replace with: nix-prefetch-url --unpack <tarball-url>
+    hash = "sha256-r9trN5F93Xspn4jDxLkBjDsomedCA0iALyYSJD0Uitc="; # replace with: nix-prefetch-url --unpack <tarball-url>
                          # or run once and let nix tell you the correct hash
   };
 

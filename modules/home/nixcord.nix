@@ -11,11 +11,8 @@
       frameless = true;
       plugins = {
         messageLatency.enable = true;
-        CustomRPC = {
-          enable = true;
-          config = { };
         };
       };
     };
-  };
-}
+  }
+
