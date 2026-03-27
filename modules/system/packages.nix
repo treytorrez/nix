@@ -82,6 +82,7 @@
     webcamoid
     wev
     evtest
+    libnotify
 
     # PRODUCTIVITY
     libreoffice-qt6-fresh

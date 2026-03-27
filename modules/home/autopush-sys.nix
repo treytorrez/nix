@@ -4,14 +4,17 @@ systemd.user.services.nixos-autopush = {
   Service = {
     Type = "oneshot";
     WorkingDirectory = "/etc/nixos";
-    ExecStart = "...";
+    ExecStart = "${pkgs.writeShellScript "nixos-autopush" ''
+      ${pkgs.libnotify}/bin/notify-send "NixOS Autopush" "Pushing config changes..."
+      ${pkgs.git}/bin/git push
+    ''}";
     Environment = "DISPLAY=:0";
   };
 };
 
 systemd.user.timers.nixos-autopush = {
   Unit.Description = "Push nixos config if idle for 1 hour";
-  Timer = {
+  timerConfig = {
     OnActiveSec = "1h";
     RemainAfterElapse = false;
   };
