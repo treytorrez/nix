@@ -45,7 +45,7 @@
           format = " $icon $percentage ";
         }
 	{
-	  block = " backlight "; 
+	  block = "backlight"; 
 	  format = " $icon $brightness "; 
 	  missing_format = " $icon N/A ";
 	}
