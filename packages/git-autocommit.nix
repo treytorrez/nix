@@ -2,7 +2,7 @@
 { pkgs }:
 pkgs.writeShellApplication {
   name = "update";
-  runtimeInputs = [ pkgs.git ];
+  runtimeInputs = [ pkgs.git pkgs.libnotify ];
   text = ''
     echo "building for $(hostname)"
     cd /etc/nixos
