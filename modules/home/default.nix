@@ -16,6 +16,7 @@
     ./lxqt.nix
     ./xdg.nix
     ./autopush-sys.nix
+    ./emacs.nix
   ];
 
   home.packages = [ ];

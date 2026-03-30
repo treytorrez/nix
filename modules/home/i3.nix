@@ -5,6 +5,8 @@ let
   term = "kitty";
   menu = "rofi -show drun";
   runner = "rofi -show run";
+  browser_personal = "librewolf -P default";
+  browser_school  = "librewolf -P School";
 
   gruvbox = {
     bg      = "#282828";
@@ -41,7 +43,9 @@ in
 
       keybindings = lib.mkOptionDefault {
         "${mod}+Return"       = "exec ${term}";
-        "--release ${mod}"              = "exec ${menu}";
+        "${mod}+z"            = "exec ${browser_personal}";
+        "${mod}+Shift+z"      = "exec ${browser_school}";
+        #"--release ${mod}"    = "exec ${menu}";
         "${mod}Shift+d"       = "exec ${runner}";
         "${mod}+space"        = "floating toggle";
         "${mod}+q"            = "kill";
