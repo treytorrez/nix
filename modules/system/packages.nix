@@ -12,6 +12,7 @@
 
     # SHELL UTILITIES
     tmux
+    zellij
     curl
     wget
     ripgrep
