@@ -126,7 +126,9 @@ in
       assigns = {
         "1" = [
           { class = "^LibreWolf$"; }
+          { title = "^LibreWolf$"; }
           { class = "^firefox$"; }
+          { title = "^firefox$"; }
         ];
         "2" = [
           { class = "^Simple Terminal$"; }
