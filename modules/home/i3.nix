@@ -129,7 +129,7 @@ in
           { class = "^firefox$"; }
         ];
         "2" = [
-          { class = "^st$"; }
+          { class = "^Simple Terminal$"; }
         ];
         "3" = [
           { class = "^tidal-hifi$"; }
