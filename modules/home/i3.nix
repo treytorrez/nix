@@ -130,7 +130,7 @@ in
         ];
         "2" = [
           { class = "^Simple Terminal$"; }
-          { title = "^Simple Terminal$"; }
+          { title = "^Simple Termina"; }
         ];
         "3" = [
           { class = "^tidal-hifi$"; }
