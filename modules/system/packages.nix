@@ -95,6 +95,11 @@
     hunspell
     hunspellDicts.en_US
 
+
+    # funsies :) heehee
+    cbonsai
+    # asciiquarium
+
     protonvpn-gui
     osu-lazer-bin
     home-manager
