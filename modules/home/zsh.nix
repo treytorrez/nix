@@ -26,6 +26,7 @@
       #update = "echo \"rebuilding as $(hostname)\"; sudo nixos-rebuild switch --flake /etc/nixos#$(hostname)";
       nixvim = "sudo nix run ~/nixvim-flake -- \"$@\"";
       psgrep = "ps aux | rg";
+      nvimprovements = "nvim /home/treyt/Documents/personal/improvements.md";
     };
 
     sessionVariables = {
