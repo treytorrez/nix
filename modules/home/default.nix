@@ -15,7 +15,6 @@
     ./i3status-rust.nix
     ./lxqt.nix
     ./xdg.nix
-    ./autopush-sys.nix
     ./emacs.nix
   ];
 
