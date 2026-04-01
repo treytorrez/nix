@@ -141,6 +141,11 @@ in
           { class = "^high-tide$"; }
         ];
       };
+      floating.criteria = [
+        {
+          title = "feh";
+	}
+      ]; 
 
       startup = [
         { command = "picom --daemon";  notification = false; }
