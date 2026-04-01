@@ -45,7 +45,7 @@ in
         "${mod}+Return"       = "exec ${term}";
         "${mod}+z"            = "exec ${browser_personal}";
         "${mod}+Shift+z"      = "exec ${browser_school}";
-        "--release ${mod}"    = "exec ${menu}";
+        "${mod} --release"    = "exec ${menu}";
         "${mod}+Shift+d"       = "exec ${runner}";
         "${mod}+space"        = "floating toggle";
         "${mod}+q"            = "kill";
