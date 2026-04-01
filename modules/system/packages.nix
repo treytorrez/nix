@@ -34,6 +34,7 @@
     pandoc
     fwupd
     p7zip
+    tabiew
 
     # EDITORS
     neovim
