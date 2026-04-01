@@ -1,3 +1,4 @@
+{ pkgs, ...}:{
 custom.focusMode = {
   enable = true;
 
@@ -19,3 +20,4 @@ custom.focusMode = {
     "www.nixos.org"    "www.wiki.nixos.org" 
   ];
 };
+}
