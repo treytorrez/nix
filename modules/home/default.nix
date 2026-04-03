@@ -16,6 +16,7 @@
     ./lxqt.nix
     ./xdg.nix
     ./emacs.nix
+    ./direnv.nix
   ];
 
   home.packages = [ ];

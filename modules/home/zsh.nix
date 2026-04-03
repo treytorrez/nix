@@ -36,7 +36,6 @@
 
     profileExtra = ''
       eval "$(starship init zsh)"
-      eval "$(direnv hook zsh)"
       batcanon() { canon "$@" | sed 's/ \([0-9]*\) /\1. /' | bat -l md --theme Nord --style=-numbers }
       tmux
     '';
