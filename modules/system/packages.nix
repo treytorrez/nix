@@ -54,6 +54,7 @@
     python313
     python312
     python311
+    direnv
 
     # LAUNCHERS
     tofi
