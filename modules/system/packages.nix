@@ -52,8 +52,13 @@
     nixfmt
     python314
     python313
+    python313Packages.mypy
+    python313Packages.ruff
     python312
+    python312Packages.mypy
+    python312Packages.ruff
     python311
+
     direnv
 
     # LAUNCHERS
