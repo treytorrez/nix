@@ -13,6 +13,7 @@
     ../../modules/system/fonts.nix
     ../../modules/system/focus-blacklist.nix
     ../../modules/system/focus-mode.nix
+    ../../modules/system/ld.nix
   ];
 
   networking.hostName = "laptop";
