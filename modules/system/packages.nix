@@ -50,6 +50,10 @@
     codex
     opencode
     nixfmt
+    python314
+    python313
+    python312
+    python311
 
     # LAUNCHERS
     tofi
