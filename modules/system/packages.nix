@@ -58,6 +58,7 @@
     python312Packages.mypy
     python312Packages.ruff
     python311
+    python3Packages.jupytext
 
     direnv
 
