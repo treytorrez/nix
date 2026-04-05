@@ -12,8 +12,9 @@
     ];
 
     extraPackages = with pkgs; [
-      imagemagick
-    ];
+       imagemagick
+       python3Packages.jupytext  # <-- add this
+     ];
 
     extraLuaPackages = ps: with ps; [
       magick
