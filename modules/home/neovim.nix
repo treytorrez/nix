@@ -109,7 +109,7 @@
       -- auto-save
       require("auto-save").setup({
         enabled = true,
-        execution_message = { message = "" },
+        -- execution_message = { message = "" },
         events = { "InsertLeave", "TextChanged" },
         debounce_delay = 1000,
       })
@@ -132,7 +132,6 @@
         vim.api.nvim_win_set_cursor(0, { row + 2, 0 })
         vim.cmd("startinsert")
       end, { desc = "New cell", silent = true })
-
 
 
       -- LSP (hover + go-to-def etc.)
