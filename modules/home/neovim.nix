@@ -48,7 +48,7 @@
       vim.g.maplocalleader = " "
 
       vim.cmd.colorscheme("retrobox")
-      vim.opt.relativenumbers = true
+      vim.opt.relativenumber = true
       vim.opt.number = true
 
       -- Ctrl+Backspace deletes previous word in insert mode
