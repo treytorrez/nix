@@ -11,11 +11,16 @@
       jupytext-nvim
       auto-save-nvim
       which-key-nvim
+      nvim-cmp
+      cmp-nvim-lsp
+      cmp-buffer
+      cmp-path
     ];
 
     extraPackages = with pkgs; [
       imagemagick
       python3Packages.jupytext
+      pyright
     ];
 
     extraLuaPackages = ps: with ps; [
@@ -43,12 +48,20 @@
       vim.g.maplocalleader = " "
 
       vim.cmd.colorscheme("retrobox")
+      vim.opt.relativenumbers = true
+      vim.opt.number = true
 
       -- Ctrl+Backspace deletes previous word in insert mode
       vim.keymap.set("i", "<C-BS>", "<C-w>", { silent = true })
 
       -- which-key
       require("which-key").setup({})
+      require("which-key").add({
+        { "<leader>m",  group = "Molten" },
+        { "<leader>r",  group = "Run" },
+        { "<leader>o",  group = "Output" },
+        { "<leader>n",  group = "New" },
+      })
 
       -- image.nvim (required before molten)
       require("image").setup({
@@ -110,6 +123,49 @@
       vim.keymap.set("n", "<leader>os", ":noautocmd MoltenEnterOutput<CR>", { desc = "Molten enter output", silent = true })
       vim.keymap.set("n", "<leader>oh", ":MoltenHideOutput<CR>",       { desc = "Molten hide output", silent = true })
       vim.keymap.set("n", "<leader>md", ":MoltenDelete<CR>",           { desc = "Molten delete cell", silent = true })
+
+
+      -- new cell (inserts a markdown python code block)
+      vim.keymap.set("n", "<leader>nc", function()
+        local row = vim.api.nvim_win_get_cursor(0)[1]
+        vim.api.nvim_buf_set_lines(0, row, row, false, { "```python", "", "```", "" })
+        vim.api.nvim_win_set_cursor(0, { row + 2, 0 })
+        vim.cmd("startinsert")
+      end, { desc = "New cell", silent = true })
+
+
+
+      -- LSP (hover + go-to-def etc.)
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "python", "markdown" },
+        callback = function()
+          vim.lsp.start({
+            name = "pyright",
+            cmd = { "pyright-langserver", "--stdio" },
+            root_dir = vim.fn.getcwd(),
+          })
+        end,
+      })
+
+     vim.keymap.set("n", "K",  vim.lsp.buf.hover,           { desc = "Hover info" })
+     vim.keymap.set("n", "gd", vim.lsp.buf.definition,      { desc = "Go to definition" })
+     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename,  { desc = "Rename symbol" })
+
+     -- nvim-cmp
+     local cmp = require("cmp")
+     cmp.setup({
+       mapping = cmp.mapping.preset.insert({
+         ["<C-Space>"] = cmp.mapping.complete(),
+         ["<CR>"]      = cmp.mapping.confirm({ select = true }),
+         ["<Tab>"]     = cmp.mapping.select_next_item(),
+         ["<S-Tab>"]   = cmp.mapping.select_prev_item(),
+       }),
+       sources = cmp.config.sources({
+         { name = "nvim_lsp" },
+         { name = "buffer" },
+         { name = "path" },
+       }),
+     })
     '';
   };
 }
