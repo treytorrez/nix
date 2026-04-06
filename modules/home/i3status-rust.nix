@@ -39,6 +39,14 @@
           missing_format = "  no wifi  ";
           interval = 5;
         }
+	{
+          block = "memory";
+          format = " $icon $mem_used_percents.eng(w:1) ";
+          format_alt = " $icon_swap $swap_free.eng(w:3,u:B,p:Mi)/$swap_total.eng(w:3,u:B,p:Mi)($swap_used_percents.eng(w:2)) ";
+          interval = 30;
+          warning_mem = 70;
+          critical_mem = 90;
+	}
         {
           block = "battery";
           interval = 10;
