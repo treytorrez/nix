@@ -35,6 +35,7 @@
     fwupd
     p7zip
     tabiew
+    typora
 
     # EDITORS
     neovim
