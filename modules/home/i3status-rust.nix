@@ -59,7 +59,8 @@
 	}
         {
           block = "sound";
-          format =" $icon {$volume.eng(w:2) } $output_name";
+          format =" $icon {$volume.eng(w:2) }";
+	  headphones_indicator = true;
 	  show_volume_when_muted = true;
 	  driver = "pulseaudio";
 	  max_vol = 115;
