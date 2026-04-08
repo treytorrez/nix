@@ -1,11 +1,11 @@
 { config, lib, pkgs, ... }:
-
 {
   home.packages = [ pkgs.zsh-defer ];   # required for deferred vi-mode
 
   programs.zsh = {
     enable = true;
     enableCompletion = true;      # sets up completion paths, but we handle compinit manually
+    zprof.enable = true;
     syntaxHighlighting.enable = true;
     autosuggestion.enable = true;
 
