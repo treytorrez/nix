@@ -5,7 +5,7 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;      # sets up completion paths, but we handle compinit manually
-    #zprof.enable = true;
+    zprof.enable = true;
     syntaxHighlighting.enable = true;
     autosuggestion.enable = true;
 
