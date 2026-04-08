@@ -74,9 +74,9 @@
         batcanon() { canon "$@" | sed 's/ \([0-9]*\) /\1. /' | bat -l md --theme Nord --style=-numbers }
 
         # ---- Auto-start tmux (only if interactive and not already in tmux) ----
-        if [[ -z "$TMUX" && $- == *i* ]]; then
-          tmux attach 2>/dev/null || tmux new
-        fi
+        # if [[ -z "$TMUX" && $- == *i* ]]; then
+          # tmux attach 2>/dev/null || tmux new
+        # fi
       '';
 
       # Order 1200 – after default, before "last" (e.g., prompt setup)
