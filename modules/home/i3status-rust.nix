@@ -59,9 +59,11 @@
 	}
         {
           block = "sound";
-          format =" $icon {$volume.eng(w:2) }";
+          format =" $icon {$volume.eng(w:2) } $output_name";
 	  show_volume_when_muted = true;
 	  driver = "pulseaudio";
+	  max_vol = 115;
+	  step_width = 1;
         }
       ];
     };
