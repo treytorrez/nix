@@ -33,67 +33,69 @@
     };
 
     # Use initContent with explicit ordering
-    initContent = let
-      # Order 500 – very early (before anything else)
-      earlyInit = lib.mkOrder 500 ''
-        # Set up ZSH_COMPDUMP location if not already set
-        : ''${ZSH_COMPDUMP:="$HOME/.cache/zsh/compdump"}
-        mkdir -p "$(dirname "$ZSH_COMPDUMP")"
-      '';
+	initContent = let
+	  earlyInit = lib.mkOrder 500 ''
+	    # Set dump location and ensure directory exists
+	    : ''${ZSH_COMPDUMP:="$HOME/.cache/zsh/compdump"}
+	    mkdir -p "$(dirname "$ZSH_COMPDUMP")"
 
-      # Order 550 – before completion initialization (replaces initExtraBeforeComp)
-      beforeCompInit = lib.mkOrder 550 ''
-        # Cached compinit – skip security checks if dump is fresh (<24h old)
-        autoload -Uz compinit
-        if [[ -n ''${ZSH_COMPDUMP}(#qN.mh-24) ]]; then
-          compinit -C -d "$ZSH_COMPDUMP"
-        else
-          compinit -d "$ZSH_COMPDUMP"
-        fi
-      '';
+	    # Optionally trim fpath (uncomment if you want aggressive pruning)
+	    # fpath=(
+	    #   ${pkgs.zsh}/share/zsh/${pkgs.zsh.version}/functions
+	    #   ${pkgs.zsh}/share/zsh/site-functions
+	    #   ${config.home.profileDirectory}/share/zsh/site-functions
+	    #   $HOME/.zsh/plugins/wd/share/zsh/site-functions
+	    #   $fpath
+	    # )
+	    # typeset -U fpath
+	  '';
 
-      # Order 1000 – default (general configuration)
-      generalInit = lib.mkOrder 1000 ''
-        # ---- Deferred loading of vi-mode (uses zsh-defer) ----
-        if command -v zsh-defer >/dev/null; then
-          zsh-defer source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-        else
-          source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-        fi
+	  beforeCompInit = lib.mkOrder 550 ''
+	    autoload -Uz compinit
+	    # Always use cache; skip security; no dump regeneration
+	    compinit -C -d "$ZSH_COMPDUMP"
+	  '';
 
-        # ---- Lazy direnv hook (only loads on first cd/prompt) ----
-        _lazy_direnv() {
-          unfunction _lazy_direnv
-          eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
-        }
-        autoload -Uz add-zsh-hook
-        add-zsh-hook chpwd _lazy_direnv
-        add-zsh-hook precmd _lazy_direnv
+	  generalInit = lib.mkOrder 1000 ''
+	    # ---- Deferred vi-mode ----
+	    if command -v zsh-defer >/dev/null; then
+	      zsh-defer source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+	    else
+	      source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+	    fi
 
-        # ---- Custom functions ----
-        batcanon() { canon "$@" | sed 's/ \([0-9]*\) /\1. /' | bat -l md --theme Nord --style=-numbers }
+	    # ---- Lazy direnv ----
+	    _lazy_direnv() {
+	      unfunction _lazy_direnv
+	      eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
+	    }
+	    autoload -Uz add-zsh-hook
+	    add-zsh-hook chpwd _lazy_direnv
+	    add-zsh-hook precmd _lazy_direnv
 
-        # ---- Auto-start tmux (only if interactive and not already in tmux) ----
-        # if [[ -z "$TMUX" && $- == *i* ]]; then
-          # tmux attach 2>/dev/null || tmux new
-        # fi
-	# Compile completion dump if it's new and not already compiled
-        if [[ -f "$ZSH_COMPDUMP" && ! -f "$ZSH_COMPDUMP.zwc" ]]; then
-          zcompile "$ZSH_COMPDUMP"
-        fi
-      '';
+	    # ---- Compile completion dump for faster loading ----
+	    if [[ -f "$ZSH_COMPDUMP" && ! -f "$ZSH_COMPDUMP.zwc" ]]; then
+	      zcompile "$ZSH_COMPDUMP" 2>/dev/null
+	    fi
 
-      # Order 1200 – after default, before "last" (e.g., prompt setup)
-      promptInit = lib.mkOrder 1200 ''
-        # ---- Starship prompt (cached) ----
-        STARSHIP_CACHE="$HOME/.cache/starship/init.zsh"
-        if [[ ! -f "$STARSHIP_CACHE" ]] || [[ ${pkgs.starship}/bin/starship -nt "$STARSHIP_CACHE" ]]; then
-          mkdir -p "$(dirname "$STARSHIP_CACHE")"
-          ${pkgs.starship}/bin/starship init zsh --print-full-init > "$STARSHIP_CACHE"
-        fi
-        source "$STARSHIP_CACHE"
-      '';
+	    # ---- Custom functions ----
+	    batcanon() { canon "$@" | sed 's/ \([0-9]*\) /\1. /' | bat -l md --theme Nord --style=-numbers }
 
-    in lib.mkMerge [ earlyInit beforeCompInit generalInit promptInit ];
+	    # ---- Auto-start tmux ----
+	    if [[ -z "$TMUX" && $- == *i* ]]; then
+	      tmux attach 2>/dev/null || tmux new
+	    fi
+	  '';
+
+	  promptInit = lib.mkOrder 1200 ''
+	    # ---- Starship (cached) ----
+	    STARSHIP_CACHE="$HOME/.cache/starship/init.zsh"
+	    if [[ ! -f "$STARSHIP_CACHE" ]] || [[ ${pkgs.starship}/bin/starship -nt "$STARSHIP_CACHE" ]]; then
+	      mkdir -p "$(dirname "$STARSHIP_CACHE")"
+	      ${pkgs.starship}/bin/starship init zsh --print-full-init > "$STARSHIP_CACHE"
+	    fi
+	    source "$STARSHIP_CACHE"
+	  '';
+	in lib.mkMerge [ earlyInit beforeCompInit generalInit promptInit ];
   };
 }
