@@ -48,7 +48,7 @@ in
         "${mod} --release"    = "exec ${menu}";
         "${mod}+Shift+d"       = "exec ${runner}";
         "${mod}+space"        = "floating toggle";
-        "${mod}+q"            = "kill";
+        "${mod}+Shift+q"            = "kill";
 
         # Focus
         "${mod}+h"            = "focus left";
