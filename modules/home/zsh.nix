@@ -77,6 +77,10 @@
         # if [[ -z "$TMUX" && $- == *i* ]]; then
           # tmux attach 2>/dev/null || tmux new
         # fi
+	# Compile completion dump if it's new and not already compiled
+        if [[ -f "$ZSH_COMPDUMP" && ! -f "$ZSH_COMPDUMP.zwc" ]]; then
+          zcompile "$ZSH_COMPDUMP"
+        fi
       '';
 
       # Order 1200 – after default, before "last" (e.g., prompt setup)
