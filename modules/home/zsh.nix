@@ -82,9 +82,9 @@
 	    batcanon() { canon "$@" | sed 's/ \([0-9]*\) /\1. /' | bat -l md --theme Nord --style=-numbers }
 
 	    # ---- Auto-start tmux ----
-	    if [[ -z "$TMUX" && $- == *i* ]]; then
-	      tmux attach 2>/dev/null || tmux new
-	    fi
+#	    if [[ -z "$TMUX" && $- == *i* ]]; then
+#	      tmux attach 2>/dev/null || tmux new
+#	    fi
 	  '';
 
 	  promptInit = lib.mkOrder 1200 ''
