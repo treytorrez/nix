@@ -103,7 +103,7 @@
 
         # Auto-start tmux (only if interactive and not already inside tmux)
         if [[ -z "$TMUX" && $- == *i* ]]; then
-          tmux attach 2>/dev/null || tmux new
+          tmux new
         fi
       '';
 
