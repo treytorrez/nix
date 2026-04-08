@@ -31,6 +31,7 @@
 
 
   };
+  services.xscreensaver.enable = true;
 
 
 
