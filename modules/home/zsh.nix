@@ -102,9 +102,9 @@
         batcanon() { canon "$@" | sed 's/ \([0-9]*\) /\1. /' | bat -l md --theme Nord --style=-numbers }
 
         # Auto-start tmux (only if interactive and not already inside tmux)
-        if [[ -z "$TMUX" && $- == *i* ]]; then
-          tmux new
-        fi
+#        if [[ -z "$TMUX" && $- == *i* ]]; then
+#          tmux new
+#        fi
       '';
 
       # ---- Order 1200: Prompt setup (after most other config) ----
