@@ -12,9 +12,20 @@
         ms-python.black-formatter
         ms-toolsai.jupyter
         asvetliakov.vscode-neovim
-	anthropic.claude-code
       ]
       ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+	{
+	  name = "chatgpt";
+	  publisher = "openai";
+	  version = "26.5406.31014";
+	  sha256 = "s6ET/QEFIC3WJDbzJ49ki5EYZj/DRp81lPHUYZ9Jll4=";
+	}
+	{
+	  name = "datawrangler";
+	  publisher = "ms-toolsai";
+	  version = "1.24.0";
+	  sha256 = "FWzrxf5uaPcbu1JCiYxsbkju1mY3n3F2vGLvfMuZxlc=";
+	}
         {
           name = "colab";
           publisher = "google";

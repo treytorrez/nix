@@ -36,6 +36,12 @@
     p7zip
     tabiew
     typora
+    vifm
+    neomutt
+    mutt-wizard
+    gettext
+    isync
+    pass
 
     # EDITORS
     neovim
