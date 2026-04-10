@@ -66,7 +66,7 @@
     python312Packages.ruff
     python311
     python3Packages.jupytext
-
+    quartoMinimal
     direnv
 
     # LAUNCHERS
