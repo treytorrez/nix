@@ -21,7 +21,7 @@
     settings = {
       hotkey = {
         enabled = true;
-        key = "CALC";
+        key = "CALCULATOR";
         modifiers = [ "RIGHTCTRL" ];
       };
       whisper = {
