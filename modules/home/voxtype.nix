@@ -21,7 +21,7 @@
     settings = {
       hotkey = {
         enabled = true;
-        key = "CALCULATOR";
+        key = "EVTEST_140";
         modifiers = [ "RIGHTCTRL" ];
       };
       whisper = {
