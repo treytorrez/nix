@@ -125,5 +125,6 @@
     hyprland
     lightdm
     i3
+    ollama
   ];
 }
