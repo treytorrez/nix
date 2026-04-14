@@ -4,6 +4,7 @@
     enable = true;
     environmentVariables = {
       OLLAMA_FLASH_ATTENTION = "1";
+      HSA_OVERRIDE_GFX_VERSION = "10.3.2";
     };
   };
 }
