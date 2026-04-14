@@ -17,6 +17,7 @@
     ./xdg.nix
     ./emacs.nix
     ./direnv.nix
+    ./ollama.nix
   ];
 
   home.packages = [ ];
