@@ -42,6 +42,8 @@
     gettext
     isync
     pass
+    browsh
+    w3m
 
     # EDITORS
     neovim
