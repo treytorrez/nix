@@ -5,5 +5,5 @@
     mouse = true;
     plugins = [
       tmuxPLugins.cpu
-      tmuxPlugins.dotbar
+      tmuxPLugins.battery
 }
