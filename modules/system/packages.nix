@@ -63,6 +63,7 @@
     python313
     python313Packages.mypy
     python313Packages.ruff
+    python313Packages.pdftotext
     python312
     python312Packages.mypy
     python312Packages.ruff
