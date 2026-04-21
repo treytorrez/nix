@@ -129,6 +129,9 @@
     # SCHOOL
     # mathematica # https://www.balderholst.com/how-to/install-mathematica-on-nixos/
     sage # mathematica alternative
+    slack-term
+    slack
+    positron-bin
 
 
     protonvpn-gui
