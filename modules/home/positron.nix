@@ -57,7 +57,7 @@
         {
           name = "quarto";
           publisher = "quarto";
-          version = "1.131.0";
+          version = "1.132.9";
           sha256 = "sha256-uPNH+LDQJWI3HmUHAfUdCwRD9ECBQX2BUyF/OLYYjwg=";
         }
         # Shiny
