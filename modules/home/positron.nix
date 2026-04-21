@@ -57,15 +57,15 @@
         {
           name = "quarto";
           publisher = "quarto";
-          version = "1.132.9";
-          sha256 = "sha256-uPNH+LDQJWI3HmUHAfUdCwRD9ECBQX2BUyF/OLYYjwg=";
+          version = "1.130.0";
+          sha256 = "sha256-3jbQ2IemKCSD4mzNA5zxAn5pYxglJ51fyM/1kMEfApM=";
         }
         # Shiny
         {
           name = "shiny";
           publisher = "posit";
-          version = "1.3.9";
-          sha256 = "sha256-YRGZ5UOwFQzIrvFg0Z7B9jl3TPu5P/bFFo4jlRDBz84=";
+          version = "1.3.4";
+          sha256 = "sha256-FGfpomMBRwf3p2b4+qfFdluzaf0GVW7zXEYEn4JCI7M=";
         }
         # Air R lang server
         {
