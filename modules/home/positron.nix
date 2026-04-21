@@ -64,7 +64,7 @@
         {
           name = "shiny";
           publisher = "posit";
-          version = "1.4.0";
+          version = "1.3.9";
           sha256 = "sha256-YRGZ5UOwFQzIrvFg0Z7B9jl3TPu5P/bFFo4jlRDBz84=";
         }
         # Air R lang server
