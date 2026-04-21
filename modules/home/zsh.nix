@@ -13,12 +13,8 @@
     # We replace it with a cached version that skips the expensive security audit
     # and dump regeneration. This reduces compinit time from ~450ms to <10ms.
     #
-    # IMPORTANT: After rebuilding, you must create an initial dump file once:
-    #   rm -f ~/.cache/zsh/compdump*
-    #   ZSH_COMPDUMP="$HOME/.cache/zsh/compdump"
-    #   autoload -Uz compinit
-    #   compinit -d "$ZSH_COMPDUMP"
-    # (You can also add an alias `recomp` to refresh it after system updates.)
+    # The completion dump is now regenerated automatically on each rebuild via
+    # home.activation.recompZsh — no manual steps needed after switching.
     completionInit = ''
       autoload -Uz compinit
       compinit -C -d "$ZSH_COMPDUMP"
@@ -41,7 +37,7 @@
       nixvim = "sudo nix run ~/nixvim-flake -- \"$@\"";
       psgrep = "ps aux | rg";
       nvimprovements = "nvim /home/$(user)/Documents/personal/improvements.md";
-      # Alias to regenerate the completion dump after a system update
+      # Alias to manually regenerate the completion dump if ever needed
       recomp = "rm -f ~/.cache/zsh/compdump* && ZSH_COMPDUMP=~/.cache/zsh/compdump compinit -d ~/.cache/zsh/compdump";
     };
 
@@ -132,4 +128,20 @@
     pkgs.zsh-defer    # Required for deferred plugin loading
     # pkgs.zsh-bench   # Optional: for profiling startup time
   ];
+
+  # ------------------------------------------------------------
+  # Automatically regenerate the completion dump on each rebuild
+  # ------------------------------------------------------------
+  # Replaces the need to manually run `recomp` after every system update.
+  # $DRY_RUN_CMD is respected so `home-manager build` (dry run) won't mutate state.
+  home.activation.recompZsh = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    $DRY_RUN_CMD rm -f "$HOME/.cache/zsh/compdump"*
+    $DRY_RUN_CMD mkdir -p "$HOME/.cache/zsh"
+    $DRY_RUN_CMD ${pkgs.zsh}/bin/zsh -c '
+      ZSH_COMPDUMP="$HOME/.cache/zsh/compdump"
+      autoload -Uz compinit
+      compinit -d "$ZSH_COMPDUMP"
+      zcompile "$ZSH_COMPDUMP"
+    '
+  '';
 }
