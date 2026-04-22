@@ -1,6 +1,7 @@
 {inputs, pkgs, ...}:
 {
   #---NEOVIM-----------------------------------------------------
+  # https://bogorad.substack.com/p/nixos-configuring-neovim-using-lazy
   programs.neovim = {
     enable = true;
     defaultEditor = true;

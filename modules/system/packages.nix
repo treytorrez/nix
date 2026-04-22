@@ -71,6 +71,8 @@
     python3Packages.jupytext
     quartoMinimal
     direnv
+    #rstudio
+    R
 
     # LAUNCHERS
     tofi
@@ -122,6 +124,16 @@
     cbonsai
     # asciiquarium
 
+
+
+    # SCHOOL
+    # mathematica # https://www.balderholst.com/how-to/install-mathematica-on-nixos/
+    sage # mathematica alternative
+    slack-cli
+    slack
+    positron-bin
+
+
     protonvpn-gui
     osu-lazer-bin
     home-manager
@@ -129,5 +141,6 @@
     lightdm
     i3
     ollama
+
   ];
 }

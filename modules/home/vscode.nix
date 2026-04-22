@@ -11,7 +11,7 @@
         ms-python.debugpy
         ms-python.black-formatter
         ms-toolsai.jupyter
-        asvetliakov.vscode-neovim
+        asvetliakov.vscode-neovim # TODO: enable start clean option or create a neovim package specifically for vs code
       ]
       ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
 	{
