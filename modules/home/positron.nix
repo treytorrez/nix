@@ -70,7 +70,7 @@
         # Air R lang server
         {
           name = "air-vscode";
-          publisher = "posit";
+          publisher = "Posit";
           version = "0.24.0";
           sha256 = "sha256-f12hfBxbYlB+8gCH7hE8JsDa/kCAp/5h3p/4cXFYZFc=";
         }
