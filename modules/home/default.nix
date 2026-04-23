@@ -18,7 +18,7 @@
     ./emacs.nix
     ./direnv.nix
     ./ollama.nix
-    ./positron.nix
+    #./positron.nix
   ];
 
   home.packages = [ ];
