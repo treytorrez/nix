@@ -72,7 +72,7 @@
           name = "air-vscode";
           publisher = "Posit";
           version = "0.24.0";
-          sha256 = "sha256-f12hfBxbYlB+8gCH7hE8JsDa/kCAp/5h3p/4cXFYZFc=";
+          sha256 = "sha256-MGZsqeXqKDvS9Q1GEnZwcNuihpufQL6nVlFV3cKJ/MY=";
         }
         # Ruff
         {
