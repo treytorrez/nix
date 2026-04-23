@@ -72,7 +72,7 @@
     quartoMinimal
     direnv
     #rstudio
-    R
+    #R
 
     # LAUNCHERS
     tofi
@@ -131,7 +131,7 @@
     sage # mathematica alternative
     slack-cli
     slack
-    positron-bin
+    #positron-bin
 
 
     protonvpn-gui
