@@ -96,6 +96,7 @@
     pulseaudio
     pavucontrol
     easyeffects
+    roomeqwizard
 
     # SYSTEM UTILS
     wlr-randr
