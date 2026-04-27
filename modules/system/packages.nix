@@ -50,6 +50,7 @@
     emacs
     nano
     neovide
+    ferrite # Added with NixPkgs overlay
 
     # DEVELOPMENT
     git
