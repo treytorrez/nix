@@ -8,7 +8,12 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    nixvim = {
+      # url = "github:nix-community/nixvim";
+      # If you are not running an unstable channel of nixpkgs, select the corresponding branch of Nixvim.
+      url = "github:nix-community/nixvim/nixos-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixcord = {
       url = "github:FlameFlag/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,6 +39,7 @@
       nixcord,
       canonSrc,
       voxtype,
+      nixvim,
       ...
     }:
     let
@@ -49,11 +55,13 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { inherit nixcord voxtype; };
-              home-manager.sharedModules = [ voxtype.homeManagerModules.default ];
+              home-manager.extraSpecialArgs = { inherit nixcord voxtype nixvim; };
+              home-manager.sharedModules = [ voxtype.homeManagerModules.default nixvim.homeModules.nixvim ];
               nixpkgs.overlays = [
                 (final: prev: {
                   canon = final.callPackage ./packages/canon.nix { canonSrc = inputs.canonSrc; };
+		  nixvim = inputs.nixvim.packages.${final.system}.default;
+
                 })
               ];
             }

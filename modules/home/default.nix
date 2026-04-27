@@ -3,7 +3,8 @@
   imports = [
     nixcord.homeModules.nixcord
     ./firefoxpwa.nix
-    ./neovim.nix
+    #./neovim.nix
+    ./nixvim.nix
     ./nixcord.nix
     ./zsh.nix
     ./starship.nix
