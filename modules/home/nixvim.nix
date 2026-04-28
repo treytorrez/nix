@@ -189,6 +189,23 @@
           };
         };
 
+        harper_ls = {
+          enable = true;
+          # any reason to have this?
+          #packageFallback = true;
+          config = {
+            cmd = [
+              "harper-ls"
+              "--stdio"
+            ];
+            filetypes = [
+              "markdown"
+              "text"
+              "tex"
+              "typst"
+            ];
+          };
+        };
         # Go
         gopls = {
           enable = true;
