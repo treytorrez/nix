@@ -1,4 +1,4 @@
-{ pkgs, ...}:
+{ pkgs, ... }:
 {
   programs.nixvim = {
     enable = true;
@@ -13,7 +13,7 @@
     };
 
     colorschemes.gruvbox.enable = true;
-    
+
     globals.mapleader = " ";
 
     plugins = {
@@ -27,13 +27,34 @@
         enable = true;
         settings = {
           spec = [
-            { __unkeyed = "<leader>f"; group = "Find/File"; }
-            { __unkeyed = "<leader>g"; group = "Git"; }
-            { __unkeyed = "<leader>l"; group = "LSP"; }
-            { __unkeyed = "<leader>n"; group = "Notebook"; }
-            { __unkeyed = "<leader>q"; group = "Quarto"; }
-            { __unkeyed = "<leader>t"; group = "Toggle"; }
-            { __unkeyed = "<leader>b"; group = "Buffer"; }
+            {
+              __unkeyed = "<leader>f";
+              group = "Find/File";
+            }
+            {
+              __unkeyed = "<leader>g";
+              group = "Git";
+            }
+            {
+              __unkeyed = "<leader>l";
+              group = "LSP";
+            }
+            {
+              __unkeyed = "<leader>n";
+              group = "Notebook";
+            }
+            {
+              __unkeyed = "<leader>q";
+              group = "Quarto";
+            }
+            {
+              __unkeyed = "<leader>t";
+              group = "Toggle";
+            }
+            {
+              __unkeyed = "<leader>b";
+              group = "Buffer";
+            }
           ];
         };
       };
@@ -55,7 +76,7 @@
             { name = "nvim_lsp"; }
             { name = "path"; }
             { name = "buffer"; }
-            { name = "otter"; }  # For code blocks in notebooks
+            { name = "otter"; } # For code blocks in notebooks
           ];
           mapping = {
             "<C-Space>" = "cmp.mapping.complete()";
@@ -75,7 +96,10 @@
           indent.enable = true;
         };
         lazyLoad.settings = {
-          event = ["BufReadPost" "BufNewFile"];
+          event = [
+            "BufReadPost"
+            "BufNewFile"
+          ];
         };
       };
 
@@ -91,7 +115,10 @@
       otter = {
         enable = true;
         lazyLoad.settings = {
-          ft = ["quarto" "markdown"];
+          ft = [
+            "quarto"
+            "markdown"
+          ];
         };
       };
 
@@ -99,13 +126,27 @@
       image = {
         enable = true;
         lazyLoad.settings = {
-          ft = ["quarto" "markdown" "vimwiki"];
+          ft = [
+            "quarto"
+            "markdown"
+            "vimwiki"
+          ];
         };
       };
 
       # Jupyter kernel
       molten = {
         enable = true;
+        python3Dependencies =
+          p: with p; [
+            pynvim
+            jupyter-client
+            cairosvg
+            ipython
+            nbformat
+            ipykernel
+            # Add R kernel support
+          ];
         settings = {
           image_provider = "image.nvim";
           auto_open_output = true;
@@ -114,21 +155,21 @@
           wrap_output = true;
           virt_text_output = true;
         };
-#---
-# Molten doesn't lazy load apparently :(
-#---
-#        lazyLoad.settings = {
-#          cmd = [
-#            "MoltenInit"
-#            "MoltenEvaluateOperator"
-#            "MoltenEvaluateLine"
-#            "MoltenEvaluateVisual"
-#            "MoltenReevaluateCell"
-#            "MoltenDelete"
-#            "MoltenShowOutput"
-#            "MoltenHideOutput"
-#          ];
-#        };
+        #---
+        # Molten doesn't lazy load commands apparently :(
+        #---
+        #        lazyLoad.settings = {
+        #          cmd = [
+        #            "MoltenInit"
+        #            "MoltenEvaluateOperator"
+        #            "MoltenEvaluateLine"
+        #            "MoltenEvaluateVisual"
+        #            "MoltenReevaluateCell"
+        #            "MoltenDelete"
+        #            "MoltenShowOutput"
+        #            "MoltenHideOutput"
+        #          ];
+        #        };
       };
     };
 
@@ -144,7 +185,7 @@
                 };
               };
             };
-            root_markers = [".git"];
+            root_markers = [ ".git" ];
           };
         };
 
@@ -153,9 +194,12 @@
           enable = true;
           packageFallback = true;
           config = {
-            cmd = ["gopls"];
-            filetypes = ["go" "gomod"];
-            root_markers = ["go.mod"];
+            cmd = [ "gopls" ];
+            filetypes = [
+              "go"
+              "gomod"
+            ];
+            root_markers = [ "go.mod" ];
           };
         };
 
@@ -164,8 +208,8 @@
           enable = true;
           packageFallback = true;
           config = {
-            cmd = ["pylsp"];
-            filetypes = ["python"];
+            cmd = [ "pylsp" ];
+            filetypes = [ "python" ];
             root_markers = [
               "pyproject.toml"
               "setup.py"
@@ -181,8 +225,8 @@
           enable = true;
           packageFallback = true;
           config = {
-            cmd = ["nixd"];
-            filetypes = ["nix"];
+            cmd = [ "nixd" ];
+            filetypes = [ "nix" ];
             root_markers = [
               "flake.nix"
               "flake.lock"
@@ -197,8 +241,17 @@
           enable = true;
           packageFallback = true;
           config = {
-            cmd = ["R" "--slave" "-e" "languageserver::run()"];
-            filetypes = ["r" "rmd" "quarto"];
+            cmd = [
+              "R"
+              "--slave"
+              "-e"
+              "languageserver::run()"
+            ];
+            filetypes = [
+              "r"
+              "rmd"
+              "quarto"
+            ];
             root_markers = [
               ".git"
               "DESCRIPTION"
@@ -441,4 +494,15 @@
       }
     ];
   };
+  home.packages = with pkgs; [
+    (rWrapper.override {
+      packages = with rPackages; [
+        IRkernel
+        # Add other R packages you want
+        ggplot2
+        dplyr
+        tidyr
+      ];
+    })
+  ];
 }
