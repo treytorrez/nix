@@ -114,6 +114,7 @@
     protonmail-desktop
     gnumeric
     obsidian
+    doing
 
     # LIBRARIES
     hunspell
