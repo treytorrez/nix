@@ -8,6 +8,30 @@
       lualine.enable = true;
       auto-save.enable = true;
       gitgutter.enable = true;
+      which-key.enable = true;
+      neogit.enable = true;
+      telescope.enable = true;
+      fzf-lua.enable = true;
+      cmp = {
+      enable = true;
+      autoEnableSources = true;
+      
+      settings = {
+        sources = [
+          { name = "nvim_lsp"; }
+          { name = "path"; }
+          { name = "buffer"; }
+        ];
+        
+        mapping = {
+          "<C-Space>" = "cmp.mapping.complete()";
+          "<C-e>" = "cmp.mapping.close()";
+          "<CR>" = "cmp.mapping.confirm({ select = true })";
+          "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+          "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+        };
+      };
+    };
 
     };
     lsp = {
