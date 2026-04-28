@@ -4,10 +4,10 @@
     enable = true;
 
     opts = {
-      expandtab = true;      # Use spaces instead of tabs
-      tabstop = 2;          # Tab width is 2 spaces
-      shiftwidth = 2;       # Indent by 2 spaces
-      softtabstop = 2;      # Tab key inserts 2 spaces
+      expandtab = true; # Use spaces instead of tabs
+      tabstop = 2; # Tab width is 2 spaces
+      shiftwidth = 2; # Indent by 2 spaces
+      softtabstop = 2; # Tab key inserts 2 spaces
     };
     # Performance optimizations
     performance.byteCompileLua = {

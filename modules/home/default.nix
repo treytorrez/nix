@@ -19,6 +19,7 @@
     ./emacs.nix
     ./direnv.nix
     ./ollama.nix
+    ./systemd.nix
     #./positron.nix
   ];
 
