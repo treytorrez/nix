@@ -11,6 +11,7 @@
       neogit.enable = true;
       telescope.enable = true;
       fzf-lua.enable = true;
+      markview.enable = true;
       mini-icons = {
 	enable = true;
         mockDevIcons = true;
