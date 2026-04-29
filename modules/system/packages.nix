@@ -91,6 +91,7 @@
     # BROWSERS
     firefoxpwa
     qutebrowser
+    nyxt
 
     # AUDIO
     pulseaudio
