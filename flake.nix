@@ -26,10 +26,10 @@
       url = "github:pgattic/canon";
       flake = false;
     };
-    ferrite = { #markdown viewer
-      url = "github:OlaProeis/Ferrite";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+#    ferrite = { #markdown viewer
+#      url = "github:OlaProeis/Ferrite";
+#      inputs.nixpkgs.follows = "nixpkgs";
+#    };
     voxtype = {
       url = "github:peteonrails/voxtype";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -42,7 +42,7 @@
       home-manager,
       nixcord,
       canonSrc,
-      ferrite,
+#      ferrite,
       voxtype,
       nixvim,
       ...
