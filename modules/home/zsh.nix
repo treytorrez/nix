@@ -18,6 +18,8 @@
     completionInit = ''
       autoload -Uz compinit
       compinit -C -d "$ZSH_COMPDUMP"
+      zmodload zsh/datetime
+      autoload -U calendar calendar_add
     '';
 
     plugins = [
