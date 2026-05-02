@@ -26,6 +26,10 @@
       url = "github:pgattic/canon";
       flake = false;
     };
+#    ferrite = { #markdown viewer
+#      url = "github:OlaProeis/Ferrite";
+#      inputs.nixpkgs.follows = "nixpkgs";
+#    };
     voxtype = {
       url = "github:peteonrails/voxtype";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,6 +42,7 @@
       home-manager,
       nixcord,
       canonSrc,
+#      ferrite,
       voxtype,
       nixvim,
       ...
@@ -60,8 +65,7 @@
               nixpkgs.overlays = [
                 (final: prev: {
                   canon = final.callPackage ./packages/canon.nix { canonSrc = inputs.canonSrc; };
-		  nixvim = inputs.nixvim.packages.${final.system}.default;
-
+                  nixvim = inputs.nixvim.packages.${final.system}.default;
                 })
               ];
             }

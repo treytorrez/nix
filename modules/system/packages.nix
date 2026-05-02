@@ -50,6 +50,7 @@
     emacs
     nano
     neovide
+#    ferrite # Added with NixPkgs overlay
 
     # DEVELOPMENT
     git
@@ -97,6 +98,7 @@
     pulseaudio
     pavucontrol
     easyeffects
+    roomeqwizard
 
     # SYSTEM UTILS
     wlr-randr
