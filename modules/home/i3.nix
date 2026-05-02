@@ -24,7 +24,7 @@ in
   home.packages = with pkgs; [
     rofi
     picom
-    dunst
+#    dunst
     i3status-rust # is pulled in by programs.i3status-rust.enable
   ];
 
@@ -150,7 +150,7 @@ in
       startup = [
         { command = "picom --daemon";  notification = false; }
         { command = "nm-applet";       notification = false; }
-        { command = "dunst";           notification = false; }
+#        { command = "dunst";           notification = false; }
         # { command = "feh --bg-scale ~/Pictures/wallpaper.jpg"; notification = false; }
       ];
 
