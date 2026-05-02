@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   services.dunst = {
-    #enable = true;
+    enable = true;
     settings = {
       global = {
         # Positioning and size
