@@ -5,7 +5,7 @@
     settings = {
       global = {
         # Positioning and size
-        width = 600; # Twice the typical 300
+        width = 800; # Twice the typical 300
         height = 600; # Twice the typical 300
         offset = "30x50";
         origin = "top-right";
