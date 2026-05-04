@@ -20,6 +20,7 @@
     ./direnv.nix
     ./ollama.nix
     ./systemd.nix
+    ./dunst.nix
     #./positron.nix
   ];
 
