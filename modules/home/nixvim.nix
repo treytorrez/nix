@@ -84,7 +84,7 @@
             { name = "buffer"; }
             # TODO: how do I make this enabled without causing that huge error
             # when anything besides a notebook opens?
-            #{ name = "otter"; } # For code blocks in notebooks
+            { name = "otter"; } # For code blocks in notebooks
           ];
           mapping = {
             "<C-Space>" = "cmp.mapping.complete()";
@@ -122,6 +122,7 @@
       # LSP in code blocks
       otter = {
         enable = true;
+        autoActivate = false;
         lazyLoad.settings = {
           ft = [
             "quarto"
