@@ -22,7 +22,7 @@ let
 in
 {
   home.packages = with pkgs; [
-    rofi
+#    rofi
     picom
 #    dunst
     i3status-rust # is pulled in by programs.i3status-rust.enable
