@@ -260,15 +260,13 @@
         };
 
         # R
-        r_language_server = {
+        air = {
           enable = true;
           packageFallback = true;
           config = {
             cmd = [
-              "R"
-              "--slave"
-              "-e"
-              "languageserver::run()"
+              "air"
+              "language-server"
             ];
             filetypes = [
               "r"
