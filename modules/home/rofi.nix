@@ -14,7 +14,6 @@
     ];
     extraConfig = {
       show-icons = true;
-      theme = "gruvbox-dark";
     };
   };
 }
