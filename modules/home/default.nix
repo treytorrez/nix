@@ -21,6 +21,7 @@
     ./ollama.nix
     ./systemd.nix
     ./dunst.nix
+    ./rofi.nix
     #./positron.nix
   ];
 
