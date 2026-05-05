@@ -82,7 +82,9 @@
             { name = "nvim_lsp"; }
             { name = "path"; }
             { name = "buffer"; }
-            { name = "otter"; } # For code blocks in notebooks
+            # TODO: how do I make this enabled without causing that huge error
+            # when anything besides a notebook opens?
+            #{ name = "otter"; } # For code blocks in notebooks
           ];
           mapping = {
             "<C-Space>" = "cmp.mapping.complete()";
