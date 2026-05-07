@@ -72,6 +72,7 @@
     python3Packages.jupytext
     quartoMinimal
     direnv
+    qtcreator
     #rstudio
     #R
 
