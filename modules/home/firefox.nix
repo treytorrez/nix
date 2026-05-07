@@ -47,7 +47,6 @@
       pwas = { };
     };
   };
-  environment.etc."librewolf/policies/policies.json".text = builtins.toJSON {
     policies = {
       DefaultDownloadDirectory = "\${home}/Downloads";
       ExtensionSettings = {
@@ -103,5 +102,4 @@
         };
       };
     };
-  };
 }
