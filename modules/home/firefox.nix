@@ -9,7 +9,8 @@
       pkgs.firefoxpwa
     ];
     profiles = {
-      default = {
+      "jvp8ihts.default" = {
+        id = 0;
         bookmarks = {
           force = true;
           "Nix" = {
