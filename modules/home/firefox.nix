@@ -9,8 +9,7 @@
       pkgs.firefoxpwa
     ];
     profiles = {
-      "jvp8ihts.default" = {
-        id = 0;
+      default = {
         bookmarks = {
           force = true;
           "Nix" = {
@@ -27,10 +26,10 @@
               };
             };
           };
-          "poop" = {
+          "BYUI" = {
             toolbar = true;
             bookmarks = {
-              "CBYUIanvas" = {
+              "Canvas" = {
                 url = "https://byui.instructure.edu";
               };
               "My BYUI" = {
