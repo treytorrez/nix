@@ -26,7 +26,7 @@
               };
             };
           };
-          "BYUI" = {
+          "poop" = {
             toolbar = true;
             bookmarks = {
               "Canvas" = {
