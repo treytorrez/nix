@@ -72,6 +72,9 @@
         enable = true;
         mockDevIcons = true;
       };
+      mini-indentscope = {
+        enable = true;
+      };
 
       # Completion
       cmp = {
