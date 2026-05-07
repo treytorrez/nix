@@ -29,7 +29,7 @@
           "poop" = {
             toolbar = true;
             bookmarks = {
-              "Canvas" = {
+              "CBYUIanvas" = {
                 url = "https://byui.instructure.edu";
               };
               "My BYUI" = {
