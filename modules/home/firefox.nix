@@ -3,7 +3,8 @@
   programs.firefox = {
     enable = true;
     package = pkgs.librewolf;
-    configPath = lib.mkForce "${config.xdg.configHome}librewolf/librewolf";
+    #configPath = lib.mkForce "${config.xdg.configHome}librewolf/librewolf";
+    configPath = lib.mkForce "/home/treyt/.librewolf";
     nativeMessagingHosts.packages = [
       pkgs.tridactyl-native
       pkgs.firefoxpwa
