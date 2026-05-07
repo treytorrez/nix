@@ -1,6 +1,6 @@
 { pkgs, lib, config, ... }:
 {
-  programs.firefox = {
+  programs.librewolf = {
     enable = true;
     package = pkgs.librewolf;
     configPath = "${config.xdg.configHome}librewolf/librewolf";
