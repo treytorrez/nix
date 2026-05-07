@@ -1,8 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
 {
   programs.firefox = {
     enable = true;
     package = pkgs.librewolf;
+    configPath = lib.mkForce "${config.xdg.configHome}/librewolf";
     nativeMessagingHosts.packages = [
       pkgs.tridactyl-native
       pkgs.firefoxpwa
