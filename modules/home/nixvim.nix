@@ -29,6 +29,7 @@
       # UI/UX
       lualine.enable = true;
       auto-save.enable = true;
+      colorizer.enable = true;
       which-key = {
         enable = true;
         settings = {
