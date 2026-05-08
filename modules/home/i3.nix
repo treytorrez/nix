@@ -115,7 +115,7 @@ in
       };
 
       colors = {
-        focused         = { border = gruvbox.yellow; background = gruvbox.bg; text = gruvbox.fg;    indicator = gruvbox.yellow; childBorder = gruvbox.yellow; };
+        focused         = { border = gruvbox.red; background = gruvbox.bg; text = gruvbox.fg;    indicator = gruvbox.red; childBorder = gruvbox.red; };
         focusedInactive = { border = gruvbox.gray1;  background = gruvbox.bg; text = gruvbox.gray4; indicator = gruvbox.gray1;  childBorder = gruvbox.gray1; };
         unfocused       = { border = gruvbox.gray1;  background = gruvbox.bg; text = gruvbox.gray3; indicator = gruvbox.gray1;  childBorder = gruvbox.gray1; };
         urgent          = { border = gruvbox.red;    background = gruvbox.bg; text = gruvbox.fg;    indicator = gruvbox.red;    childBorder = gruvbox.red; };
@@ -151,7 +151,7 @@ in
         { command = "picom --daemon";  notification = false; }
         { command = "nm-applet";       notification = false; }
 #        { command = "dunst";           notification = false; }
-        # { command = "feh --bg-scale ~/Pictures/wallpaper.jpg"; notification = false; }
+        { command = "feh --bg-scale ~/Pictures/wallpaper.jpg"; notification = false; }
       ];
 
       bars = [{
