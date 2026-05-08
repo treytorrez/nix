@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  imports = [ ./firefox.nix ];
+  #imports = [ ./firefox.nix ];
 
   nix.settings.experimental-features = [
     "nix-command"
