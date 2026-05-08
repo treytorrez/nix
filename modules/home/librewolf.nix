@@ -7,7 +7,6 @@
   programs.librewolf = {
     enable = true;
     package = pkgs.librewolf;
-    configPath = "${config.xdg.configHome}/librewolf/librewolf";
     nativeMessagingHosts = [
       pkgs.tridactyl-native
       pkgs.firefoxpwa
