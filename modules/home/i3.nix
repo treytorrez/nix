@@ -36,7 +36,7 @@ in
       modifier = mod;
       terminal = term;
       menu = menu;
-      fonts = { names = [ "AtkynsonMono Nerd Font" "monospace" ]; size = 10.0; };
+      fonts = { names = [ "AtkynsonMono Nerd Font" "monospace" ]; size = 15.0; };
       gaps = { inner = 0; outer = 0; smartGaps = true; smartBorders = "on"; };
       focus.followMouse = true;
       floating.modifier = mod;
