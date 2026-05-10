@@ -459,25 +459,25 @@
       {
         mode = "n";
         key = "<leader>gg";
-        action = "<cmd>lazygit<cr>";
-        options.desc = "lazygit status";
+        action = "<cmd>LazyGit<cr>";
+        options.desc = "LazyGit";
       }
-      {
-        mode = "n";
-        key = "<leader>gc";
-        action = "<cmd>lazygit commit<cr>";
-        options.desc = "Commit";
-      }
-      {
-        mode = "n";
-        key = "<leader>gp";
-        action = "<cmd>lazygit push<cr>";
-        options.desc = "Push";
-      }
+      #      {
+      #        mode = "n";
+      #        key = "<leader>gc";
+      #        action = "<cmd>LazyGit commit<cr>";
+      #        options.desc = "Commit";
+      #      }
+      #      {
+      #        mode = "n";
+      #        key = "<leader>gp";
+      #        action = "<cmd>LazyGit push<cr>";
+      #        options.desc = "Push";
+      #      }
       {
         mode = "n";
         key = "<leader>gl";
-        action = "<cmd>lazygit log<cr>";
+        action = "<cmd>LazyGitLog<cr>";
         options.desc = "Log";
       }
 
