@@ -119,7 +119,7 @@
           private_browsing = true;
         };
       };
-      engines = {
+      SearchEngines = {
         "Nix Packages" = {
           urls = [
             {

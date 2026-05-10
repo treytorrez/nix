@@ -65,7 +65,7 @@
           ];
         };
       };
-      neogit.enable = true;
+      lazygit.enable = true;
       telescope.enable = true;
       fzf-lua.enable = true;
       markview.enable = true;
@@ -459,25 +459,25 @@
       {
         mode = "n";
         key = "<leader>gg";
-        action = "<cmd>Neogit<cr>";
-        options.desc = "Neogit status";
+        action = "<cmd>lazygit<cr>";
+        options.desc = "lazygit status";
       }
       {
         mode = "n";
         key = "<leader>gc";
-        action = "<cmd>Neogit commit<cr>";
+        action = "<cmd>lazygit commit<cr>";
         options.desc = "Commit";
       }
       {
         mode = "n";
         key = "<leader>gp";
-        action = "<cmd>Neogit push<cr>";
+        action = "<cmd>lazygit push<cr>";
         options.desc = "Push";
       }
       {
         mode = "n";
         key = "<leader>gl";
-        action = "<cmd>Neogit log<cr>";
+        action = "<cmd>lazygit log<cr>";
         options.desc = "Log";
       }
 
