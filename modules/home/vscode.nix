@@ -3,6 +3,7 @@
   programs.vscode = {
     enable = true;
     mutableExtensionsDir = false;
+    # TODO The flake can handle the hashes, check claude convo https://claude.ai/share/c3b0fc0b-f2ed-46be-8c6a-50aafc97e343
     profiles.default.extensions =
       with pkgs.vscode-extensions;
       [

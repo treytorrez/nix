@@ -52,6 +52,7 @@
           ];
         };
         # EXTENSIONS ==================================================
+        # TODO check extension file for hash management
         extensions =
           let
             exts = import ./librewolf-extensions.nix { inherit pkgs lib; };

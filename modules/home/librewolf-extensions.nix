@@ -1,4 +1,5 @@
 # librewolf-extensions.nix
+# TODO Get the FLAKE to manage the hashes! ha HA! 
 { pkgs, lib, ... }:
 let
   mkExtension =
