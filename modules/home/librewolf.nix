@@ -52,6 +52,7 @@
           ];
         };
         search = {
+          force = true;
           default = "Startpage";
           engines = {
             startpage = {
@@ -196,43 +197,6 @@
           install_url = "https://addons.mozilla.org/firefox/downloads/file/4704384/latest.xpi";
           installation_mode = "force_installed";
           private_browsing = true;
-        };
-      };
-      SearchEngines = {
-        "Nix Packages" = {
-          urls = [
-            {
-              template = "https://search.nixos.org/packages";
-              params = [
-                {
-                  name = "channel";
-                  value = "unstable";
-                }
-                {
-                  name = "query";
-                  value = "{searchTerms}";
-                }
-              ];
-            }
-          ];
-          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-          definedAliases = [ "@np" ];
-        };
-
-        "NixOS Wiki" = {
-          urls = [
-            {
-              template = "https://wiki.nixos.org/w/index.php";
-              params = [
-                {
-                  name = "search";
-                  value = "{searchTerms}";
-                }
-              ];
-            }
-          ];
-          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-          definedAliases = [ "@nw" ];
         };
       };
     };
