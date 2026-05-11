@@ -13,6 +13,7 @@
     ];
     profiles = {
       default = {
+        id = 0;
         bookmarks = {
           force = true;
           settings = [
