@@ -11,7 +11,7 @@ let
   menu = "rofi -show drun";
   runner = "rofi -show run";
   browser_personal = "librewolf -P default";
-  browser_school = "librewolf -P School";
+  browser_school = "librewolf -P school";
 
   gruvbox = {
 
