@@ -9,6 +9,8 @@
     });
     mutableExtensionsDir = false;
     dataFolderName = ".positron";
+    # TODO: the flake can handle extension hashes I think https://claude.ai/share/c3b0fc0b-f2ed-46be-8c6a-50aafc97e343
+    # TODO: check librewolf extension file for details ./modules/home/librewolf-extensions.nix
     profiles.default.extensions =
       with pkgs.vscode-extensions;
       [

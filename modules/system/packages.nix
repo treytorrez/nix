@@ -119,6 +119,7 @@
     gnumeric
     obsidian
     doing
+    anki-bin
 
     # LIBRARIES
     hunspell

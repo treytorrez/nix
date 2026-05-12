@@ -72,4 +72,5 @@ in
       "sha256-uoZ8lgIvpX0ibaPwLMY1QEd8n8MlqwKihohx9HSfQqE="
 
       { permissions = [ "internal:privateBrowsingAllowed" ]; };
+
 }
