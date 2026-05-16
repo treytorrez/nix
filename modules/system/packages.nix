@@ -90,6 +90,7 @@
     sxiv
     zoom-us
     pinta
+    kdePackages.okular
 
     # BROWSERS
     firefoxpwa
