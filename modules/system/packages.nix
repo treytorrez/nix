@@ -73,6 +73,7 @@
     quartoMinimal
     direnv
     qtcreator
+    android-tools
     #rstudio
     #R
 

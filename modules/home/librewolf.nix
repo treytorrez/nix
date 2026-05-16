@@ -137,9 +137,11 @@
           };
 
         };
+        # TODO: add vertical tabs default
+        # TODO: shouldn't this ↓↓ make the corners of all the buttons sharp?
         userChrome = ''
           /* no rounding!! */
-          *{ 
+          * { 
             border-radius: 0px !important
           }
         '';

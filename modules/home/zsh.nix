@@ -42,6 +42,8 @@
       # Alias to manually regenerate the completion dump if ever needed
       recomp = "rm -f ~/.cache/zsh/compdump* && ZSH_COMPDUMP=~/.cache/zsh/compdump compinit -d ~/.cache/zsh/compdump";
       xo = "xdg-open";
+      gs = "git status";
+      ga = "git add";
     };
 
     sessionVariables = {
