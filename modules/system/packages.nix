@@ -96,7 +96,8 @@
     firefoxpwa
     qutebrowser
     nyxt
-    google-chrome # TODO: remove!!! :(
+    brave
+
 
     # AUDIO
     pulseaudio
