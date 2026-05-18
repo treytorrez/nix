@@ -27,6 +27,9 @@
       lz-n.enable = true;
 
       # UI/UX
+      # TODO: https://nix-community.github.io/nixvim/plugins/typst-preview/index.html
+      # TODO: https://nix-community.github.io/nixvim/plugins/typst-vim/index.html
+      # TODO: typst previewer & typst fomatter/linter/whatever
       lualine.enable = true;
       auto-save.enable = true;
       colorizer.enable = true;

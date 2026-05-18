@@ -1,7 +1,7 @@
 { pkgs, voxtype, ... }:
 {
   programs.voxtype = {
-    enable = true;
+    #enable = true;
     # The VoxType package to use. Use the flake's wrapped packages:
     #  Whisper packages:
     #  - packages.default: CPU-only Whisper (works everywhere)

@@ -29,7 +29,7 @@
     (import ../../packages/new-nix-shell.nix { inherit pkgs; })
     (import ../../packages/git-autocommit.nix { inherit pkgs; })
     gh
-    canon # Added via nixpkgs overlay
+    #canon # Added via nixpkgs overlay
     figlet
     pandoc
     fwupd
@@ -96,6 +96,7 @@
     firefoxpwa
     qutebrowser
     nyxt
+    google-chrome # TODO: remove!!! :(
 
     # AUDIO
     pulseaudio
