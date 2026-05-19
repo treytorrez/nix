@@ -4,6 +4,8 @@
     enable = true;
 
     opts = {
+      splitright = true;
+      splitbelow = true;
       expandtab = true; # Use spaces instead of tabs
       tabstop = 2; # Tab width is 2 spaces
       shiftwidth = 2; # Indent by 2 spaces
