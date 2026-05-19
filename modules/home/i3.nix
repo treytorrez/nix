@@ -83,7 +83,7 @@ in
           "AtkynsonMono Nerd Font"
           "monospace"
         ];
-        size = 25.0;
+        size = 20.0;
       };
       gaps = {
         inner = 0;
@@ -255,7 +255,7 @@ in
               "AtkynsonMono Nerd Font"
               "monospace"
             ];
-            size = 25.0;
+            size = 20.0;
           };
           colors = {
             background = gruvbox.dark0_hard;
