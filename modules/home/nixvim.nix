@@ -12,7 +12,7 @@
     };
     
     globals = {
-      netrw_preview = 2;
+      netrw_preview = 1;
       netrw_liststyle = 3;
     };
 
