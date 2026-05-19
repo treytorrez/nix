@@ -142,7 +142,8 @@
         userChrome = ''
           /* no rounding!! */
           * { 
-            border-radius: 0px !important
+            border-radius: 0px !important;
+            font-size: 25px !important;
           }
         '';
       };
