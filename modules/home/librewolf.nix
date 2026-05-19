@@ -141,7 +141,7 @@
         # TODO: shouldn't this ↓↓ make the corners of all the buttons sharp?
         userChrome = ''
           /* no rounding!! */
-          #main-window { 
+          #main-window * { 
             border-radius: 0px !important;
             font-size: 25px !important;
           }
