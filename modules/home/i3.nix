@@ -255,7 +255,7 @@ in
               "AtkynsonMono Nerd Font"
               "monospace"
             ];
-            size = 15.0;
+            size = 25.0;
           };
           colors = {
             background = gruvbox.dark0_hard;
