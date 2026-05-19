@@ -6,7 +6,7 @@
     font = {
         package = pkgs.nerd-fonts.atkynson-mono;
         name = "AtkynsonMono Nerd Font";
-	size = 20;
+	size = 25;
       };
     themeFile = "gruvbox-dark-hard";
   };
