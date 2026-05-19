@@ -10,6 +10,13 @@
       softtabstop = 2; # Tab key inserts 2 spaces
       exrc = true;
     };
+    
+    globals = {
+      netrw_preview = 2;
+      netrw_liststyle = 3;
+    };
+
+
     # Performance optimizations
     performance.byteCompileLua = {
       enable = true;
