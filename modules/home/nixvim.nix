@@ -11,7 +11,9 @@
       shiftwidth = 2; # Indent by 2 spaces
       softtabstop = 2; # Tab key inserts 2 spaces
       exrc = true;
-      signcolumn = false;
+      signcolumn = "no";
+      number = true;
+      relativenumber = true;
     };
     
     globals = {
