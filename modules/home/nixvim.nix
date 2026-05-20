@@ -46,6 +46,7 @@
       lualine.enable = true;
       auto-save.enable = true;
       colorizer.enable = true;
+      nvim-surround.enable = true;
       which-key = {
         enable = true;
         settings = {
