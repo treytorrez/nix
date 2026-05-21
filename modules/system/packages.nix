@@ -98,7 +98,6 @@
     nyxt
     brave
 
-
     # AUDIO
     pulseaudio
     pavucontrol
@@ -151,6 +150,7 @@
     lightdm
     i3
     ollama
+    lxqt.lxqt-wayland-session
 
   ];
 }

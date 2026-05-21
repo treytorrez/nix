@@ -45,7 +45,10 @@
       # TODO: typst previewer & typst fomatter/linter/whatever
       lualine.enable = true;
       auto-save.enable = true;
-      colorizer.enable = true;
+      colorizer = {
+        enable = true;
+
+      };
       mini-surround.enable = true;
       which-key = {
         enable = true;
