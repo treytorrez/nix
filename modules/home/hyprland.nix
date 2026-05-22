@@ -1,40 +1,139 @@
-{ pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+
+let
+  mod = "SUPER";
+  term = "kitty";
+  menu = "rofi -show drun";
+  runner = "rofi -show run";
+  browser_personal = "librewolf -P default";
+  browser_school = "librewolf -P school";
+
+  gruvbox = {
+    dark0_hard    = "1d2021";
+    gray_245      = "928374";
+    gray_244      = "928374";
+    light0_hard   = "f9f5d7";
+    bright_orange = "fe8019";
+    neutral_orange= "d65d0e";
+    faded_orange  = "af3a03";
+    bright_red    = "fb4934";
+  };
+in
 {
   wayland.windowManager.hyprland.enable = true;
-  wayland.windowManager.hyprland.settings = {
-    "$mod" = "SUPER";
-    bind = [
-      "$mod, z, exec, firefox"
-      ", Print, exec, grimblast copy area"
-      "$mod, Q, exec, "
-      ""
-    ]
-    ++ (
-      # workspaces
-      # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
-      builtins.concatLists (
-        builtins.genList (
-          i:
-          let
-            ws = i + 1;
-          in
-          [
-            "$mod, code:1${toString i}, workspace, ${toString ws}"
-            "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-          ]
-        ) 9
-      )
-    );
-    config = {
+  home.packages = with pkgs; [
+    hyprpaper
+    rofi-wayland
+  ];
+
+  wayland.windowManager.hyprland = {
+    enable = true;
+
+    settings = {
+      "$mod" = mod;
+
       general = {
         gaps_in = 5;
-        gaps_out = 20;
+        gaps_out = 10;
         border_size = 2;
+        "col.active_border"   = "rgb(${gruvbox.bright_orange})";
+        "col.inactive_border" = "rgb(${gruvbox.gray_245})";
       };
 
-      decoration = {
-        rounding = 10;
+      input = {
+        follow_mouse = 1;
       };
+
+      # Regular binds (on press)
+      bind = [
+        "$mod, Return, exec, ${term}"
+        "$mod, Z, exec, ${browser_personal}"
+        "$mod SHIFT, Z, exec, ${browser_school}"
+        "$mod, D, exec, ${menu}"
+        "$mod SHIFT, D, exec, ${runner}"
+        "$mod, Space, togglefloating"
+        "$mod SHIFT, Q, killactive"
+
+        # Focus
+        "$mod, H, movefocus, l"
+        "$mod, J, movefocus, d"
+        "$mod, K, movefocus, u"
+        "$mod, L, movefocus, r"
+
+        # Move
+        "$mod SHIFT, H, movewindow, l"
+        "$mod SHIFT, J, movewindow, d"
+        "$mod SHIFT, K, movewindow, u"
+        "$mod SHIFT, L, movewindow, r"
+
+        # Layout
+        "$mod, F, fullscreen"
+        "$mod, E, togglesplit"  # closest to i3's split toggle
+
+        # Workspaces
+        "$mod, 1, workspace, 1"
+        "$mod, 2, workspace, 2"
+        "$mod, 3, workspace, 3"
+        "$mod, 4, workspace, 4"
+        "$mod, 5, workspace, 5"
+        "$mod, 6, workspace, 6"
+        "$mod, 7, workspace, 7"
+        "$mod, 8, workspace, 8"
+        "$mod, 9, workspace, 9"
+        "$mod, 0, workspace, 10"
+
+        "$mod SHIFT, 1, movetoworkspace, 1"
+        "$mod SHIFT, 2, movetoworkspace, 2"
+        "$mod SHIFT, 3, movetoworkspace, 3"
+        "$mod SHIFT, 4, movetoworkspace, 4"
+        "$mod SHIFT, 5, movetoworkspace, 5"
+        "$mod SHIFT, 6, movetoworkspace, 6"
+        "$mod SHIFT, 7, movetoworkspace, 7"
+        "$mod SHIFT, 8, movetoworkspace, 8"
+        "$mod SHIFT, 9, movetoworkspace, 9"
+        "$mod SHIFT, 0, movetoworkspace, 10"
+
+        # Hyprland control
+        "$mod SHIFT, C, exec, hyprctl reload"
+        "$mod SHIFT, R, exec, hyprctl reload"  # no separate restart in Hyprland
+        "$mod SHIFT, E, exit"
+
+        # Enter resize submap
+        "$mod, R, submap, resize"
+      ];
+
+      windowrulev2 = [
+        "workspace 1, class:^(LibreWolf)$"
+        "workspace 1, class:^(firefox)$"
+        "workspace 2, class:^(kitty)$"
+        "workspace 3, class:^(tidal-hifi)$"
+        "workspace 3, class:^(high-tide)$"
+        "float, title:^(feh)$"
+      ];
+
+      exec-once = [
+        "nm-applet --indicator"
+        "hyprpaper"
+      ];
     };
+
+    # Submaps can't be expressed as nested attribute sets —
+    # they're positional blocks in hyprland.conf, so extraConfig handles them.
+    extraConfig = ''
+      submap = resize
+      binde = , H, resizeactive, -20 0
+      binde = , L, resizeactive, 20 0
+      binde = , K, resizeactive, 0 -20
+      binde = , J, resizeactive, 0 20
+      bind  = , Return, submap, reset
+      bind  = , Escape, submap, reset
+      submap = reset
+    '';
   };
+}
 }
