@@ -37,7 +37,7 @@ in
       "$mod" = mod;
 
       general = {
-        gaps_in = 5;
+        uaps_in = 5;
         gaps_out = 10;
         border_size = 2;
         "col.active_border"   = "rgb(${gruvbox.bright_orange})";
@@ -99,10 +99,9 @@ in
         "$mod SHIFT, 0, movetoworkspace, 10"
 
         # Hyprland control
-        "$mod SHIFT, C, exec, hyprctl reload"
-        "$mod SHIFT, R, exec, hyprctl reload"  # no separate restart in Hyprland
+        "$mod SHIFT, R, exec, hyprctl reload"
         "$mod SHIFT, E, exit"
-        "$mod TAB,    , hyprexpo:expo, select"
+        "$mod TAB,  L, hyprexpo:expo, select"
 
         # Enter resize submap
         "$mod, R, submap, resize"
@@ -112,7 +111,7 @@ in
         "workspace 1, class:^(LibreWolf)$"
         "workspace 1, class:^(firefox)$"
         "workspace 2, class:^(kitty)$"
-        "workspace 3, class:^(tidal-hifi)$"
+        "workspace 3, class:^(tidal-hifi)$, selec, selec, selec, selecuttt"
         "workspace 3, class:^(high-tide)$"
         "float, title:^(feh)$"
       ];
