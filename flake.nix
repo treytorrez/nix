@@ -26,14 +26,15 @@
       url = "github:pgattic/canon";
       flake = false;
     };
-#    ferrite = { #markdown viewer
-#      url = "github:OlaProeis/Ferrite";
-#      inputs.nixpkgs.follows = "nixpkgs";
-#    };
+    #    ferrite = { #markdown viewer
+    #      url = "github:OlaProeis/Ferrite";
+    #      inputs.nixpkgs.follows = "nixpkgs";
+    #    };
     voxtype = {
       url = "github:peteonrails/voxtype";
       inputs.nixpkgs.follows = "nixpkgs";
-    };  };
+    };
+  };
 
   outputs =
     inputs@{
@@ -42,7 +43,7 @@
       home-manager,
       nixcord,
       canonSrc,
-#      ferrite,
+      #      ferrite,
       voxtype,
       nixvim,
       ...
@@ -61,7 +62,10 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = { inherit nixcord voxtype nixvim; };
-              home-manager.sharedModules = [ voxtype.homeManagerModules.default nixvim.homeModules.nixvim ];
+              home-manager.sharedModules = [
+                voxtype.homeManagerModules.default
+                nixvim.homeModules.nixvim
+              ];
               nixpkgs.overlays = [
                 (final: prev: {
                   canon = final.callPackage ./packages/canon.nix { canonSrc = inputs.canonSrc; };

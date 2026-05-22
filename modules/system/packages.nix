@@ -142,15 +142,17 @@
     slack
     #positron-bin
 
+    # DESKTOP ENV
+    ashell 
+    hyprland
+    lightdm
+    i3
+    lxqt.lxqt-wayland-session
 
     protonvpn-gui
     osu-lazer-bin
     home-manager
-    hyprland
-    lightdm
-    i3
     ollama
-    lxqt.lxqt-wayland-session
 
   ];
 }
