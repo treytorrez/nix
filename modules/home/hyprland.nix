@@ -120,6 +120,7 @@ in
       exec-once = [
         "nm-applet --indicator"
         "hyprpaper"
+        "ashell"
       ];
     };
 
