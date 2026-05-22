@@ -14,6 +14,7 @@
       signcolumn = "no";
       number = true;
       relativenumber = true;
+      fillchars = "vert:▏"; 
     };
     
     globals = {
