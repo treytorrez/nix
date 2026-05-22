@@ -44,6 +44,7 @@ in
         "col.inactive_border" = "rgb(${gruvbox.gray_245})";
       };
 
+
       input = {
         follow_mouse = 1;
       };
@@ -133,5 +134,9 @@ in
       bind  = , Escape, submap, reset
       submap = reset
     '';
+    plugins = [
+      pkgs.hyprlandPlugins.hyprexpo
+      pkgs.hyprlandPlugins.hyprbars
+    ];
   };
 }

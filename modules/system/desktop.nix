@@ -7,8 +7,10 @@
   services.xserver.desktopManager.lxqt.enable = true;
 
   # 3. Enable your display manager (SDDM)
-  services.xserver.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+  };
   # 4. Install the Wayland session package
   environment.systemPackages = with pkgs; [
     lxqt.lxqt-wayland-session
