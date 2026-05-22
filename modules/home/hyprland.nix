@@ -102,6 +102,7 @@ in
         "$mod SHIFT, C, exec, hyprctl reload"
         "$mod SHIFT, R, exec, hyprctl reload"  # no separate restart in Hyprland
         "$mod SHIFT, E, exit"
+        "$mod TAB,    , hyprexpo:expo, select"
 
         # Enter resize submap
         "$mod, R, submap, resize"
