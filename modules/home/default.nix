@@ -24,6 +24,7 @@
     ./dunst.nix
     ./rofi.nix
     #./positron.nix
+    ./hyprland.nix
   ];
 
   home.packages = [ ];

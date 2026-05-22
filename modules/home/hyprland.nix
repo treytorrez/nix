@@ -25,10 +25,9 @@ let
   };
 in
 {
-  wayland.windowManager.hyprland.enable = true;
   home.packages = with pkgs; [
     hyprpaper
-    rofi-wayland
+    rofi
   ];
 
   wayland.windowManager.hyprland = {
@@ -135,5 +134,4 @@ in
       submap = reset
     '';
   };
-}
 }
