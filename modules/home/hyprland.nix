@@ -37,7 +37,7 @@ in
       "$mod" = mod;
 
       general = {
-        uaps_in = 5;
+        gaps_in = 5;
         gaps_out = 10;
         border_size = 2;
         "col.active_border"   = "rgb(${gruvbox.bright_orange})";
@@ -111,7 +111,8 @@ in
         "workspace 1, class:^(LibreWolf)$"
         "workspace 1, class:^(firefox)$"
         "workspace 2, class:^(kitty)$"
-        "workspace 3, class:^(tidal-hifi)$, selec, selec, selec, selecuttt"
+        # FIXME: claude botched it or something
+        #"workspace 3, class:^(tidal-hifi)$, selec, selec, selec, selecuttt"
         "workspace 3, class:^(high-tide)$"
         "float, title:^(feh)$"
       ];
