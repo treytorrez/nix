@@ -44,10 +44,11 @@ in
         "col.active_border"   = "rgb(${gruvbox.bright_orange})";
         "col.inactive_border" = "rgb(${gruvbox.gray_245})";
       };
+      # TODO: animations off
 
       # hopefully this is using the iGPU 
      env = "AQ_DRM_DEVICES, /dev/dri/by-path/pci-0000:07:00.0-card"; 
-
+      # TODO: monitor scale 1.0, change other apps to be bigger
       monitor = "eDP-2, 2560x1600@75, 0x0, 1.4";
 
 
@@ -126,6 +127,7 @@ in
       exec-once = [
         "nm-applet --indicator"
         "hyprpaper"
+        # TODO: could these autostart apps be systemd things
         "ashell"
       ];
     };
@@ -144,7 +146,8 @@ in
     '';
     plugins = [
       pkgs.hyprlandPlugins.hyprexpo
-      pkgs.hyprlandPlugins.hyprbars
+      # TODO: Worth configuring if i have a status bar?
+      #pkgs.hyprlandPlugins.hyprbars
     ];
   };
 }
