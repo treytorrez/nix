@@ -110,7 +110,7 @@ in
         # Hyprland control
         "$mod SHIFT, R, exec, hyprctl reload"
         "$mod SHIFT, E, exit"
-        "$mod TAB,  L, hyprexpo:expo, select"
+        #"$mod TAB,  L, hyprexpo:expo, select"
 
         # Enter resize submap
         "$mod, R, submap, resize"
@@ -147,7 +147,7 @@ in
       submap = reset
     '';
     plugins = [
-      pkgs.hyprlandPlugins.hyprexpo
+      #pkgs.hyprlandPlugins.hyprexpo
       # TODO: Worth configuring if i have a status bar?
       #pkgs.hyprlandPlugins.hyprbars
     ];
