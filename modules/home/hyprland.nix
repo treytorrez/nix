@@ -14,14 +14,14 @@ let
   browser_school = "librewolf -P school";
 
   gruvbox = {
-    dark0_hard    = "1d2021";
-    gray_245      = "928374";
-    gray_244      = "928374";
-    light0_hard   = "f9f5d7";
+    dark0_hard = "1d2021";
+    gray_245 = "928374";
+    gray_244 = "928374";
+    light0_hard = "f9f5d7";
     bright_orange = "fe8019";
-    neutral_orange= "d65d0e";
-    faded_orange  = "af3a03";
-    bright_red    = "fb4934";
+    neutral_orange = "d65d0e";
+    faded_orange = "af3a03";
+    bright_red = "fb4934";
   };
 in
 {
@@ -41,16 +41,15 @@ in
         gaps_in = 5;
         gaps_out = 5;
         border_size = 2;
-        "col.active_border"   = "rgb(${gruvbox.bright_orange})";
+        "col.active_border" = "rgb(${gruvbox.bright_orange})";
         "col.inactive_border" = "rgb(${gruvbox.gray_245})";
       };
       # TODO: animations off
 
-      # hopefully this is using the iGPU 
-     env = "AQ_DRM_DEVICES, /dev/dri/by-path/pci-0000:07:00.0-card"; 
+      # hopefully this is using the iGPU
+      env = "AQ_DRM_DEVICES, /dev/dri/by-path/pci-0000:07:00.0-card";
       # TODO: monitor scale 1.0, change other apps to be bigger
       monitor = "eDP-2, 2560x1600@75, 0x0, 1.2";
-
 
       input = {
         follow_mouse = 1;
@@ -80,7 +79,7 @@ in
 
         # Layout
         "$mod, F, fullscreen"
-        "$mod, E, togglesplit"  # closest to i3's split toggle
+        "$mod, E, togglesplit" # closest to i3's split toggle
 
         # Workspaces
         "$mod, 1, workspace, 1"
@@ -122,6 +121,7 @@ in
         #"workspace 3, class:^(tidal-hifi)$, selec, selec, selec, selecuttt"
         "workspace 3, class:^(high-tide)$"
         "float, title:^(feh)$"
+        "fakefullscreen, class:^(LibreWolf)$"
       ];
 
       exec-once = [
