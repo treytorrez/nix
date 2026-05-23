@@ -45,12 +45,7 @@ in
         "col.inactive_border" = "rgb(${gruvbox.gray_245})";
       };
 
-      monitor = {
-        output = "eDP-2";
-        mode = "2560x1600@75";
-        position = "0x0";
-        scale = 1;
-      };
+      monitor = "eDP-2, 2560x1600@75, 0x0, 1";
 
 
       input = {
