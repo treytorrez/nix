@@ -45,6 +45,8 @@ in
         "col.inactive_border" = "rgb(${gruvbox.gray_245})";
       };
 
+     env = "AQ_DRM_DEVICES, /dev/dri/by-path/pci-0000:07:00.0-card"; 
+
       monitor = "eDP-2, 2560x1600@75, 0x0, 1";
 
 
