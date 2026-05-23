@@ -79,8 +79,8 @@ in
 
         # Layout
         #"$mod, F, fullscreen"
-        "$mainMod SHIFT, F, fullscreenstate, 0 2"
-        "$mainMod, F, fullscreenstate, 0 0"
+        "$mod SHIFT, F, fullscreenstate, 0 2"
+        "$mod, F, fullscreenstate, 0 0"
 
         "$mod, E, togglesplit" # closest to i3's split toggle
 
