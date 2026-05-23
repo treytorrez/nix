@@ -48,7 +48,7 @@ in
       # hopefully this is using the iGPU 
      env = "AQ_DRM_DEVICES, /dev/dri/by-path/pci-0000:07:00.0-card"; 
 
-      monitor = "eDP-2, 2560x1600@75, 0x0, 1";
+      monitor = "eDP-2, 2560x1600@75, 0x0, 1.4";
 
 
       input = {
