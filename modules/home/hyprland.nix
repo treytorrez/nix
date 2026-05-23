@@ -78,7 +78,8 @@ in
         "$mod SHIFT, L, movewindow, r"
 
         # Layout
-        "$mod, F, fullscreen"
+        #"$mod, F, fullscreen"
+        "$mainMod SHIFT, F, fullscreenstate, 0 2"
         "$mod, E, togglesplit" # closest to i3's split toggle
 
         # Workspaces
@@ -121,7 +122,6 @@ in
         #"workspace 3, class:^(tidal-hifi)$, selec, selec, selec, selecuttt"
         "workspace 3, class:^(high-tide)$"
         "float, title:^(feh)$"
-        "fakefullscreen, class:^(LibreWolf)$"
       ];
 
       exec-once = [
