@@ -47,7 +47,7 @@ in
       # TODO: animations off
 
       # hopefully this is using the iGPU
-      env = "AQ_DRM_DEVICES, /dev/dri/by-path/pci-0000:07:00.0-card";
+      # env = "AQ_DRM_DEVICES, /dev/dri/by-path/pci-0000:07:00.0-card";
       # TODO: monitor scale 1.0, change other apps to be bigger
       monitor = "eDP-2, 2560x1600@75, 0x0, 1.2";
 
