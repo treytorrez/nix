@@ -39,12 +39,13 @@ in
 
       general = {
         gaps_in = 5;
-        gaps_out = 10;
+        gaps_out = 5;
         border_size = 2;
         "col.active_border"   = "rgb(${gruvbox.bright_orange})";
         "col.inactive_border" = "rgb(${gruvbox.gray_245})";
       };
 
+      # hopefully this is using the iGPU 
      env = "AQ_DRM_DEVICES, /dev/dri/by-path/pci-0000:07:00.0-card"; 
 
       monitor = "eDP-2, 2560x1600@75, 0x0, 1";
