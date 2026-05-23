@@ -32,6 +32,7 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
+    #configType = "lua";
 
     settings = {
       "$mod" = mod;
@@ -42,6 +43,13 @@ in
         border_size = 2;
         "col.active_border"   = "rgb(${gruvbox.bright_orange})";
         "col.inactive_border" = "rgb(${gruvbox.gray_245})";
+      };
+
+      monitor = {
+        output = "eDP-2";
+        mode = "2560x1600@75";
+        position = "0x0";
+        scale = 1;
       };
 
 
