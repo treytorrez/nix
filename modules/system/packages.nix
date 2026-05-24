@@ -74,6 +74,7 @@
     direnv
     qtcreator
     android-tools
+    gcc
     #rstudio
     #R
 

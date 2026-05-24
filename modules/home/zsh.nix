@@ -44,6 +44,7 @@
       xo = "xdg-open";
       gs = "git status";
       ga = "git add";
+      ns = "nix shell nixpkgs#";
     };
 
     sessionVariables = {
