@@ -14,6 +14,7 @@
     ../../modules/system/focus-blacklist.nix
     ../../modules/system/focus-mode.nix
     ../../modules/system/ld.nix
+    ../../modules/system/tailscale.nix
   ];
 
   networking.hostName = "laptop";

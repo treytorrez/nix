@@ -10,6 +10,10 @@
     ../../modules/system/programs.nix
     ../../modules/system/packages.nix
     ../../modules/system/users.nix
+    ../../modules/system/fonts.nix
+    ../../modules/system/focus-blacklist.nix
+    ../../modules/system/focus-mode.nix
+    ../../modules/system/tailscale.nix
   ];
 
   networking.hostName = "desktop";
