@@ -8,9 +8,13 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-on-droid = {
+      url = "github:nix-community/nix-on-droid/release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixvim = {
-      # url = "github:nix-community/nixvim";
       # If you are not running an unstable channel of nixpkgs, select the corresponding branch of Nixvim.
+      # url = "github:nix-community/nixvim";
       url = "github:nix-community/nixvim/nixos-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -41,6 +45,7 @@
       self,
       nixpkgs,
       home-manager,
+      nix-on-droid,
       nixcord,
       canonSrc,
       #      ferrite,
@@ -49,9 +54,8 @@
       ...
     }:
     let
-      system = "x86_64-linux";
       mkHost =
-        hostname:
+        hostname: system:
         nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
@@ -75,11 +79,22 @@
             }
           ];
         };
+
+      mkDroid =
+        hostname:
+        nix-on-droid.lib.nixOnDroidConfiguration {
+          pkgs = import nixpkgs { system = "aarch64-linux"; };
+          modules = [ ./hosts/${hostname} ];
+        };
     in
     {
       nixosConfigurations = {
-        laptop = mkHost "laptop";
-        desktop = mkHost "desktop";
+        laptop = mkHost "laptop" "x86_64-linux";
+        desktop = mkHost "desktop" "x86_64-linux";
+      };
+
+      nixOnDroidConfigurations = {
+        mobile = mkDroid "mobile";
       };
     };
 }
