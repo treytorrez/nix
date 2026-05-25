@@ -45,6 +45,7 @@
       # TODO: https://nix-community.github.io/nixvim/plugins/typst-vim/index.html
       # TODO: typst previewer & typst fomatter/linter/whatever
       lualine.enable = true;
+      neoscroll.enable = true;
       auto-save.enable = true;
       colorizer = {
         enable = true;
