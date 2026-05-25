@@ -433,6 +433,12 @@
       }
       {
         mode = "n";
+        key = "<leader>ld";
+        action = "<cmd>lua vim.diagnostic.open_float()<cr>";
+        options.desc = "View Diagnostic";
+      }
+      {
+        mode = "n";
         key = "<leader>lf";
         action = "<cmd>lua vim.lsp.buf.format()<cr>";
         options.desc = "Format buffer";
