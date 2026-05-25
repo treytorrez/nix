@@ -53,6 +53,7 @@
 
     # DEVELOPMENT
     git
+    lazygit
     uv
     arduino-ide
     arduino
