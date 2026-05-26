@@ -149,6 +149,7 @@
     lightdm
     i3
     lxqt.lxqt-wayland-session
+    lxqt.lxqt-powermanagement
 
     protonvpn-gui
     osu-lazer-bin

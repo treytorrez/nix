@@ -2,6 +2,7 @@
 {
   # 1. Enable Hyprland
   programs.hyprland.enable = true;
+  services.upower.enable = true;
 
   # 2. Enable LXQt (still required for the core desktop components)
   #services.xserver.desktopManager.lxqt.enable = true;
@@ -12,9 +13,9 @@
     wayland.enable = true;
   };
   # 4. Install the Wayland session package
-  environment.systemPackages = with pkgs; [
-    lxqt.lxqt-wayland-session
-  ];
+  #   environment.systemPackages = with pkgs; [
+  #     lxqt.lxqt-wayland-session
+  #   ];
 
   # 5. (Optional) Pre-set Hyprland as the compositor for LXQt
   # This removes the need to manually configure it via the GUI on first login.

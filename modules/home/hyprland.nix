@@ -132,6 +132,7 @@ in
         "hyprpaper"
         # TODO: could these autostart apps be systemd things
         "ashell"
+        "lxqt-powermanagement"
       ];
     };
 
