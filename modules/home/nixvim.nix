@@ -15,6 +15,7 @@
       number = true;
       relativenumber = true;
       fillchars = "vert:▏"; 
+      cursorline = true;
     };
     
     globals = {
