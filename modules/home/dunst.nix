@@ -3,33 +3,6 @@
   services.dunst = {
     enable = true;
     settings = {
-      global = {
-        # Positioning and size
-        width = 800; # Twice the typical 300
-        height = 600; # Twice the typical 300
-        offset = "30x50";
-        origin = "top-right";
-
-        # Typography
-        #font = "AtkinsonMono Nerd Font 15";
-
-        # Gruvbox dark hard colors
-        #frame_color = "#fe8019";
-        frame_width = 2;
-        #separator_color = "frame";
-
-        # Layout
-        padding = 16;
-        horizontal_padding = 16;
-        text_icon_padding = 16;
-        gap_size = 8;
-
-        # Behavior
-        timeout = 5;
-        markup = "full";
-        format = "<b>%s</b>\\n%b";
-        show_indicators = true;
-      };
 
       urgency_low = {
         #background = "#1d2021";
