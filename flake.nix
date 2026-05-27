@@ -8,6 +8,10 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix = {
+      url = "github:nix-community/stylix/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-on-droid = {
       url = "github:nix-community/nix-on-droid/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -45,6 +49,7 @@
       self,
       nixpkgs,
       home-manager,
+      stylix,
       nix-on-droid,
       nixcord,
       canonSrc,
@@ -61,6 +66,7 @@
           specialArgs = { inherit inputs; };
           modules = [
             ./hosts/${hostname}
+            stylix.nixosModules.stylix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
@@ -84,7 +90,10 @@
         hostname:
         nix-on-droid.lib.nixOnDroidConfiguration {
           pkgs = import nixpkgs { system = "aarch64-linux"; };
-          modules = [ ./hosts/${hostname} ];
+          modules = [
+            ./hosts/${hostname} 
+            stylix.nixOnDroidModules.stylix
+          ];
         };
     in
     {

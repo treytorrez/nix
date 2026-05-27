@@ -14,6 +14,6 @@
       name = "AtkynsonMono Nerd Font";
       size = 25;
     };
-    themeFile = "gruvbox-dark-hard";
+    #themeFile = "gruvbox-dark-hard";
   };
 }
