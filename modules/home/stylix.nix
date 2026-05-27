@@ -27,7 +27,7 @@
     programs.librewolf.profiles.school.extensions.force = true;
     programs.librewolf.profiles.pwas.extensions.force = true;
 
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark.yaml";
   stylix.image = builtins.fetchurl {
     url = "https://w.wallhaven.cc/full/p9/wallhaven-p9pd23.png";
     name = "wallhaven-p9pd23.png";

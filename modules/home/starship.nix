@@ -13,6 +13,7 @@
       add_newline = true;
       ##color##      palette = "normal";
 
+      # TODO: use stylix
       ##color##      palettes.normal = {
       ##color##        arrow = "#333533";
       ##color##        os = "#16f4d0";
@@ -33,7 +34,7 @@
       ##color##      };
 
       username = {
-        style_user = "bold os";
+        style_user = "bold cyan";
         style_root = "bold os_admin";
         format = "[ $user](fg:$style) ";
         disabled = false;
