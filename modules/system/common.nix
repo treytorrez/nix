@@ -150,8 +150,7 @@
     i3
     lxqt.lxqt-wayland-session
     lxqt.lxqt-powermanagement
-    hyprshot
-
+    wf-recorder
     protonvpn-gui
     osu-lazer-bin
     home-manager

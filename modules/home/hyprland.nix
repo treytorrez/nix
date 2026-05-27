@@ -13,16 +13,6 @@ let
   browser_personal = "librewolf -P default";
   browser_school = "librewolf -P school";
 
-  ##color##  gruvbox = {
-  ##color##    dark0_hard = "1d2021";
-  ##color##    gray_245 = "928374";
-  ##color##    gray_244 = "928374";
-  ##color##    light0_hard = "f9f5d7";
-  ##color##    bright_orange = "fe8019";
-  ##color##    neutral_orange = "d65d0e";
-  ##color##    faded_orange = "af3a03";
-  ##color##    bright_red = "fb4934";
-  ##color##  };
 in
 {
   home.packages = with pkgs; [
@@ -52,7 +42,7 @@ in
 
       # env = "AQ_DRM_DEVICES, /dev/dri/by-path/pci-0000:07:00.0-card";
       # TODO: monitor scale 1.0, change other apps to be bigger
-      monitor = "eDP-2, 2560x1600@75, 0x0, 1.2";
+      monitor = "eDP-2, 2560x1600@75, 0x0, 1.25";
 
       input = {
         follow_mouse = 1;
@@ -153,7 +143,8 @@ in
       submap = reset
     '';
     plugins = [
-      #pkgs.hyprlandPlugins.hyprexpo
+      pkgs.hypr
+      pkgs.hyprlandPlugins.hyprexpo
       # TODO: Worth configuring if i have a status bar?
       #pkgs.hyprlandPlugins.hyprbars
     ];
