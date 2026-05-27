@@ -8,12 +8,22 @@
   #names with 'config.stylix.targets.librewolf.profileNames = [
   #"<PROFILE_NAME>" ];'.
 
-  stylix.targets.librewolf.profileNames = [
+  stylix.targets.librewolf = {
+    profileNames = [
     "default"
     "school"
     "work"
     "pwas"
     ];
+    colorTheme.enable = true;
+    colors.enable = true;
+    #colors.override.enable = true;
+
+  };
+    programs.librewolf.profiles.default.extensions.force = true;
+    programs.librewolf.profiles.work.extensions.force = true;
+    programs.librewolf.profiles.school.extensions.force = true;
+    programs.librewolf.profiles.pwas.extensions.force = true;
 
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
   stylix.image = builtins.fetchurl {
