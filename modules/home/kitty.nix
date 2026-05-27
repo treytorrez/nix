@@ -4,16 +4,16 @@
     enable = true;
     shellIntegration.enableZshIntegration = true;
     enableGitIntegration = true;
-    extraConfig = ''
-      font_family      family='AtkynsonMono Nerd Font' style=Light
-      bold_font        auto
-      italic_font      family='AtkynsonMono Nerd Font' style='Light Italic'
-      bold_italic_font auto'';
-    font = {
-      package = pkgs.nerd-fonts.atkynson-mono;
-      name = "AtkynsonMono Nerd Font";
-      size = 25;
-    };
+    ##color##    extraConfig = ''
+    ##color##      font_family      family='AtkynsonMono Nerd Font' style=Light
+    ##color##      bold_font        auto
+    ##color##      italic_font      family='AtkynsonMono Nerd Font' style='Light Italic'
+    ##color##      bold_italic_font auto'';
+    ##color##    font = {
+    ##color##      package = pkgs.nerd-fonts.atkynson-mono;
+    ##color##      name = "AtkynsonMono Nerd Font";
+    ##color##      size = 25;
+    ##color##    };
     #themeFile = "gruvbox-dark-hard";
   };
 }

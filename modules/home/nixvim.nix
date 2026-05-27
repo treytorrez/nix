@@ -33,7 +33,7 @@
       plugins = true;
     };
 
-    colorschemes.gruvbox.enable = true;
+    #colorschemes.gruvbox.enable = true;
 
     globals.mapleader = " ";
 
