@@ -150,6 +150,7 @@
     i3
     lxqt.lxqt-wayland-session
     lxqt.lxqt-powermanagement
+    hyprshot
 
     protonvpn-gui
     osu-lazer-bin
