@@ -11,12 +11,14 @@
   stylix.targets.librewolf = {
     profileNames = [
     "default"
-    "school"
+      #"school"
     "work"
     "pwas"
     ];
     colorTheme.enable = true;
     colors.enable = true;
+    fonts.enable = true;
+    inputs.enable = true;
     #colors.override.enable = true;
 
   };
