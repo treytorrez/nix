@@ -2,8 +2,8 @@
 {
   programs.rofi = {
     enable = true;
-    theme = "sidebar";
-    font = "AtkynsonMono Nerd Font monospace 15";
+    ##color##theme = "sidebar";
+    ##color##font = "AtkynsonMono Nerd Font monospace 15";
     package = pkgs.rofi;
     modes = [
       "drun"

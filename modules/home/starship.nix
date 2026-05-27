@@ -11,26 +11,26 @@
       ];
 
       add_newline = true;
-      palette = "normal";
+      ##color##      palette = "normal";
 
-      palettes.normal = {
-        arrow = "#333533";
-        os = "#16f4d0";
-        os_admin = "#e4ff1a";
-        directory = "#9ffff5";
-        time = "#bdfffd";
-        node = "#a5e6ba";
-        git = "#f17f29";
-        git_status = "#DFEBED";
-        python = "#edf67d";
-        conda = "#70e000";
-        java = "#F86279";
-        rust = "#ffdac6";
-        clang = "#caf0f8";
-        duration = "#ce4257";
-        text_color = "#EDF2F4";
-        text_light = "#26272A";
-      };
+      ##color##      palettes.normal = {
+      ##color##        arrow = "#333533";
+      ##color##        os = "#16f4d0";
+      ##color##        os_admin = "#e4ff1a";
+      ##color##        directory = "#9ffff5";
+      ##color##        time = "#bdfffd";
+      ##color##        node = "#a5e6ba";
+      ##color##        git = "#f17f29";
+      ##color##        git_status = "#DFEBED";
+      ##color##        python = "#edf67d";
+      ##color##        conda = "#70e000";
+      ##color##        java = "#F86279";
+      ##color##        rust = "#ffdac6";
+      ##color##        clang = "#caf0f8";
+      ##color##        duration = "#ce4257";
+      ##color##        text_color = "#EDF2F4";
+      ##color##        text_light = "#26272A";
+      ##color##      };
 
       username = {
         style_user = "bold os";

@@ -120,7 +120,7 @@
     # PRODUCTIVITY
     libreoffice-qt6-fresh
     protonmail-desktop
-    gnumeric
+  #gnumeric
     obsidian
     doing
     anki-bin

@@ -25,6 +25,7 @@
     ./rofi.nix
     #./positron.nix
     ./hyprland.nix
+    ./stylix.nix
   ];
 
   home.packages = [ ];
