@@ -26,6 +26,7 @@
     #./positron.nix
     ./hyprland.nix
     ./stylix.nix
+    ./ashell.nix
   ];
 
   home.packages = [ ];

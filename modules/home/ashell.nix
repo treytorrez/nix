@@ -32,15 +32,15 @@ in
         network_indicator_format = "Icon";
       };
 
-      appearance = {
-        style = "Solid";
-        primary_color    = "#${c.base0D}";
-        success_color    = "#${c.base0B}";
-        text_color       = "#${c.base05}";
-        danger_color     = { base = "#${c.base08}"; weak = "#${c.base09}"; };
-        background_color = { base = "#${c.base00}"; weak = "#${c.base01}"; strong = "#${c.base03}"; };
-        secondary_color  = { base = "#${c.base02}"; };
-      };
+        #      appearance = {
+        #        style = "Solid";
+        #        primary_color    = "#${c.base0D}";
+        #        success_color    = "#${c.base0B}";
+        #        text_color       = "#${c.base05}";
+        #        danger_color     = { base = "#${c.base08}"; weak = "#${c.base09}"; };
+        #        background_color = { base = "#${c.base00}"; weak = "#${c.base01}"; strong = "#${c.base03}"; };
+        #        secondary_color  = { base = "#${c.base02}"; };
+      #      };
     };
   };
 
