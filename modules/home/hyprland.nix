@@ -23,7 +23,7 @@ in
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
-    configType = "lua";
+    #configType = "lua";
 
     settings = {
       "$mod" = mod;
