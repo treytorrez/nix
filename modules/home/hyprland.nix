@@ -111,12 +111,12 @@ in
 
       windowrule = [
         # FIXME: what's the actual name?
-        "workspace 1, class:^(LibreWolf)$"
-        "workspace 1, class:^(firefox)$"
-        "workspace 2, class:^(kitty)$"
+        "match class:^(LibreWolf)$, workspace 1"
+        "match class:^(firefox)$, workspace 1"
+        "match class:^(kitty)$, workspace 2"
         # FIXME: claude botched it or something
         #"workspace 3, class:^(tidal-hifi)$, selec, selec, selec, selecuttt"
-        "workspace 3, class:^(high-tide)$"
+        "class:^(high-tide)$ workspace 3"
         "float, title:^(feh)$"
       ];
 
