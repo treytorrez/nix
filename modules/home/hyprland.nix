@@ -109,16 +109,16 @@ in
         "$mod, R, submap, resize"
       ];
 
-      windowrule = [
-        # FIXME: what's the actual name?
-        "match class:^(LibreWolf)$, workspace 1"
-        "match class:^(firefox)$, workspace 1"
-        "match class:^(kitty)$, workspace 2"
-        # FIXME: claude botched it or something
-        #"workspace 3, class:^(tidal-hifi)$, selec, selec, selec, selecuttt"
-        "class:^(high-tide)$ workspace 3"
-        "float, title:^(feh)$"
-      ];
+      ##      windowrule = [
+      ##        # FIXME: what's the actual name?
+      ##        "match class:^(LibreWolf)$, workspace 1"
+      ##        "match class:^(firefox)$, workspace 1"
+      ##        "match class:^(kitty)$, workspace 2"
+      ##        # FIXME: claude botched it or something
+      ##        #"workspace 3, class:^(tidal-hifi)$, selec, selec, selec, selecuttt"
+      ##        "class:^(high-tide)$ workspace 3"
+      ##        "float, title:^(feh)$"
+      ##      ];
 
       exec-once = [
         "nm-applet --indicator"
