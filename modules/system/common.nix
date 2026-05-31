@@ -1,4 +1,3 @@
-
 { pkgs }: with pkgs; [
     # TERMINALS
     kitty
@@ -61,15 +60,6 @@
     opencode
     nixfmt
     python314
-    python313
-    python313Packages.mypy
-    python313Packages.ruff
-    python313Packages.pdftotext
-    python312
-    python312Packages.mypy
-    python312Packages.ruff
-    python311
-    python3Packages.jupytext
     quartoMinimal
     direnv
     qtcreator
@@ -94,7 +84,7 @@
     kdePackages.okular
 
     # BROWSERS
-    firefoxpwa
+  #firefoxpwa
     qutebrowser
     nyxt
     brave

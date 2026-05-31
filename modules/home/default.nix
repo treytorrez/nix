@@ -2,7 +2,7 @@
 {
   imports = [
     nixcord.homeModules.nixcord
-    ./firefoxpwa.nix
+    #./firefoxpwa.nix
     ./librewolf.nix
     #./neovim.nix
     ./nixvim.nix

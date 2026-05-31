@@ -2,6 +2,7 @@
 {
   programs.nixvim = {
     enable = true;
+    nixpkgs.config.allowUnfree = true;
 
     opts = {
       splitright = true;
@@ -14,15 +15,14 @@
       signcolumn = "no";
       number = true;
       relativenumber = true;
-      fillchars = "vert:▏"; 
+      fillchars = "vert:▏";
       cursorline = true;
     };
-    
+
     globals = {
       netrw_preview = 1;
       netrw_liststyle = 3;
     };
-
 
     # Performance optimizations
     performance.byteCompileLua = {
@@ -222,6 +222,19 @@
               };
             };
             root_markers = [ ".git" ];
+          };
+        };
+        sqruff = {
+          enable = true;
+          config = {
+            cmd = [
+              "sqruff"
+              "lint"
+              "."
+            ];
+            filetypes = [
+              "sql"
+            ];
           };
         };
 

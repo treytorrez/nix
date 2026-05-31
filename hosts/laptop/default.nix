@@ -1,4 +1,10 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  inputs,
+  ...
+}:
 {
   imports = [
     ./hardware-configuration.nix
@@ -15,9 +21,21 @@
     ../../modules/system/focus-mode.nix
     ../../modules/system/ld.nix
     ../../modules/system/tailscale.nix
+
   ];
 
   networking.hostName = "laptop";
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+             "wezterm.nvim"
+           ];
+  nixpkgs.overlays = [
+    (final: prev: {
+      canon = final.callPackage ../../packages/canon.nix { canonSrc = inputs.canonSrc; };
+      nixvim = inputs.nixvim.packages.${final.system}.default;
+    })
+
+  ];
 
   home-manager.users.treyt = import ../../modules/home;
   home-manager.backupFileExtension = ".bak";

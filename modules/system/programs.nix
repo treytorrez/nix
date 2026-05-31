@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   #imports = [ ./firefox.nix ];
 
@@ -6,7 +6,6 @@
     "nix-command"
     "flakes"
   ];
-  nixpkgs.config.allowUnfree = true;
 
   programs.zsh.enable = true;
   

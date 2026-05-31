@@ -2,14 +2,14 @@
   description = "Trey's NixOS configuration (flakes)";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix = {
-      url = "github:nix-community/stylix/release-25.11";
+      url = "github:nix-community/stylix/";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-on-droid = {
@@ -19,7 +19,7 @@
     nixvim = {
       # If you are not running an unstable channel of nixpkgs, select the corresponding branch of Nixvim.
       # url = "github:nix-community/nixvim";
-      url = "github:nix-community/nixvim/nixos-25.11";
+      url = "github:nix-community/nixvim/nixos-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixcord = {
@@ -92,7 +92,7 @@
         nix-on-droid.lib.nixOnDroidConfiguration {
           pkgs = import nixpkgs { system = "aarch64-linux"; };
           modules = [
-            ./hosts/${hostname} 
+            ./hosts/${hostname}
             stylix.nixOnDroidModules.stylix
           ];
         };

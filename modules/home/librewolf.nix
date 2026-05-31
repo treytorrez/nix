@@ -9,7 +9,7 @@
     package = pkgs.librewolf;
     nativeMessagingHosts = [
       pkgs.tridactyl-native
-      pkgs.firefoxpwa
+      #pkgs.firefoxpwa
     ];
     profiles = {
       default = {
@@ -83,7 +83,7 @@
               ];
             };
             nix-packages = {
-              name = "Nix Packages @25.11";
+              name = "Nix Packages @26.05";
               urls = [
                 {
                   template = "https://search.nixos.org/packages";
@@ -111,14 +111,14 @@
               definedAliases = [ "@nw" ];
             };
             nix-options = {
-              name = "Nix Options @25.11";
+              name = "Nix Options @26.05";
               urls = [
                 {
                   template = "https://search.nixos.org/options";
                   params = [
                     {
                       name = "channel";
-                      value = "25.11";
+                      value = "26.05";
                     }
                     {
                       name = "query";

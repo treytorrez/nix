@@ -23,7 +23,7 @@ in
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
-    #configType = "lua";
+    configType = "lua";
 
     settings = {
       "$mod" = mod;
@@ -75,7 +75,7 @@ in
         "$mod SHIFT, F, fullscreenstate, 0 2"
         "$mod, F, fullscreenstate, 0 0"
 
-        "$mod, E, togglesplit" # closest to i3's split toggle
+        #"$mod, E, togglesplit" # closest to i3's split toggle
 
         # Workspaces
         "$mod, 1, workspace, 1"
@@ -109,7 +109,7 @@ in
         "$mod, R, submap, resize"
       ];
 
-      windowrulev2 = [
+      windowrule = [
         # FIXME: what's the actual name?
         "workspace 1, class:^(LibreWolf)$"
         "workspace 1, class:^(firefox)$"
@@ -143,8 +143,6 @@ in
       submap = reset
     '';
     plugins = [
-      pkgs.hypr
-      pkgs.hyprlandPlugins.hyprexpo
       # TODO: Worth configuring if i have a status bar?
       #pkgs.hyprlandPlugins.hyprbars
     ];

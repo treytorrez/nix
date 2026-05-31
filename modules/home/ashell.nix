@@ -15,6 +15,7 @@ in
         right = [
           "SystemInfo"
           "Settings"
+          "Clock"
         ];
       };
 
