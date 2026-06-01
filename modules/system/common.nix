@@ -145,5 +145,6 @@
     osu-lazer-bin
     home-manager
     ollama
+    docker-compose
 
   ]
