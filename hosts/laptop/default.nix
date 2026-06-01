@@ -22,6 +22,7 @@
     ../../modules/system/ld.nix
     ../../modules/system/tailscale.nix
     ../../modules/system/podman.nix
+    ../../modules/system/ollama.nix
 
   ];
 

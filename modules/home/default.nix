@@ -19,7 +19,7 @@
     ./xdg.nix
     ./emacs.nix
     ./direnv.nix
-    ./ollama.nix
+    #./ollama.nix
     ./systemd.nix
     ./dunst.nix
     ./rofi.nix
