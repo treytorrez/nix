@@ -10,6 +10,8 @@
 
     # SHELL UTILITIES
     tmux
+    busybox
+    aria2
     zellij
     curl
     wget
