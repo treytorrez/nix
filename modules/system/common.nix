@@ -148,5 +148,6 @@
     home-manager
     ollama
     docker-compose
+    thunar
 
   ]
