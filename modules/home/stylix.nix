@@ -39,13 +39,12 @@
   };
   stylix.fonts = {
     serif = config.stylix.fonts.monospace;
+    sansSerif = config.stylix.fonts.monospace;
     #serif = {
     #package = pkgs.nerd-fonts.atkynson-mono;
     #name = "AtkynsonMono Nerd Font";
     #};
     #
-    sansSerif = config.stylix.fonts.monospace;
-
     #sansSerif = {
     #package = pkgs.nerd-fonts.atkynson-mono;
     #name = "AtkynsonMono Nerd Font";

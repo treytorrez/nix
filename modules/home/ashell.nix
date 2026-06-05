@@ -20,6 +20,7 @@ in
       };
 
       window_title.mode = "Title";
+      clock = { format = "%D -- %I:%M%P";};
 
       system_info = {
         indicators = [ "Memory" ];
