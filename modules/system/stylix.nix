@@ -35,7 +35,7 @@
 
   targets.neovide = {
     enable = true;
-    fonts.override ="{ \"AtyknsonMono Nerd Font\", \":h12\" }";
+    fonts.override.monospace = "AtyknsonMono Nerd Font:h12";
   };
 
 }
