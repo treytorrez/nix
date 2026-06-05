@@ -11,6 +11,7 @@
     # SHELL UTILITIES
     tmux
     busybox
+    delta
     aria2
     zellij
     curl
