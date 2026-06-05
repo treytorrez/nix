@@ -36,17 +36,17 @@
   stylix.fonts = {
     serif = {
       package = pkgs.nerd-fonts.atkynson-mono;
-      name = "AtyknsonMono Nerd Font";
+      name = "AtkynsonMono Nerd Font";
     };
 
     sansSerif = {
       package = pkgs.nerd-fonts.atkynson-mono;
-      name = "AtyknsonMono Nerd Font";
+      name = "AtkynsonMono Nerd Font";
     };
 
     monospace = {
       package = pkgs.nerd-fonts.atkynson-mono;
-      name = "AtyknsonMono Nerd Font";
+      name = "AtkynsonMono Nerd Font";
     };
 
     emoji = {
