@@ -45,7 +45,7 @@ in
 
       # env = "AQ_DRM_DEVICES, /dev/dri/by-path/pci-0000:07:00.0-card";
       # TODO: monitor scale 1.0, change other apps to be bigger
-      monitor = "eDP-2, 2560x1600@75, 0x0, 1.40";
+      monitor = "eDP-2, 2560x1600@75, 0x0, 1.41";
 
       input = {
         follow_mouse = 1;
