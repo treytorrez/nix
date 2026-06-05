@@ -7,7 +7,7 @@
 
 let
   mod = "SUPER";
-  term = "kitty";
+  term = "foot";
   menu = "rofi -show drun";
   runner = "rofi -show run";
   browser_personal = "librewolf -P default";
