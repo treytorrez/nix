@@ -144,7 +144,7 @@
     lxqt.lxqt-wayland-session
     lxqt.lxqt-powermanagement
     wf-recorder
-    protonvpn-gui
+    proton-vpn
     osu-lazer-bin
     home-manager
     ollama

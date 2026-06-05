@@ -20,7 +20,6 @@
       # If you are not running an unstable channel of nixpkgs, select the corresponding branch of Nixvim.
       # url = "github:nix-community/nixvim";
       url = "github:nix-community/nixvim/nixos-26.05";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     nixcord = {
       url = "github:FlameFlag/nixcord";

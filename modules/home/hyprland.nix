@@ -23,7 +23,7 @@ in
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
-    #configType = "lua";
+    configType = "hyprlang";
 
     settings = {
       "$mod" = mod;
@@ -36,6 +36,9 @@ in
         ##color##        "col.inactive_border" = "rgb(${gruvbox.gray_245})";
       };
       # TODO: animations off
+      animations = {
+        enabled = false;
+      };
 
       # hopefully this is using the iGPU
       # it, in fact, breaks entirely

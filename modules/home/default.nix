@@ -1,4 +1,4 @@
-{ nixcord, ... }:
+{ config, nixcord, ... }:
 {
   imports = [
     nixcord.homeModules.nixcord
@@ -31,4 +31,5 @@
 
   home.packages = [ ];
   home.stateVersion = "25.11";
+  gtk.gtk4.theme = config.gtk.theme;
 }
