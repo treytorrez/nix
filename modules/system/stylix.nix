@@ -25,7 +25,7 @@
 
     monospace = {
       package = pkgs.nerd-fonts.atkynson-mono;
-      name = "AtyknsonMono NF";
+      name = "AtyknsonMono NFM";
     };
 
     emoji = {
@@ -37,7 +37,7 @@
 
   targets.neovide = {
     enable = true;
-    fonts.override.monospace = "AtyknsonMono Nerd Font:h12";
+    fonts.override.monospace = "AtyknsonMono NFM:h12";
   };
 
 }

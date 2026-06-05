@@ -25,7 +25,6 @@
     ./rofi.nix
     #./positron.nix
     ./hyprland.nix
-    ./stylix.nix
     ./ashell.nix
     ./foot.nix
   ];
