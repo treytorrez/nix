@@ -1,5 +1,6 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, config, lib, ... }:
 {
+  #fonts.font = ["nerd-fonts.atkynson-mono"];
   programs.nixvim = {
     enable = true;
     programs.nixvim.nixpkgs.source = inputs.nixpkgs;
@@ -18,6 +19,7 @@
       relativenumber = true;
       fillchars = "vert:▏";
       cursorline = true;
+      #guifont = "${lib.escape [" "] config.stylix.fonts.monospace.name}:${toString config.stylix.fonts.sizes.applications}";
     };
 
     globals = {
