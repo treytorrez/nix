@@ -38,6 +38,10 @@
     sha256 = "sha256:036gqhbf6s5ddgvfbgn6iqbzgizssyf7820m5815b2gd748jw8zc";
   };
   stylix.fonts = {
+    monospace = {
+      package = pkgs.nerd-fonts.atkynson-mono;
+      name = "AtkynsonMono NFM";
+    };
     serif = config.stylix.fonts.monospace;
     sansSerif = config.stylix.fonts.monospace;
     #serif = {
@@ -50,10 +54,6 @@
     #name = "AtkynsonMono Nerd Font";
     #};
     #
-    monospace = {
-      package = pkgs.nerd-fonts.atkynson-mono;
-      name = "AtkynsonMono NFM";
-    };
 
     emoji = {
       package = pkgs.noto-fonts-monochrome-emoji;
