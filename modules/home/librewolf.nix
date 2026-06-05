@@ -143,8 +143,7 @@
           /* no rounding!! */
           * { 
             border-radius: 0px !important;
-            font-size: 25px !important;
-              font-family: AtkynsonMono Nerd Font !important;
+            font-family: AtkynsonMono Nerd Font !important;
           }
         '';
       };
