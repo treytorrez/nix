@@ -52,7 +52,7 @@
     #
     monospace = {
       package = pkgs.nerd-fonts.atkynson-mono;
-      name = "AtkynsonMono Nerd Font";
+      name = "AtkynsonMono NFM";
     };
 
     emoji = {
