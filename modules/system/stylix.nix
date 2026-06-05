@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 {
   stylix.enable = true;
 
@@ -11,21 +11,19 @@
     sha256 = "sha256:036gqhbf6s5ddgvfbgn6iqbzgizssyf7820m5815b2gd748jw8zc";
   };
   stylix.fonts = {
-        serif = config.stylix.fonts.monospace;
-        sansSerif = config.stylix.fonts.monospace;
-    #    serif = {
-    #      package = pkgs.nerd-fonts.atkynson-mono;
-    #      name = "AtyknsonMono NF";
-    #    };
-    #
-    #    sansSerif = {
-    #      package = pkgs.nerd-fonts.atkynson-mono;
-    #      name = "AtyknsonMono Nerd Font";
-    #    };
+    serif = {
+      package = pkgs.nerd-fonts.atkynson-mono;
+      name = "AtyknsonMono NF";
+    };
+
+    sansSerif = {
+      package = pkgs.nerd-fonts.atkynson-mono;
+      name = "AtyknsonMono Nerd Font";
+    };
 
     monospace = {
       package = pkgs.nerd-fonts.atkynson-mono;
-      name = "AtyknsonMono NFM";
+      name = "AtyknsonMono Nerd Font";
     };
 
     emoji = {
@@ -37,7 +35,7 @@
 
   targets.neovide = {
     enable = true;
-    fonts.override.monospace = "AtyknsonMono NFM:h12";
+    fonts.override.monospace = "AtyknsonMono Nerd Font:h12";
   };
 
 }

@@ -19,13 +19,13 @@
     ./xdg.nix
     ./emacs.nix
     ./direnv.nix
-    ./stylix.nix
     #./ollama.nix
     ./systemd.nix
     ./dunst.nix
     ./rofi.nix
     #./positron.nix
     ./hyprland.nix
+    ./stylix.nix
     ./ashell.nix
     ./foot.nix
   ];
