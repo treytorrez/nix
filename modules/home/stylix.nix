@@ -35,7 +35,7 @@
   };
 
 
-  targets.neovide = {
+  stylix.targets.neovide = {
     enable = true;
     fonts.override.monospace = "AtyknsonMono NFM:h12";
   };

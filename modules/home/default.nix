@@ -19,6 +19,7 @@
     ./xdg.nix
     ./emacs.nix
     ./direnv.nix
+    ./stylix.nix
     #./ollama.nix
     ./systemd.nix
     ./dunst.nix
