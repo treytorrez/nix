@@ -5,7 +5,6 @@
     programs.nixvim.nixpkgs.source = inputs.nixpkgs;
     nixpkgs.config.allowUnfree = true;
 
-
     opts = {
       splitright = true;
       splitbelow = true;
@@ -100,6 +99,17 @@
       };
       mini-indentscope = {
         enable = true;
+        indentscope = {
+          enable = true;
+          opts = {
+            symbol = "│"; # your custom symbol
+            draw = {
+              animation = pkgs.lib.mkLuaInline ''
+                return require("mini.indentscope").gen_animation.none()
+              '';
+            };
+          };
+        };
       };
 
       # Completion

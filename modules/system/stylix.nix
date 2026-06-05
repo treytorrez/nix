@@ -32,4 +32,10 @@
     };
   };
 
+
+  targets.neovide = {
+    enable = true;
+    fonts.override ="{ \"AtyknsonMono Nerd Font\", \":h12\" }";
+  };
+
 }
