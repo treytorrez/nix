@@ -58,6 +58,7 @@ in
         "$mod SHIFT, Z, exec, ${browser_school}"
         "$mod, D, exec, ${menu}"
         "$mod SHIFT, D, exec, ${runner}"
+        "$mod SHIFT, N, exec, neovide"
         "$mod, Space, togglefloating"
         "$mod SHIFT, Q, killactive"
 
@@ -111,11 +112,11 @@ in
         # Enter resize submap
         "$mod, R, submap, resize"
 
-        "XF86MonBrightnessUp, , exec, brightnessctl set 15%+"
-        "XF86MonBrightnessDown, , exec, brightnessctl set 15%-"
-        "XF86AudioRaiseVolume, , exec, pactl set-sink-volume @DEFAULT_SINK@ +15%"
-        "XF86AudioLowerVolume, , exec, pactl set-sink-volume @DEFAULT_SINK@ -15%"
-        "XF86AudioMute, , exec, pactl set-sink-mute @DEFAULT_SINK@ toggle"
+        ",XF86MonBrightnessUp, exec, brightnessctl set 15%+"
+        ",XF86MonBrightnessDown, exec, brightnessctl set 15%-"
+        ",XF86AudioRaiseVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ +15%"
+        ",XF86AudioLowerVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ -15%"
+        ",XF86AudioMute, exec, pactl set-sink-mute @DEFAULT_SINK@ toggle"
       ];
 
       ##      windowrule = [
