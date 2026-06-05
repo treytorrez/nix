@@ -13,7 +13,7 @@
   stylix.fonts = {
     serif = {
       package = pkgs.nerd-fonts.atkynson-mono;
-      name = "AtyknsonMono Nerd Font";
+      name = "AtyknsonMono NF";
     };
 
     sansSerif = {
