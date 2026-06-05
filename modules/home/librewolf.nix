@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }:
 {
@@ -58,9 +59,9 @@
             exts = import ./librewolf-extensions.nix { inherit pkgs lib; };
           in
           {
-          # extensions are packaged WITH their settings to reduce me having to type names more than once.
-              packages = lib.mapAttrsToList (_: e: e.package) exts;
-              settings = lib.mapAttrs (_: e: e.settings) exts;
+            # extensions are packaged WITH their settings to reduce me having to type names more than once.
+            packages = lib.mapAttrsToList (_: e: e.package) exts;
+            settings = lib.mapAttrs (_: e: e.settings) exts;
           };
         #==============================================================
 
@@ -143,7 +144,7 @@
           /* no rounding!! */
           * { 
             border-radius: 0px !important;
-            font-family: AtkynsonMono Nerd Font !important;
+            font-family: ${config.stylix.fonts.monospace.name} !important;
           }
         '';
       };

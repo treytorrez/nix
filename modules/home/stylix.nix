@@ -1,4 +1,8 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  ...
+}:
 {
   stylix.enable = true;
 
@@ -10,10 +14,10 @@
 
   stylix.targets.librewolf = {
     profileNames = [
-    "default"
+      "default"
       #"school"
-    "work"
-    "pwas"
+      "work"
+      "pwas"
     ];
     colorTheme.enable = true;
     colors.enable = true;
@@ -22,10 +26,10 @@
     #colors.override.enable = true;
 
   };
-    programs.librewolf.profiles.default.extensions.force = true;
-    programs.librewolf.profiles.work.extensions.force = true;
-    programs.librewolf.profiles.school.extensions.force = true;
-    programs.librewolf.profiles.pwas.extensions.force = true;
+  programs.librewolf.profiles.default.extensions.force = true;
+  programs.librewolf.profiles.work.extensions.force = true;
+  programs.librewolf.profiles.school.extensions.force = true;
+  programs.librewolf.profiles.pwas.extensions.force = true;
 
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark.yaml";
   stylix.image = builtins.fetchurl {
@@ -34,16 +38,19 @@
     sha256 = "sha256:036gqhbf6s5ddgvfbgn6iqbzgizssyf7820m5815b2gd748jw8zc";
   };
   stylix.fonts = {
-    serif = {
-      package = pkgs.nerd-fonts.atkynson-mono;
-      name = "AtkynsonMono Nerd Font";
-    };
+    serif = config.stylix.fonts.monospace;
+    #serif = {
+    #package = pkgs.nerd-fonts.atkynson-mono;
+    #name = "AtkynsonMono Nerd Font";
+    #};
+    #
+    sansSerif = config.stylix.fonts.monospace;
 
-    sansSerif = {
-      package = pkgs.nerd-fonts.atkynson-mono;
-      name = "AtkynsonMono Nerd Font";
-    };
-
+    #sansSerif = {
+    #package = pkgs.nerd-fonts.atkynson-mono;
+    #name = "AtkynsonMono Nerd Font";
+    #};
+    #
     monospace = {
       package = pkgs.nerd-fonts.atkynson-mono;
       name = "AtkynsonMono Nerd Font";
