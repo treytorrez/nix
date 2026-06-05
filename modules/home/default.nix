@@ -27,6 +27,7 @@
     ./hyprland.nix
     ./stylix.nix
     ./ashell.nix
+    ./foot.nix
   ];
 
   home.packages = [ ];
