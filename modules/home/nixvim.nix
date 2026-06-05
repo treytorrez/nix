@@ -1,8 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   programs.nixvim = {
     enable = true;
+    programs.nixvim.nixpkgs.source = inputs.nixpkgs;
     nixpkgs.config.allowUnfree = true;
+
 
     opts = {
       splitright = true;

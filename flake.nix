@@ -20,6 +20,7 @@
       # If you are not running an unstable channel of nixpkgs, select the corresponding branch of Nixvim.
       # url = "github:nix-community/nixvim";
       url = "github:nix-community/nixvim/nixos-26.05";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nixcord = {
       url = "github:FlameFlag/nixcord";
@@ -60,6 +61,7 @@
     let
       mkHost =
         hostname: system:
+        # TODO: how on god's green earth do i declare that `vimplugin-wezterm.nvim-0.5.0-unstable-2024-09-26` is allowed 
         nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
