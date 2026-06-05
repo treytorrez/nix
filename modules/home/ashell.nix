@@ -41,6 +41,7 @@ in
 
       appearance = {
         style = "Solid";
+        font_name = config.stylix.fonts.monospace.name;
         #        primary_color    = "#${c.base0D}";
         #        success_color    = "#${c.base0B}";
         #        text_color       = "#${c.base05}";
