@@ -70,7 +70,7 @@ in
         "$mod, D, exec, ${menu}"
         "$mod SHIFT, D, exec, ${runner}"
         "$mod, N, exec, neovide"
-        "$mod SHIFT, N, exec, neovide +cd /etc/nixos/"
+        "$mod SHIFT, N, exec, neovide +'cd /etc/nixos/'"
         "$mod, Space, togglefloating"
         "$mod SHIFT, Q, killactive"
 

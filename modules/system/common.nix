@@ -148,5 +148,6 @@
     ollama
     docker-compose
     thunar
+    hyprshot
 
   ]
