@@ -23,12 +23,6 @@
           package = pkgs.nerd-fonts.atkynson-mono;
           name = "AtyknsonMono NFP";
         };
-    #
-    #    sansSerif = {
-    #      package = pkgs.nerd-fonts.atkynson-mono;
-    #      name = "AtyknsonMono Nerd Font";
-    #    };
-
 
     emoji = {
       package = pkgs.noto-fonts-monochrome-emoji;
@@ -36,9 +30,5 @@
     };
   };
 
-  #  targets.neovide = {
-  #    enable = true;
-  #    fonts.override.monospace = "AtyknsonMono NFM:h12";
-  #  };
 
 }
