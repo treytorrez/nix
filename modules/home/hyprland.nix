@@ -70,6 +70,7 @@ in
         "$mod, D, exec, ${menu}"
         "$mod SHIFT, D, exec, ${runner}"
         "$mod, N, exec, neovide"
+        "$mod SHIFT, N, exec, neovide /etc/nixos/"
         "$mod, Space, togglefloating"
         "$mod SHIFT, Q, killactive"
 
@@ -147,7 +148,6 @@ in
         ##color##"hyprpaper"
         # TODO: could these autostart apps be systemd things
         "ashell"
-        "lxqt-powermanagement"
       ];
     };
 

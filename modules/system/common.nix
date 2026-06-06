@@ -141,8 +141,6 @@
     hyprland
     lightdm
     i3
-    lxqt.lxqt-wayland-session
-    lxqt.lxqt-powermanagement
     wf-recorder
     proton-vpn
     osu-lazer-bin

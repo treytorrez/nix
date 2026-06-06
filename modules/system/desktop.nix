@@ -3,6 +3,7 @@
   # 1. Enable Hyprland
   programs.hyprland.enable = true;
   services.upower.enable = true;
+  services.tlp.enable = true;
 
   # 2. Enable LXQt (still required for the core desktop components)
   #services.xserver.desktopManager.lxqt.enable = true;
