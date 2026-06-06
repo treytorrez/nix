@@ -6,7 +6,7 @@ pkgs.writeShellApplication {
   text = ''
     set -euo pipefail
 
-    # Prevent running the entire script as root – sudo is used internally for rebuild
+    # Prevent running the entire script as root – sudo is used internally
     if [ "$(whoami)" = "root" ]; then
       echo "ERROR: Do not run this script with sudo. It will invoke sudo itself for nixos-rebuild." >&2
       exit 1
@@ -15,14 +15,14 @@ pkgs.writeShellApplication {
     HOST="$(hostname)"
     echo "Building configuration for $HOST"
 
-    # We must be inside the NixOS config repository
+    # Must be inside the NixOS config repository
     cd /etc/nixos
     if ! git rev-parse --git-dir > /dev/null 2>&1; then
       echo "ERROR: /etc/nixos is not a git repository." >&2
       exit 1
     fi
 
-    # Stage everything: new, modified, and deleted files
+    # Stage everything
     git add .
 
     if git diff --cached --quiet; then
@@ -39,8 +39,16 @@ pkgs.writeShellApplication {
         echo "No changes to commit."
       fi
     else
-      echo "Rebuild FAILED. Discarding all staged and unstaged changes to tracked files (untracked files are kept)." >&2
-      git reset --hard HEAD
+      echo "Rebuild FAILED." >&2
+      # Check if there is anything to stash (staged, unstaged, or untracked)
+      if ! git diff --quiet || ! git diff --cached --quiet || [ -n "$(git ls-files --others --exclude-standard)" ]; then
+        echo "Stashing your current changes so you can recover them later..." >&2
+        git stash push --include-untracked \
+          -m "WIP before failed rebuild on $HOST $(date '+%Y-%m-%d %H:%M:%S')"
+        echo "Changes saved in stash. Use 'git stash list' and 'git stash pop' to retrieve them." >&2
+      else
+        echo "No local changes to stash." >&2
+      fi
       exit 1
     fi
   '';
