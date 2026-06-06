@@ -1,4 +1,9 @@
-{ config, nixcord, ... }:
+{
+  config,
+  nixcord,
+  pkgs,
+  ...
+}:
 {
   imports = [
     nixcord.homeModules.nixcord
@@ -30,7 +35,12 @@
     ./foot.nix
   ];
 
-  home.packages = [ ];
+  fonts.fontconfig.enable = true;
+  home.packages = [
+    pkgs.caladea
+    pkgs.carlito
+    pkgs.vista-fonts
+  ];
   home.stateVersion = "25.11";
   gtk.gtk4.theme = config.gtk.theme;
 }
