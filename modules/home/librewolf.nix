@@ -73,7 +73,7 @@
               name = "Startpage";
               urls = [
                 {
-                  template = "https://www.startpage.com/sp/search";
+                  template = "https://www.startpage.com/do/mypage.pl?prfe=d15f1fa664d34af0387639b87c9c68555b716ae7dda02264df63c37cb6a079e1e2d24af37c3944f6d96349d29fc40cd72b307e908f58c70fbe967d94f87b01c9e8b99f0282b28055bfb75a29309fd22cbd";
                   params = [
                     {
                       name = "query";

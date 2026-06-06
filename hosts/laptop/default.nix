@@ -23,6 +23,7 @@
     ../../modules/system/tailscale.nix
     ../../modules/system/podman.nix
     ../../modules/system/ollama.nix
+    ../../modules/system/fingerprint-laptop.nix
 
   ];
 

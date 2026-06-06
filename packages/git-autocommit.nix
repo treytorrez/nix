@@ -61,17 +61,4 @@ pkgs.writeShellApplication {
       exit 1
     fi
   '';
-  man = ''
-    .TH UPDATE 1 "${buildDate}" "NixOS" "User Commands"
-    .SH NAME
-    update \- safely rebuild NixOS and version-control the configuration
-    .SH DESCRIPTION
-    \fBupdate\fR stages all local changes in /etc/nixos,
-    runs \fBsudo nixos-rebuild switch\fR for the current host,
-    and then commits on success or stashes on failure.
-    .PP
-    This manual was generated on ${buildDate}.
-    .SH "SEE ALSO"
-    \fBnixos-rebuild\fR(8), \fBgit-stash\fR(1)
-  '';
 }

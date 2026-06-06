@@ -45,19 +45,18 @@ in
 
       # env = "AQ_DRM_DEVICES, /dev/dri/by-path/pci-0000:07:00.0-card";
       # TODO: monitor scale 1.0, change other apps to be bigger
-      monitor = (
-        lib.MkMerge [
-          (lib.MkIf (config.networking.hostname == "laptop") [
-            "eDP-2, 2560x1600@75, 0x0, 1.60"
-          ])
-          (lib.MkIf (config.networking.hostname == "desktop") [
-            "eDP-2, 2560x1600@60, 0x0, 1.60"
-          ])
-          (lib.MkIf (config.networking.hostname == "server") [
-            "eDP-2, 1600x900@15, 0x0, 1.0"
-          ])
-        ]
-      );
+      #      monitor = lib.mkMerge [
+      #        (lib.mkIf (config.networking.hostName == "laptop") [
+      #          "eDP-2, 2560x1600@75, 0x0, 1.60"
+      #        ])
+      #        (lib.mkIf (config.networking.hostName == "desktop") [
+      #          "eDP-2, 2560x1600@60, 0x0, 1.60"
+      #        ])
+      #        (lib.mkIf (config.networking.hostName == "server") [
+      #          "eDP-2, 1600x900@15, 0x0, 1.0"
+      #        ])
+      #      ];
+      monitor = "eDP-2, 2560x1600@75, 0x0, 1.60";
 
       input = {
         follow_mouse = 1;
