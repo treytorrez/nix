@@ -307,11 +307,11 @@
         };
 
         # Nix
-        nixd = {
+        nil = {
           enable = true;
           packageFallback = true;
           config = {
-            cmd = [ "nixd" ];
+            cmd = [ "nil" ];
             filetypes = [ "nix" ];
             root_markers = [
               "flake.nix"
