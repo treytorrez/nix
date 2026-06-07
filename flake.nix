@@ -22,6 +22,10 @@
       url = "github:nix-community/nixvim/nixos-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixcord = {
       url = "github:FlameFlag/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -61,7 +65,7 @@
     let
       mkHost =
         hostname: system:
-        # TODO: how on god's green earth do i declare that `vimplugin-wezterm.nvim-0.5.0-unstable-2024-09-26` is allowed 
+        # TODO: how on god's green earth do i declare that `vimplugin-wezterm.nvim-0.5.0-unstable-2024-09-26` is allowed
         nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
@@ -83,6 +87,7 @@
                   canon = final.callPackage ./packages/canon.nix { canonSrc = inputs.canonSrc; };
                   nixvim = inputs.nixvim.packages.${final.system}.default;
                 })
+                 inputs.emacs-overlay.overlays.default 
               ];
             }
           ];
