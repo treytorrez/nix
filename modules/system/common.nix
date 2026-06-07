@@ -55,25 +55,27 @@ with pkgs;
   neovide
   #    ferrite # Added with NixPkgs overlay
 
-    # DEVELOPMENT
-    nodejs
-    python3
-    git
-    lazygit
-    uv
-    arduino-ide
-    arduino
-    codex
-    opencode
-    nixfmt
-    python314
-    quartoMinimal
-    direnv
-    qtcreator
-    android-tools
-    gcc
-    #rstudio
-    #R
+  # DEVELOPMENT
+  piper-tts
+  nodejs
+  agent-browser
+  python3
+  git
+  lazygit
+  uv
+  arduino-ide
+  arduino
+  codex
+  opencode
+  nixfmt
+  python314
+  quartoMinimal
+  direnv
+  qtcreator
+  android-tools
+  gcc
+  #rstudio
+  #R
 
   # LAUNCHERS
   tofi
@@ -92,10 +94,10 @@ with pkgs;
 
   # BROWSERS
   #firefoxpwa
-    qutebrowser
-    nyxt
-    brave
-    chromium
+  qutebrowser
+  nyxt
+  brave
+  chromium
 
   # AUDIO
   pulseaudio
@@ -153,8 +155,6 @@ with pkgs;
   hyprshot
   remmina # Maybe this should go in a different catagory
   tigervnc
-
-
 
 
 ]
