@@ -189,9 +189,10 @@
       ;; M-SPC is a fallback that works from insert mode if you ever need it.
 
       (use-package general
+        :demand t
         :after evil
         :config
-        (general-evil-setup t)
+        (general-evil-setup)
 
         (general-create-definer trey/leader-keys
           :keymaps '(normal visual motion)
