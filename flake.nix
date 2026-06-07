@@ -70,7 +70,7 @@
         # TODO: how on god's green earth do i declare that `vimplugin-wezterm.nvim-0.5.0-unstable-2024-09-26` is allowed
         nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs hostname; };
           modules = [
             ./hosts/${hostname}
             hermes-agent.nixosModules.default
@@ -109,6 +109,7 @@
     {
       nixosConfigurations = {
         laptop = mkHost "laptop" "x86_64-linux";
+        server = mkHost "server" "x86_64-linux";
         desktop = mkHost "desktop" "x86_64-linux";
       };
 
