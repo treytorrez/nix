@@ -23,6 +23,7 @@
     ../../modules/system/tailscale.nix
     ../../modules/system/podman.nix
     ../../modules/system/ollama.nix
+    ../../modules/system/hermes-agent.nix
 
   ];
 
