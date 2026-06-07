@@ -24,6 +24,7 @@
     ../../modules/system/podman.nix
     ../../modules/system/ollama.nix
     ../../modules/system/hermes-agent.nix
+    ../../modules/system/searxng.nix
 
   ];
 
