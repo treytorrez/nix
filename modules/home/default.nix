@@ -40,6 +40,12 @@
     pkgs.caladea
     pkgs.carlito
     pkgs.vista-fonts
+    pkgs.nixd
+    pkgs.nil
+    pkgs.black
+    pkgs.ruff
+    pkgs.rust-analyzer
+
   ];
   home.stateVersion = "25.11";
   gtk.gtk4.theme = config.gtk.theme;

@@ -1,4 +1,10 @@
-{ pkgs, inputs, config, lib, ... }:
+{
+  pkgs,
+  inputs,
+  config,
+  lib,
+  ...
+}:
 {
   #fonts.font = ["nerd-fonts.atkynson-mono"];
   programs.nixvim = {
@@ -518,12 +524,12 @@
         action = "<cmd>LazyGit<cr>";
         options.desc = "LazyGit";
       }
-      #      {
-      #        mode = "n";
-      #        key = "<leader>gc";
-      #        action = "<cmd>LazyGit commit<cr>";
-      #        options.desc = "Commit";
-      #      }
+      {
+        mode = "n";
+        key = "<leader>gsp";
+        action = "<cmd>git stash pop<cr>";
+        options.desc = "Git stash pop";
+      }
       #      {
       #        mode = "n";
       #        key = "<leader>gp";
