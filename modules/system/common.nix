@@ -57,6 +57,7 @@ with pkgs;
 
     # DEVELOPMENT
     nodejs
+    python3
     git
     lazygit
     uv
