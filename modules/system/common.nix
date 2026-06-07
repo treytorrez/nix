@@ -55,23 +55,24 @@ with pkgs;
   neovide
   #    ferrite # Added with NixPkgs overlay
 
-  # DEVELOPMENT
-  git
-  lazygit
-  uv
-  arduino-ide
-  arduino
-  codex
-  opencode
-  nixfmt
-  python314
-  quartoMinimal
-  direnv
-  qtcreator
-  android-tools
-  gcc
-  #rstudio
-  #R
+    # DEVELOPMENT
+    nodejs
+    git
+    lazygit
+    uv
+    arduino-ide
+    arduino
+    codex
+    opencode
+    nixfmt
+    python314
+    quartoMinimal
+    direnv
+    qtcreator
+    android-tools
+    gcc
+    #rstudio
+    #R
 
   # LAUNCHERS
   tofi
@@ -90,9 +91,10 @@ with pkgs;
 
   # BROWSERS
   #firefoxpwa
-  qutebrowser
-  nyxt
-  brave
+    qutebrowser
+    nyxt
+    brave
+    chromium
 
   # AUDIO
   pulseaudio
