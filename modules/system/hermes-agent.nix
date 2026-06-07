@@ -41,5 +41,6 @@
     addToSystemPackages = true; # puts hermes on PATH; all commands route into container
     restart = "always"; # default, but explicit
     restartSec = 5;
+
   };
 }
