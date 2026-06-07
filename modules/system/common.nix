@@ -59,6 +59,7 @@ with pkgs;
   piper-tts
   nodejs
   agent-browser
+  docker
   python3
   git
   lazygit

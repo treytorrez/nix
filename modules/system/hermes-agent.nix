@@ -9,7 +9,7 @@
 
     settings = {
       model = {
-        base_url = "http://localhost:11434/v1";
+        base_url = "http://localhost:11434/v1"; # "baseurl" in server branch is wrong key
         default = "qwen3.5:4b";
       };
 
@@ -19,11 +19,24 @@
         backend = "local";
         timeout = 180;
       };
-      
+
+      memory = {
+        memory_enabled = true;
+        user_profile_enabled = true;
+      };
+
+      tts.provider = "piper";
     };
 
-    environmentFiles = [ "/var/lib/hermes/env" ]; # see secrets note below
-    extraDependencyGroups = [ "messaging" "hindsight"];
+    # Both paths kept — remove whichever doesn't exist or you don't use
+    environmentFiles = [
+      "/var/lib/hermes/env"
+      "/home/treyt/hermes-env"
+    ];
+
+    # Combined from both branches
+    extraDependencyGroups = [ "messaging" "hindsight" "voice" ];
+
     extraPackages = [
       pkgs.imagemagick
       pkgs.pandoc
@@ -33,14 +46,17 @@
 
     container = {
       enable = true;
-      backend = "docker"; # module auto-enables virtualisation.docker
-      hostUsers = [ "treyt" ]; # symlinks ~/.hermes and routes CLI into container
+      backend = "docker";
+      hostUsers = [ "treyt" ];
       image = "debian:bookworm-slim";
+      # extraOptions = [
+      #   "--gpus"
+      #   "all"
+      # ];
     };
 
-    addToSystemPackages = true; # puts hermes on PATH; all commands route into container
-    restart = "always"; # default, but explicit
+    addToSystemPackages = true;
+    restart = "always";
     restartSec = 5;
-
   };
 }

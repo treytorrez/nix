@@ -21,7 +21,6 @@
     ../../modules/system/focus-mode.nix
     ../../modules/system/ld.nix
     ../../modules/system/tailscale.nix
-    ../../modules/system/podman.nix
     ../../modules/system/ollama.nix
     ../../modules/system/hermes-agent.nix
     ../../modules/system/searxng.nix
@@ -29,6 +28,7 @@
   ];
 
   networking.hostName = "server";
+
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
              "wezterm.nvim"
@@ -49,6 +49,7 @@
   users.users.treyt.extraGroups = [
     "video"
     "render"
+    "docker"
   ];
 
   # This value determines the NixOS release from which the default
