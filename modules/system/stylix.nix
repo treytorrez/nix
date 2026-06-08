@@ -18,7 +18,6 @@
 
     #serif =  config.stylix.fonts.monospace;
     sansSerif =  config.stylix.fonts.serif;
-
         serif = {
           package = pkgs.nerd-fonts.atkynson-mono;
           name = "AtyknsonMono NFP";
