@@ -16,7 +16,7 @@ in
           "SystemInfo"
           "Settings"
           "Clock"
-          "Volume"
+          "MyVolume"
         ];
       };
 
@@ -42,7 +42,7 @@ in
       };
 
       CustomModule = {
-        name = "Volume";
+        name = "MyVolume";
         type = "listen_cmd";
         command = "~/Dev/pactl-mon/pactl-mon";
       };
