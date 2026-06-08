@@ -1,0 +1,4 @@
+{ ... }:
+{
+  services.yggdrasil.enable = true;
+}
