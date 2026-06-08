@@ -527,7 +527,7 @@
       {
         mode = "n";
         key = "<leader>gsp";
-        action = "<cmd>git stash pop<cr>";
+        action = "<cmd>!git stash pop<cr>";
         options.desc = "Git stash pop";
       }
       #      {

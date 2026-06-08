@@ -16,6 +16,7 @@ in
           "SystemInfo"
           "Settings"
           "Clock"
+          "Volume"
         ];
       };
 
@@ -38,6 +39,12 @@ in
         ];
         battery_format = "IconAndPercentage";
         network_indicator_format = "Icon";
+      };
+
+      CustomModule = {
+        name = "Volume";
+        type = "listen_cmd";
+        command = "~/Dev/pactl-mon/pactl-mon";
       };
 
       appearance = {
