@@ -46,6 +46,10 @@
 
   # In your hardware config or host module:
   hardware.graphics.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
+
+  hardware.nvidia.open = false;  # see the note above
+  hardware.nvidia.modesetting.enable = true;
   users.users.treyt.extraGroups = [
     "video"
     "render"
