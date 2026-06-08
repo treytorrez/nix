@@ -1,7 +1,4 @@
-{ config, ... }:
-let
-  c = config.lib.stylix.colors;
-in
+{ ... }:
 {
   programs.ashell = {
     enable = true;
@@ -21,7 +18,9 @@ in
       };
 
       window_title.mode = "Title";
-      clock = { format = "%D -- %I:%M%P";};
+      clock = {
+        format = "%D -- %I:%M%P";
+      };
 
       system_info = {
         indicators = [ "Memory" ];
