@@ -4,7 +4,7 @@
 
     settings = {
        model = {
-        base_url = "https://host.containers.internal:11434";
+        base_url = "http://host.containers.internal:11434";
         default = "tinyllama:latest";
       };
       toolsets = [ "all" ];
