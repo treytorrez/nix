@@ -19,7 +19,7 @@
 
       window_title.mode = "Title";
       clock = {
-        format = "%D -- %I:%M%P";
+        format = "%D  %I:%M%P";
       };
 
       system_info = {
