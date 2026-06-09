@@ -3,7 +3,10 @@
     enable = true;
 
     settings = {
-      model.default = "tinyllama:latest"; # adjust to your provider
+       model = {
+        base_url = "host.containers.internal:11434";
+        default = "tinyllama:latest";
+      };
       toolsets = [ "all" ];
       terminal = { backend = "local"; timeout = 180; };
     };
