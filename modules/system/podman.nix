@@ -3,7 +3,7 @@
 {
 virtualisation.podman = {
   enable = true;
-  dockerCompat = true;       # 'docker' command points to podman
-  dockerSocket.enable = true; # exposes a Docker-compatible socket
+    #  dockerCompat = true;       # 'docker' command points to podman
+    #  dockerSocket.enable = true; # exposes a Docker-compatible socket
 };
 }

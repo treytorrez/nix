@@ -43,6 +43,13 @@
     "video"
     "render"
   ];
+  security.sudo.extraRules = [{
+  users = [ "treyt" ];
+  commands = [{
+    command = "/run/current-system/sw/bin/podman";
+    options = [ "NOPASSWD" ];
+  }];
+}];
 
   system.stateVersion = "25.11";
 }
