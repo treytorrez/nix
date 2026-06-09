@@ -12,15 +12,18 @@
         base_url = "http://localhost:11434/v1";
         default = "qwen3.5:4b";
       };
+
       toolsets = [ "all" ];
+
       terminal = {
         backend = "local";
         timeout = 180;
       };
+      
     };
 
     environmentFiles = [ "/var/lib/hermes/env" ]; # see secrets note below
-    extraDependencyGroups = [ "messaging" ];
+    extraDependencyGroups = [ "messaging" "hindsight"];
     extraPackages = [
       pkgs.imagemagick
       pkgs.pandoc
