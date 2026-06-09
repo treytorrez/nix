@@ -8,6 +8,7 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hermes-agent.url = "github:NousResearch/hermes-agent";
     stylix = {
       url = "github:nix-community/stylix/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -57,6 +58,7 @@
       nix-on-droid,
       nixcord,
       canonSrc,
+      hermes-agent,
       #      ferrite,
       voxtype,
       nixvim,
@@ -71,6 +73,7 @@
           specialArgs = { inherit inputs; };
           modules = [
             ./hosts/${hostname}
+            hermes-agent.nixosModules.default
             stylix.nixosModules.stylix
             home-manager.nixosModules.home-manager
             {
@@ -87,7 +90,7 @@
                   canon = final.callPackage ./packages/canon.nix { canonSrc = inputs.canonSrc; };
                   nixvim = inputs.nixvim.packages.${final.system}.default;
                 })
-                 inputs.emacs-overlay.overlays.default 
+                inputs.emacs-overlay.overlays.default
               ];
             }
           ];

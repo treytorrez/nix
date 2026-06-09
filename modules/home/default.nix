@@ -45,6 +45,7 @@
     pkgs.black
     pkgs.ruff
     pkgs.rust-analyzer
+    pkgs.gopls
 
   ];
   home.stateVersion = "25.11";
