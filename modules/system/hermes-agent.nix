@@ -5,7 +5,7 @@
     settings = {
        model = {
         base_url = "http://localhost:11434/v1";
-        default = "tinyllama:latest";
+        default = "qwen3.5:4b";
       };
       toolsets = [ "all" ];
       terminal = { backend = "local"; timeout = 180; };
