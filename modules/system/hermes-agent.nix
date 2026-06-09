@@ -14,6 +14,7 @@
       enable   = true;
       backend  = "docker"; # module auto-enables virtualisation.docker
       hostUsers = [ "treyt" ]; # symlinks ~/.hermes and routes CLI into container
+      image = "debian:bookworm-slim";
     };
 
     addToSystemPackages = true; # puts hermes on PATH; all commands route into container
