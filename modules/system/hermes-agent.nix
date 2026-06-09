@@ -4,7 +4,7 @@
 
     settings = {
        model = {
-        base_url = "http://localhost:11434";
+        base_url = "http://localhost:11434/v1";
         default = "tinyllama:latest";
       };
       toolsets = [ "all" ];
