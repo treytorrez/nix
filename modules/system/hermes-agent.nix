@@ -31,7 +31,6 @@
     # Both paths kept — remove whichever doesn't exist or you don't use
     environmentFiles = [
       "/var/lib/hermes/env"
-      "/home/treyt/hermes-env"
     ];
 
     # Combined from both branches
