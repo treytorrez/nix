@@ -148,10 +148,8 @@ with pkgs;
   docker-compose
   thunar
   hyprshot
+  remmina # Maybe this should go in a different catagory
 
-  # LLM
-  llama-cpp
-  vllm
 
 
 ]
