@@ -1,4 +1,8 @@
-{ pkgs }:
+{
+  pkgs,
+  hermes-agent,
+  ...
+}:
 with pkgs;
 [
   # TERMINALS
@@ -155,7 +159,9 @@ with pkgs;
   hyprshot
   remmina # Maybe this should go in a different catagory
   tigervnc
-  llama-cpp
 
+  # LLM
+  hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.desktop
+  llama-cpp
 
 ]
