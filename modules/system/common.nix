@@ -1,153 +1,157 @@
-{ pkgs }: with pkgs; [
-    # TERMINALS
-    kitty
-    foot
-    st
+{ pkgs }:
+with pkgs;
+[
+  # TERMINALS
+  kitty
+  foot
+  st
 
-    # SHELLS
-    zsh
-    bash
+  # SHELLS
+  zsh
+  bash
 
-    # SHELL UTILITIES
-    tmux
-    busybox
-    delta
-    aria2
-    zellij
-    curl
-    wget
-    ripgrep
-    ripgrep-all
-    starship
-    bat
-    pciutils
-    yazi
-    btop
-    fzf
-    gnumake
-    zip
-    unzip
-    (import ../../packages/new-nix-shell.nix { inherit pkgs; })
-    (import ../../packages/git-autocommit.nix { inherit pkgs; })
-    gh
-    #canon # Added via nixpkgs overlay
-    figlet
-    pandoc
-    fwupd
-    p7zip
-    tabiew
-    typora
-    vifm
-    neomutt
-    mutt-wizard
-    gettext
-    isync
-    pass
-    browsh
-    w3m
+  # SHELL UTILITIES
+  tmux
+  busybox
+  delta
+  aria2
+  zellij
+  curl
+  wget
+  ripgrep
+  ripgrep-all
+  starship
+  bat
+  pciutils
+  yazi
+  btop
+  fzf
+  gnumake
+  zip
+  unzip
+  (import ../../packages/new-nix-shell.nix { inherit pkgs; })
+  (import ../../packages/git-autocommit.nix { inherit pkgs; })
+  gh
+  #canon # Added via nixpkgs overlay
+  figlet
+  pandoc
+  fwupd
+  p7zip
+  tabiew
+  typora
+  vifm
+  neomutt
+  mutt-wizard
+  gettext
+  isync
+  pass
+  browsh
+  w3m
 
-    # EDITORS
-    neovim
-    emacs
-    nano
-    neovide
-    #    ferrite # Added with NixPkgs overlay
+  # EDITORS
+  neovim
+  emacs
+  nano
+  neovide
+  #    ferrite # Added with NixPkgs overlay
 
-    # DEVELOPMENT
-    git
-    lazygit
-    uv
-    arduino-ide
-    arduino
-    codex
-    opencode
-    nixfmt
-    python314
-    quartoMinimal
-    direnv
-    qtcreator
-    android-tools
-    gcc
-    #rstudio
-    #R
+  # DEVELOPMENT
+  git
+  lazygit
+  uv
+  arduino-ide
+  arduino
+  codex
+  opencode
+  nixfmt
+  python314
+  quartoMinimal
+  direnv
+  qtcreator
+  android-tools
+  gcc
+  #rstudio
+  #R
 
-    # LAUNCHERS
-    tofi
-    wofi
-    wmenu
+  # LAUNCHERS
+  tofi
+  wofi
+  wmenu
 
-    # MEDIA
-    mpv
-    tidal-hifi
-    high-tide
-    feh
-    sxiv
-    zoom-us
-    pinta
-    kdePackages.okular
+  # MEDIA
+  mpv
+  tidal-hifi
+  high-tide
+  feh
+  sxiv
+  zoom-us
+  pinta
+  kdePackages.okular
 
-    # BROWSERS
+  # BROWSERS
   #firefoxpwa
-    qutebrowser
-    nyxt
-    brave
+  qutebrowser
+  nyxt
+  brave
 
-    # AUDIO
-    pulseaudio
-    pavucontrol
-    easyeffects
-    roomeqwizard
+  # AUDIO
+  pulseaudio
+  pavucontrol
+  easyeffects
+  roomeqwizard
 
-    # SYSTEM UTILS
-    wlr-randr
-    brightnessctl
-    wl-clipboard
-    xclip
-    clipmenu
-    mouseless
-    webcamoid
-    wev
-    evtest
-    libnotify
+  # SYSTEM UTILS
+  wlr-randr
+  brightnessctl
+  wl-clipboard
+  xclip
+  clipmenu
+  mouseless
+  webcamoid
+  wev
+  evtest
+  libnotify
 
-    # PRODUCTIVITY
-    libreoffice-qt6-fresh
-    protonmail-desktop
+  # PRODUCTIVITY
+  libreoffice-qt6-fresh
+  protonmail-desktop
   #gnumeric
-    obsidian
-    doing
-    anki-bin
+  obsidian
+  doing
+  anki-bin
 
-    # LIBRARIES
-    hunspell
-    hunspellDicts.en_US
+  # LIBRARIES
+  hunspell
+  hunspellDicts.en_US
+
+  # funsies :) heehee
+  cbonsai
+  # asciiquarium
+
+  # SCHOOL
+  # mathematica # https://www.balderholst.com/how-to/install-mathematica-on-nixos/
+  sage # mathematica alternative
+  slack-cli
+  slack
+  #positron-bin
+
+  # DESKTOP ENV
+  ashell
+  hyprland
+  lightdm
+  i3
+  wf-recorder
+  proton-vpn
+  osu-lazer-bin
+  home-manager
+  ollama
+  docker-compose
+  thunar
+  hyprshot
+
+  # LLM
+  llama-cpp
+  vllm
 
 
-    # funsies :) heehee
-    cbonsai
-    # asciiquarium
-
-
-
-    # SCHOOL
-    # mathematica # https://www.balderholst.com/how-to/install-mathematica-on-nixos/
-    sage # mathematica alternative
-    slack-cli
-    slack
-    #positron-bin
-
-    # DESKTOP ENV
-    ashell 
-    hyprland
-    lightdm
-    i3
-    wf-recorder
-    proton-vpn
-    osu-lazer-bin
-    home-manager
-    ollama
-    docker-compose
-    thunar
-    hyprshot
-
-  ]
+]
