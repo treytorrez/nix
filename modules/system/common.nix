@@ -149,6 +149,8 @@ with pkgs;
   thunar
   hyprshot
   remmina # Maybe this should go in a different catagory
+  tigervnc
+
 
 
 
