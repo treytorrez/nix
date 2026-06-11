@@ -9,7 +9,7 @@
 
     settings = {
       model = {
-        base_url = "http://localhost:11434/v1"; # "baseurl" in server branch is wrong key
+        base_url = "http://127.0.0.1:11434/v1"; 
         default = "qwen3.5:4b";
       };
 

@@ -2,6 +2,10 @@
 {
   services.ollama = {
     enable = true;
+    environmentVariables = {
+      OLLAMA_CONTEXT_LENGTH="64000";
+    };
+
     package =
       if hostname == "laptop" then
         pkgs.ollama-rocm
