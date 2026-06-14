@@ -159,6 +159,7 @@ with pkgs;
   hyprshot
   remmina # Maybe this should go in a different catagory
   tigervnc
+  bluetui
 
   # LLM
   hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.desktop
