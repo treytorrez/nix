@@ -38,8 +38,11 @@
   home-manager.backupFileExtension = ".bak";
 
   # In your hardware config or host module:
-  hardware.graphics.enable = true;
-  hardware.amdgpu.opencl.enable = true;
+  hardware = {
+    graphics.enable = true;
+    bluetooth.enable = true;
+    amdgpu.opencl.enable = true;
+  };
   users.users.treyt.extraGroups = [
     "video"
     "render"

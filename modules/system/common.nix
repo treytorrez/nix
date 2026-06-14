@@ -159,8 +159,6 @@ with pkgs;
   hyprshot
   remmina # Maybe this should go in a different catagory
   tigervnc
-  bluez
-  bluez-tools
   bluetui
 
   # LLM
