@@ -83,7 +83,6 @@
               home-manager.sharedModules = [
                 voxtype.homeManagerModules.default
                 nixvim.homeModules.nixvim
-                stylix.homeModules.stylix
               ];
               nixpkgs.overlays = [
                 (final: prev: {

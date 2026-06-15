@@ -24,13 +24,12 @@
     ./xdg.nix
     ./emacs.nix
     ./direnv.nix
-    #./ollama.nix
     ./systemd.nix
     ./dunst.nix
     ./rofi.nix
     #./positron.nix
     ./hyprland.nix
-    ./stylix.nix
+    #./stylix.nix
     ./ashell.nix
     ./foot.nix
   ];
