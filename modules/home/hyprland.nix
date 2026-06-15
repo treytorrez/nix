@@ -29,8 +29,8 @@ in
       "$mod" = mod;
 
       general = {
-        gaps_in = 5;
-        gaps_out = 5;
+        gaps_in = 2;
+        gaps_out = 2;
         border_size = 2;
         ##color##        "col.active_border" = "rgb(${gruvbox.bright_orange})";
         ##color##        "col.inactive_border" = "rgb(${gruvbox.gray_245})";
@@ -126,7 +126,7 @@ in
 
         ",XF86MonBrightnessUp, exec, brightnessctl set 15%+"
         ",XF86MonBrightnessDown, exec, brightnessctl set 15%-"
-        ",XF86AudioRaiseVolumectl, exec, pactl set-sink-volume @DEFAULT_SINK@ +5%"
+        ",XF86AudioRaiseVolumectl, exec, pactl set-sink-volume @DEFAULT_SINK@ 5%"
         ",XF86AudioLowerVolume, exec, pactl set-sink-volume @DEFAULT_SINK@ -5%"
         ",XF86AudioMute, exec, pactl set-sink-mute @DEFAULT_SINK@ toggle"
       ];
