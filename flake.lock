@@ -68,6 +68,24 @@
         "type": "github"
       }
     },
+    "beaker-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1775244490,
+        "narHash": "sha256-4TJv7X6D0l4rEbTRKf47gU43L8G5uJgxxtsqMkVixQY=",
+        "ref": "refs/heads/master",
+        "rev": "3fab89ecf8f4c664477a82add660d28db87357b4",
+        "revCount": 27,
+        "shallow": false,
+        "type": "git",
+        "url": "https://git.bwaaa.monster/beaker"
+      },
+      "original": {
+        "shallow": false,
+        "type": "git",
+        "url": "https://git.bwaaa.monster/beaker"
+      }
+    },
     "canonSrc": {
       "flake": false,
       "locked": {
@@ -680,6 +698,27 @@
         "type": "github"
       }
     },
+    "omnisearch": {
+      "inputs": {
+        "beaker-src": "beaker-src",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1780851762,
+        "narHash": "sha256-cx6ChdOEi6KYL1qxLtavKaiqP7t2jDJyh3hsqXmMAkA=",
+        "ref": "refs/heads/master",
+        "rev": "36a7cabc3b59e66342e68f400cfb25f720073703",
+        "revCount": 131,
+        "type": "git",
+        "url": "https://git.bwaaa.monster/omnisearch"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.bwaaa.monster/omnisearch"
+      }
+    },
     "pyproject-build-systems": {
       "inputs": {
         "nixpkgs": [
@@ -779,6 +818,7 @@
         "nixcraft": "nixcraft",
         "nixpkgs": "nixpkgs_2",
         "nixvim": "nixvim",
+        "omnisearch": "omnisearch",
         "stylix": "stylix",
         "voxtype": "voxtype"
       }

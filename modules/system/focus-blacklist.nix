@@ -3,9 +3,9 @@ custom.focusMode = {
   enable = true;
 
   blockedApps = [
-    { package = pkgs.easyeffects;  binary = "easyeffects"; }
     { package = pkgs.steam;    binary = "steam"; }
     { package = pkgs.spotify;  binary = "spotify"; }
+    { package = pkgs.neovide;  binary = "neovide"; }
   ];
 
   blockedDomains = [
