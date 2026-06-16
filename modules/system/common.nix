@@ -116,7 +116,6 @@ with pkgs;
   wl-clipboard
   xclip
   clipmenu
-  mouseless
   webcamoid
   wev
   evtest
@@ -126,7 +125,6 @@ with pkgs;
   libreoffice-qt6-fresh
   protonmail-desktop
   #gnumeric
-  obsidian
   doing
   anki-bin
 
@@ -160,6 +158,7 @@ with pkgs;
   remmina # Maybe this should go in a different catagory
   tigervnc
   bluetui
+  playerctl
 
   # LLM
   hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.desktop
