@@ -62,13 +62,17 @@ in
         follow_mouse = 1;
       };
 
+      bindr = [
+        "SUPER, Super_L, exec, ${runner}"
+      ];
+
       # Regular binds (on press)
       bind = [
         "$mod, Return, exec, ${term}"
         "$mod, Z, exec, ${browser_personal}"
         "$mod SHIFT, Z, exec, ${browser_school}"
         "$mod, D, exec, ${menu}"
-        "$mod SHIFT, D, exec, ${runner}"
+        #"$mod SHIFT, D, exec, ${runner}"
         "$mod, N, exec, neovide"
         "$mod SHIFT, N, exec, neovide +'cd /etc/nixos/'"
         "$mod, Space, togglefloating"
