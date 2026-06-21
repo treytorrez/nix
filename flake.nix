@@ -9,10 +9,10 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    omnisearch = {
-      url = "git+https://git.bwaaa.monster/omnisearch";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #    omnisearch = {
+    #      url = "git+https://git.bwaaa.monster/omnisearch";
+    #      inputs.nixpkgs.follows = "nixpkgs";
+    #    };
     stylix = {
       url = "github:nix-community/stylix/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -66,7 +66,7 @@
       #      ferrite,
       voxtype,
       nixvim,
-      omnisearch,
+    #omnisearch,
       ...
     }:
     let
@@ -80,7 +80,7 @@
             ./hosts/${hostname}
             hermes-agent.nixosModules.default
             stylix.nixosModules.stylix
-            omnisearch.nixosModules.default
+            #omnisearch.nixosModules.default
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
