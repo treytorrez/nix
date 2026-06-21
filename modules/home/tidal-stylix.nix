@@ -58,6 +58,7 @@ $border-dim:     ${c.base03}
       cp -r ${pkgs.tidal-hifi.src}/src/themes ./themes
       chmod -R +w ./themes
       cp ${themeScss} ./themes/stylix.scss
+      echo $(ls -R)
       sass --sourcemap=none ./themes/stylix.scss $out
     '';
 in
