@@ -3,6 +3,29 @@ let
   c = config.lib.stylix.colors.withHashtag;
 
   themeScss = pkgs.writeText "stylix-tidal.scss" ''
+@use "base" with (
+$bg-main:        ${c.base00},
+$bg-secondary:   ${c.base01},
+$bg-surface:     ${c.base02},
+$bg-elevated:    ${c.base03},
+$bg-hover:       ${c.base03},
+$bg-selection:   ${c.base02},
+$text-primary:   ${c.base05},
+$text-secondary: ${c.base06},
+$text-muted:     ${c.base04},
+$text-faint:     ${c.base03},
+$accent-primary: ${c.base0E},
+$accent-green:   ${c.base0B},
+$accent-red:     ${c.base08},
+$accent-blue:    ${c.base0D},
+$accent-purple:  ${c.base0E},
+$accent-cyan:    ${c.base0C},
+$accent-yellow:  ${c.base0A},
+$border-subtle:  ${c.base02},
+$border-dim:     ${c.base03}
+);
+@use "layout";
+
 @use "base-new" with (
 $bg-main:        ${c.base00},
 $bg-secondary:   ${c.base01},
@@ -25,13 +48,6 @@ $border-subtle:  ${c.base02},
 $border-dim:     ${c.base03}
 );
 @use "layout-new";
-
-    /* Uncomment if you use the "new" UI and need style
-    @use "base-new" with (
-      $bg-main:        ${c.base00},
-    );
-    @use "layout-new";
-    */
   '';
 
   compiledCss = pkgs.runCommand "tidal-stylix.css"
