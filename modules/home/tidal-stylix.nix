@@ -3,7 +3,7 @@ let
   c = config.lib.stylix.colors.withHashtag;
 
   themeScss = pkgs.writeText "stylix-tidal.scss" ''
-@use "base" with (
+@use "base-new" with (
 $bg-main:        ${c.base00},
 $bg-secondary:   ${c.base01},
 $bg-surface:     ${c.base02},
@@ -24,7 +24,7 @@ $accent-yellow:  ${c.base0A},
 $border-subtle:  ${c.base02},
 $border-dim:     ${c.base03}
 );
-@use "layout";
+@use "layout-new";
 
     /* Uncomment if you use the "new" UI and need style
     @use "base-new" with (
