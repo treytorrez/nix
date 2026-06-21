@@ -32,6 +32,7 @@
     #./stylix.nix
     ./ashell.nix
     ./foot.nix
+    ./tidal-stylix.nix
   ];
 
   fonts.fontconfig.enable = true;
