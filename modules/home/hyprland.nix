@@ -63,7 +63,7 @@ in
       };
 
       bindr = [
-        "SUPER, Super_L, exec, ${runner}"
+        "SUPER, Super_L, exec, pkill rofi || ${runner}"
       ];
 
       # Regular binds (on press)
