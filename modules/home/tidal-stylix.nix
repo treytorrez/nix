@@ -51,6 +51,6 @@ let
       '';
 in
 {
-  home.file.".config/tidal-hifi/stylix.css".source = compiledCss;
+  home.file.".config/tidal-hifi/themes/stylix.css".source = compiledCss;
   # Then select this file in tidal-hifi Settings → Theming
 }
