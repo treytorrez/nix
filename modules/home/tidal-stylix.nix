@@ -11,31 +11,31 @@ let
   #  };
 
   themeScss = pkgs.writeText "stylix-tidal.scss" ''
-    @use "base" with (
-      $bg-main:        ${c.base00},
-      $bg-secondary:   ${c.base01},
-      $bg-surface:     ${c.base02},
-      $bg-elevated:    ${c.base03},
-      $bg-hover:       ${c.base03},
-      $bg-selection:   ${c.base02},
+@use "base" with (
+$bg-main:        ${c.base00},
+$bg-secondary:   ${c.base01},
+$bg-surface:     ${c.base02},
+$bg-elevated:    ${c.base03},
+$bg-hover:       ${c.base03},
+$bg-selection:   ${c.base02},
 
-      $text-primary:   ${c.base05},
-      $text-secondary: ${c.base06},
-      $text-muted:     ${c.base04},
-      $text-faint:     ${c.base03},
+$text-primary:   ${c.base05},
+$text-secondary: ${c.base06},
+$text-muted:     ${c.base04},
+$text-faint:     ${c.base03},
 
-      $accent-primary: ${c.base0E},
-      $accent-green:   ${c.base0B},
-      $accent-red:     ${c.base08},
-      $accent-blue:    ${c.base0D},
-      $accent-purple:  ${c.base0E},
-      $accent-cyan:    ${c.base0C},
-      $accent-yellow:  ${c.base0A},
+$accent-primary: ${c.base0E},
+$accent-green:   ${c.base0B},
+$accent-red:     ${c.base08},
+$accent-blue:    ${c.base0D},
+$accent-purple:  ${c.base0E},
+$accent-cyan:    ${c.base0C},
+$accent-yellow:  ${c.base0A},
 
-      $border-subtle:  ${c.base02},
-      $border-dim:     ${c.base03}
-    );
-    @use "base-new" with ( /* same vars */ );
+$border-subtle:  ${c.base02},
+$border-dim:     ${c.base03}
+);
+@use "base-new" with ( /* same vars */ );
   '';
 
   compiledCss =
