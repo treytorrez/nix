@@ -62,5 +62,5 @@ $border-dim:     ${c.base03}
     '';
 in
 {
-  home.file.".config/tidal-hifi/themes/stylix.css".source = compiledCss;
+  home.file.".config/tidal-hifi/themes/stylix.scss".source = compiledCss;
 }
