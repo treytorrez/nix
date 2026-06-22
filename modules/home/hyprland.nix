@@ -61,6 +61,9 @@ in
       input = {
         follow_mouse = 1;
       };
+      touchpad = {
+        natural_scroll = true;
+      };
 
       bindr = [
         "SUPER, Super_L, exec, pkill rofi || ${menu}"
