@@ -103,6 +103,7 @@ with pkgs;
   nyxt
   brave
   chromium
+  google-chrome 
 
   # AUDIO
   pulseaudio
