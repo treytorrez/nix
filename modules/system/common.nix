@@ -90,7 +90,7 @@ with pkgs;
   # MEDIA
   mpv
   tidal-hifi
-  high-tide
+  sone
   feh
   sxiv
   zoom-us
