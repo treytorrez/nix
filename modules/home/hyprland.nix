@@ -60,9 +60,9 @@ in
 
       input = {
         follow_mouse = 1;
-      };
       touchpad = {
         natural_scroll = true;
+      };
       };
 
       bindr = [
