@@ -16,10 +16,10 @@
 #      done
 
 keys:
-  - &treyt      age1placeholder000000000000000000000000000000000000000000000000000
-  - &laptop     age1placeholder000000000000000000000000000000000000000000000000001
-  - &server     age1placeholder000000000000000000000000000000000000000000000000002
-  - &desktop    age1placeholder000000000000000000000000000000000000000000000000003
+  - &treyt      age1ly8cvg3dxjcl3tw6v7xh6mptm3gwkt9lsczmw5sgccrsuh7fyvgsgdsm96
+  - &laptop     age1g0vs0fjzvewc7gt2hyrjcx8flh2gxhx79tfrtpgn3n3xkk898uxsfgwmh0
+  - &server     age1n5jqm8zw6mpsaxuxghcs9n5aqg8xnd92fqyxqsr6u4h8agjck5yqfrgnpd
+  # - &desktop    age1placeholder000000000000000000000000000000000000000000000000003
 
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
@@ -28,4 +28,4 @@ creation_rules:
           - *treyt
           - *laptop
           - *server
-          - *desktop
+          # - *desktop
