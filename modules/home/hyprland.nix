@@ -160,7 +160,7 @@ in
 
         ##color##"hyprpaper"
         # TODO: could these autostart apps be systemd things
-        "ashell"
+        #"ashell"
       ];
     };
 
