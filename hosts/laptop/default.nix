@@ -31,16 +31,11 @@
 
   networking.hostName = "laptop";
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-             "wezterm.nvim"
-           ];
 
   home-manager.users.treyt = import ../../modules/home;
   home-manager.backupFileExtension = ".bak";
 
-  # In your hardware config or host module:
   hardware = {
-    graphics.enable = true;
     bluetooth.enable = true;
     amdgpu.opencl.enable = true;
   };
@@ -49,12 +44,20 @@
     "render"
   ];
   security.sudo.extraRules = [{
-  users = [ "treyt" ];
-  commands = [{
-    command = "/run/current-system/sw/bin/podman";
-    options = [ "NOPASSWD" ];
+    users = [ "treyt" ];
+    commands = [{
+      command = "/run/current-system/sw/bin/podman";
+      options = [ "NOPASSWD" ];
+    }];
   }];
-}];
 
-  system.stateVersion = "25.11";
+  sops = {
+    age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+    secrets = {
+      "openrouter-key".sopsFile = ../../secrets/openrouter.yaml;
+      "hermes-env".sopsFile = ../../secrets/hermes-env.yaml;
+    };
+  };
+
+  system.stateVersion = "26.05";
 }

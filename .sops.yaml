@@ -1,0 +1,31 @@
+# === YOUR KEYS GO HERE (replace placeholders) ===
+#
+# 1. Generate your personal age key:
+#      mkdir -p ~/.config/sops/age
+#      age-keygen -o ~/.config/sops/age/keys.txt
+#    Get public key:
+#      age-keygen -y ~/.config/sops/age/keys.txt
+#
+# 2. Get each host's SSH-derived age key:
+#      cat /etc/ssh/ssh_host_ed25519_key.pub | nix shell nixpkgs#ssh-to-age -c ssh-to-age
+#
+# 3. Replace the placeholder keys below with your real keys.
+#    Then re-key existing secrets:
+#      for f in secrets/*.yaml; do
+#        nix shell nixpkgs#sops -c sops updatekeys "$f"
+#      done
+
+keys:
+  - &treyt      age1placeholder000000000000000000000000000000000000000000000000000
+  - &laptop     age1placeholder000000000000000000000000000000000000000000000000001
+  - &server     age1placeholder000000000000000000000000000000000000000000000000002
+  - &desktop    age1placeholder000000000000000000000000000000000000000000000000003
+
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      - age:
+          - *treyt
+          - *laptop
+          - *server
+          - *desktop

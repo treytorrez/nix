@@ -9,7 +9,7 @@
 
     settings = {
       model = {
-        base_url = "http://127.0.0.1:11434/v1"; 
+        base_url = "http://127.0.0.1:11434/v1";
         default = "qwen3.5:4b";
       };
 
@@ -28,12 +28,12 @@
       tts.provider = "piper";
     };
 
-    # Both paths kept — remove whichever doesn't exist or you don't use
+    # Secret is declared in host default.nix:
+    #   sops.secrets."hermes-env".sopsFile = ../../secrets/hermes-env.yaml;
     environmentFiles = [
-      "/var/lib/hermes/env"
+      config.sops.secrets."hermes-env".path
     ];
 
-    # Combined from both branches
     extraDependencyGroups = [ "messaging" "hindsight" "voice" ];
 
     extraPackages = [
@@ -48,10 +48,6 @@
       backend = "docker";
       hostUsers = [ "treyt" ];
       image = "debian:bookworm-slim";
-      # extraOptions = [
-      #   "--gpus"
-      #   "all"
-      # ];
     };
 
     addToSystemPackages = true;

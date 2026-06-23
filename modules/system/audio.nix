@@ -8,13 +8,10 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     extraConfig.pipewire."context.properties" = {
-        "default.clock.rate" = 48000;
-        # Limit default sink to 80% max
-        "node.param.Props" = [
-            {
-              "volume" = 1.15;  # 80% max
-            }
-        ];
+      "default.clock.rate" = 48000;
+      "node.param.Props" = [
+        { "volume" = 1.15; }
+      ];
     };
   };
 }

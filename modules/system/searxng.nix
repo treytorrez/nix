@@ -1,14 +1,26 @@
-{...}:
-{ 
-services.searx = {
-  enable = true;
-  redisCreateLocally = true;
-  settings.server = {
-    bind_address = "::1";
-    port = 8080;
-    # WARNING: setting secret_key here might expose it to the nix cache
-    # see below for the sops or environment file instructions to prevent this
-    secret_key = "1234567890";
+{
+  config,
+  ...
+}:
+let
+  settingsFile = config.sops.templates."searxng-settings".path;
+in
+{
+  services.searx = {
+    enable = true;
+    redisCreateLocally = true;
+    settingsFile = settingsFile;
   };
-};
+
+  sops.templates."searxng-settings" = {
+    content = ''
+      use_default_settings: true
+      server:
+        bind_address: "::1"
+        port: 8080
+        secret_key: "${config.sops.placeholder."searxng-secret"}"
+    '';
+    owner = "searx";
+    group = "searx";
+  };
 }

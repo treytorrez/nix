@@ -25,5 +25,5 @@
     compositor=hyprland
   '';
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  services.fwupd.enable = true; # TODO: I really do not know where to put this
+  services.fwupd.enable = true;
 }

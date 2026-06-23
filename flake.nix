@@ -9,10 +9,6 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    #    omnisearch = {
-    #      url = "git+https://git.bwaaa.monster/omnisearch";
-    #      inputs.nixpkgs.follows = "nixpkgs";
-    #    };
     stylix = {
       url = "github:nix-community/stylix/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,8 +18,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim = {
-      # If you are not running an unstable channel of nixpkgs, select the corresponding branch of Nixvim.
-      # url = "github:nix-community/nixvim";
       url = "github:nix-community/nixvim/nixos-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -43,10 +37,12 @@
       url = "github:pgattic/canon";
       flake = false;
     };
-    #    ferrite = { #markdown viewer
-    #      url = "github:OlaProeis/Ferrite";
-    #      inputs.nixpkgs.follows = "nixpkgs";
-    #    };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     voxtype = {
       url = "github:peteonrails/voxtype";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -63,16 +59,14 @@
       nixcord,
       canonSrc,
       hermes-agent,
-      #      ferrite,
       voxtype,
       nixvim,
-    #omnisearch,
+      sops-nix,
       ...
     }:
     let
       mkHost =
         hostname: system:
-        # TODO: how on god's green earth do i declare that `vimplugin-wezterm.nvim-0.5.0-unstable-2024-09-26` is allowed
         nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs hostname hermes-agent; };
@@ -80,7 +74,7 @@
             ./hosts/${hostname}
             hermes-agent.nixosModules.default
             stylix.nixosModules.stylix
-            #omnisearch.nixosModules.default
+            sops-nix.nixosModules.sops
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
