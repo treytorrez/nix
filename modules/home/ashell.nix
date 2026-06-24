@@ -20,7 +20,7 @@
       };
 
       window_title.mode = "Title";
-      tempo = {
+      Tempo = {
         clock_format = "%D  %I:%M%P";
       };
 
@@ -42,11 +42,6 @@
         network_indicator_format = "Icon";
       };
 
-      CustomModule = {
-        name = "MyVolume";
-        type = "listen_cmd";
-        command = "~/Dev/pactl-mon/pactl-mon";
-      };
 
       appearance = {
         style = "Solid";
