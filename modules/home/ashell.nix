@@ -20,8 +20,8 @@
       };
 
       window_title.mode = "Title";
-      clock = {
-        format = "%D  %I:%M%P";
+      tempo = {
+        clock_format = "%D  %I:%M%P";
       };
 
       system_info = {
