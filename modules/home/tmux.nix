@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  home.packages = [ pkgs.acpi ];
+  home.packages = with pkgs; [ acpi fzf ];
 
   programs.tmux = {
     enable = true;
@@ -11,6 +11,12 @@
     plugins = with pkgs.tmuxPlugins; [ tmux-fzf ];
 
     extraConfig = ''
+      # tmux-fzf: replace default ? (list-keys) with fuzzy keybinding search
+      unbind ?
+      unbind F
+      set-environment -g TMUX_FZF_LAUNCH_KEY "?"
+      set-environment -g TMUX_FZF_ORDER "session|window|pane|keybinding|command|clipboard|process"
+
       set -g status-interval 30
       set -g status-left-length 30
       set -g status-right-length 80
