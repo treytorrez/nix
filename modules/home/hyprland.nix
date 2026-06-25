@@ -16,15 +16,18 @@ let
   # Smart Enter: if running inside tmux, split the window;
   # otherwise spawn a new foot terminal.
   # The terminal package can be overridden by passing termPkg as an argument.
-  smartEnter = pkgs.writeShellScript "smart-enter" ''
-    set -euo pipefail
-    if [ -n "$TMUX" ]; then
-      tmux split-window
-    else
-      footclient &
-    fi
-  '';
+  # TODO: I feel like this is doable but sending stuff like this doesn't work. I presume this is a Nix issue
+  # also sending keystrokes is hacky and *also* does not work :(
 
+  #smartEnter = pkgs.writeShellScript "smart-enter" ''
+  #set -euo pipefail
+  #if [ -n "$TMUX" ]; then
+  #tmux split-window
+  #else
+  #footclient &
+  #fi
+  #'';
+  #
 in
 {
   home.packages = with pkgs; [
@@ -83,7 +86,8 @@ in
 
       # Regular binds (on press)
       bind = [
-        "$mod, Return, exec, ${smartEnter}"
+        #"$mod, Return, exec, ${smartEnter}"
+        "$mod, Return, exec, ${term}"
         "$mod, Z, exec, ${browser_personal}"
         "$mod SHIFT, Z, exec, ${browser_school}"
         "$mod, D, exec, ${menu}"
