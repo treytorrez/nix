@@ -121,10 +121,10 @@
           fi
         }
 
-        # Auto-start tmux (only if interactive and not already inside tmux)
-#        if [[ -z "$TMUX" && $- == *i* ]]; then
-#          tmux new
-#        fi
+       # Auto-start tmux (only if interactive and not already inside tmux)
+        if [[ -z "$TMUX" && $- == *i* ]]; then
+          tmux new
+        fi
       '';
 
       # ---- Order 1200: Prompt setup (after most other config) ----
