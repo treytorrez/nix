@@ -21,7 +21,7 @@ let
     if [ -n "$TMUX" ]; then
       ${pkgs.tmux}/bin/tmux split-window
     else
-      ${pkgs.foot}/bin/foot &
+      ${pkgs.foot}/bin/footclient &
     fi
   '';
 
