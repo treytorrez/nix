@@ -8,6 +8,8 @@
     baseIndex = 1;
     escapeTime = 0;
 
+    plugins = with pkgs.tmuxPlugins; [ tmux-fzf ];
+
     extraConfig = ''
       set -g status-interval 30
       set -g status-left-length 30
