@@ -19,9 +19,9 @@ let
   smartEnter = pkgs.writeShellScript "smart-enter" ''
     set -euo pipefail
     if [ -n "$TMUX" ]; then
-      ${pkgs.tmux}/bin/tmux split-window
+      tmux split-window
     else
-      ${pkgs.foot}/bin/footclient &
+      footclient &
     fi
   '';
 
