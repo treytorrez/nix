@@ -15,7 +15,7 @@ custom.focusMode = {
     "facebook.com"   "www.facebook.com"
     "instagram.com"  "www.instagram.com"
     "twitch.tv"      "www.twitch.tv"
-    "search.nixos.org/" "www.search.nixos.org/"
+    "search.nixos.org" "www.search.nixos.org"
     "nixos.org"    "wiki.nixos.org" 
     "www.nixos.org"    "www.wiki.nixos.org" 
   ];

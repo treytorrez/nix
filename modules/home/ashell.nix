@@ -1,7 +1,9 @@
-{ ... }:
+{ pkgs, ... }:
 {
   programs.ashell = {
     enable = true;
+    package = pkgs.ashell;
+    systemd.enable = true;
 
     settings = {
       position = "Top";
@@ -18,8 +20,8 @@
       };
 
       window_title.mode = "Title";
-      clock = {
-        format = "%D  %I:%M%P";
+      Tempo = {
+        clock_format = "%D  %I:%M%P";
       };
 
       system_info = {
@@ -40,27 +42,13 @@
         network_indicator_format = "Icon";
       };
 
-      CustomModule = {
-        name = "MyVolume";
-        type = "listen_cmd";
-        command = "~/Dev/pactl-mon/pactl-mon";
-      };
 
       appearance = {
         style = "Solid";
-
-        #font_name = "${config.stylix.fonts.monospace.name} Light";
-        #        primary_color    = "#${c.base0D}";
-        #        success_color    = "#${c.base0B}";
-        #        text_color       = "#${c.base05}";
-        #        danger_color     = { base = "#${c.base08}"; weak = "#${c.base09}"; };
-        #        background_color = { base = "#${c.base00}"; weak = "#${c.base01}"; strong = "#${c.base03}"; };
-        #        secondary_color  = { base = "#${c.base02}"; };
       };
     };
   };
 
-  # ashell loads GTK CSS from this path; use it to strip rounded corners
   xdg.configFile."ashell/style.css".text = ''
     * { border-radius: 0; }
   '';

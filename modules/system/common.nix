@@ -151,12 +151,10 @@ with pkgs;
   wf-recorder
   proton-vpn
   osu-lazer-bin
-  home-manager
-  ollama
   docker-compose
   thunar
   hyprshot
-  remmina # Maybe this should go in a different catagory
+  remmina
   tigervnc
   bluetui
   playerctl
@@ -164,5 +162,6 @@ with pkgs;
   # LLM
   hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.desktop
   llama-cpp
+  ollama
 
 ]
