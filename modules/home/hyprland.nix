@@ -21,7 +21,7 @@ let
     active=$(${pkgs.hyprland}/bin/hyprctl activewindow -j 2>/dev/null \
       | ${pkgs.jq}/bin/jq -r '.class // empty')
     if [[ "$active" == "foot" || "$active" == "footclient" ]]; then
-      ${pkgs.xdotool}/bin/xdotool key ctrl+b percent
+      ${pkgs.wtype}/bin/wtype -M ctrl b -m ctrl '%'
     else
       ${pkgs.foot}/bin/foot &
     fi
@@ -32,7 +32,7 @@ in
   home.packages = with pkgs; [
     hyprpaper
     rofi
-    xdotool
+    wtype
     jq
   ];
 
