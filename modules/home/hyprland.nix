@@ -37,7 +37,7 @@ in
       };
       # TODO: animations off
       animations = {
-        enabled = true;
+        enabled = false;
       };
 
       # hopefully this is using the iGPU
