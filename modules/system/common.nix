@@ -26,6 +26,7 @@ with pkgs;
   ripgrep-all
   starship
   bat
+  sops
   pciutils
   yazi
   btop
@@ -163,5 +164,6 @@ with pkgs;
   hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.desktop
   llama-cpp
   ollama
+
 
 ]
