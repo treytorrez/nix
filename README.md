@@ -180,12 +180,10 @@ Managed with [sops-nix](https://github.com/Mic92/sops-nix). See `SECRETS.md` for
 
 ## Smart Enter Keybind
 
-`Super+Enter` is context-aware via a shell script:
+`Super+Enter` is context-aware:
 
-- **If foot/footclient is focused** — sends `Ctrl+B %` to the terminal (tmux split-window)
+- **If running inside tmux** — sends `tmux split-window` directly
 - **Otherwise** — spawns a new foot terminal
-
-The terminal package can be parameterized by extracting it to a `termPkg` argument in the `let` binding.
 
 ## Neovim (`nixvim.nix`)
 

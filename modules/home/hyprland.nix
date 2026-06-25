@@ -13,15 +13,13 @@ let
   browser_personal = "librewolf -P default";
   browser_school = "librewolf -P school";
 
-  # Smart Enter: if foot is focused, send Ctrl+B % (tmux split);
+  # Smart Enter: if running inside tmux, split the window;
   # otherwise spawn a new foot terminal.
   # The terminal package can be overridden by passing termPkg as an argument.
   smartEnter = pkgs.writeShellScript "smart-enter" ''
     set -euo pipefail
-    active=$(${pkgs.hyprland}/bin/hyprctl activewindow -j 2>/dev/null \
-      | ${pkgs.jq}/bin/jq -r '.class // empty')
-    if [[ "$active" == "foot" || "$active" == "footclient" ]]; then
-      ${pkgs.wtype}/bin/wtype -M ctrl b -m ctrl '%'
+    if [ -n "$TMUX" ]; then
+      ${pkgs.tmux}/bin/tmux split-window
     else
       ${pkgs.foot}/bin/foot &
     fi
@@ -32,8 +30,6 @@ in
   home.packages = with pkgs; [
     hyprpaper
     rofi
-    wtype
-    jq
   ];
 
   wayland.windowManager.hyprland = {
@@ -91,7 +87,7 @@ in
         "$mod, Z, exec, ${browser_personal}"
         "$mod SHIFT, Z, exec, ${browser_school}"
         "$mod, D, exec, ${menu}"
-        #"$mod SHIFT, D, exec, ${runner}"
+        "$mod SHIFT, D, exec, ${runner}"
         "$mod, N, exec, neovide"
         "$mod SHIFT, N, exec, neovide +'cd /etc/nixos/'"
         "$mod, Space, togglefloating"
@@ -113,8 +109,6 @@ in
         #"$mod, F, fullscreen"
         "$mod SHIFT, F, fullscreenstate, 0 2"
         "$mod, F, fullscreenstate, 0 0"
-
-        #"$mod, E, togglesplit" # closest to i3's split toggle
 
         # Workspaces
         "$mod, 1, workspace, 1"
@@ -159,17 +153,6 @@ in
         ",XF86AudioNext, exec, playerctl next"
         ",XF86AudioPrev, exec, playerctl previous"
       ];
-
-      ##      windowrule = [
-      ##        # FIXME: what's the actual name?
-      ##        "match class:^(LibreWolf)$, workspace 1"
-      ##        "match class:^(firefox)$, workspace 1"
-      ##        "match class:^(kitty)$, workspace 2"
-      ##        # FIXME: claude botched it or something
-      ##        #"workspace 3, class:^(tidal-hifi)$, selec, selec, selec, selecuttt"
-      ##        "class:^(high-tide)$ workspace 3"
-      ##        "float, title:^(feh)$"
-      ##      ];
 
       exec-once = [
         "nm-applet --indicator"
