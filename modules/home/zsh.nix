@@ -22,16 +22,6 @@
       autoload -U calendar calendar_add
     '';
 
-    plugins = [
-      {
-        name = "wd";
-        src = pkgs.zsh-wd;
-        file = "share/wd/wd.plugin.zsh";
-        completions = [ "share/zsh/site-functions" ];
-      }
-      # vi-mode is handled manually below (deferred loading)
-    ];
-
     shellAliases = {
       ls = "ls -FGAh --color=tty";
       ll = "ls --color=tty -l";
@@ -44,7 +34,6 @@
       xo = "xdg-open";
       gs = "git status";
       ga = "git add";
-      ns = "nix shell nixpkgs#";
     };
 
     sessionVariables = {
@@ -102,6 +91,35 @@
 
         # Your custom function
         batcanon() { canon "$@" | sed 's/ \([0-9]*\) /\1. /' | bat -l md --theme Nord --style=-numbers }
+
+        # nix shell/run shortcuts
+        ns() {
+          local pkg="$1"; shift
+          nix shell "nixpkgs#$pkg" "$@"
+        }
+        nr() {
+          local pkg="$1"; shift
+          nix run "nixpkgs#$pkg" "$@"
+        }
+
+        # Warp directory - reads ~/.warprc (key:path format, backward compat)
+        wd() {
+          local config_file=''${HOME}/.warprc
+          if [[ $# -eq 0 ]]; then
+            while IFS=':' read -r key path; do
+              [[ -n "$key" ]] && print -P "%F{green}$key%f -> $path"
+            done < "$config_file"
+            return
+          fi
+          local target
+          target=$(grep "^$1:" "$config_file" 2>/dev/null | cut -d':' -f2-)
+          if [[ -n "$target" ]]; then
+            cd "$target"
+          else
+            echo "wd: unknown warp point '$1'" >&2
+            return 1
+          fi
+        }
 
         # Auto-start tmux (only if interactive and not already inside tmux)
 #        if [[ -z "$TMUX" && $- == *i* ]]; then

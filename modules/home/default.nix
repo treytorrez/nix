@@ -32,6 +32,7 @@
     #./stylix.nix
     ./ashell.nix
     ./foot.nix
+    ./tmux.nix
     ./tidal-stylix.nix
   ];
 
