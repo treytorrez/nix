@@ -485,6 +485,14 @@
         options.desc = "Rename symbol";
       }
 
+      # ===== Disabled built-in keys =====
+      {
+        mode = "i";
+        key = "<C-w>";
+        action = "<Nop>";
+        options.desc = "Disabled Ctrl-w in insert mode";
+      }
+
       # ===== File/Find Operations (f) =====
       {
         mode = "n";
