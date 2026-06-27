@@ -17,6 +17,8 @@
       #set-environment -g TMUX_FZF_LAUNCH_KEY "?"
       set-environment -g TMUX_FZF_ORDER "session|window|pane|keybinding|command|clipboard|process"
 
+      set -g allow-passthrough on
+
       set -g status-interval 30
       set -g status-left-length 30
       set -g status-right-length 80
