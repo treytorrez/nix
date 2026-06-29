@@ -3,6 +3,11 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    noctalia = {
+      url = "github:noctalia-dev/noctalia/legacy-v4";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
 
     hermes-agent.url = "github:NousResearch/hermes-agent";
     home-manager = {
@@ -75,6 +80,7 @@
             hermes-agent.nixosModules.default
             stylix.nixosModules.stylix
             sops-nix.nixosModules.sops
+            ./modules/system/noctalia.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
