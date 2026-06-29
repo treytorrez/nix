@@ -145,7 +145,7 @@ with pkgs;
   #positron-bin
 
   # DESKTOP ENV
-  ashell
+  #ashell
   hyprland
   lightdm
   i3

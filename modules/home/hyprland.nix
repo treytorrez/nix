@@ -160,6 +160,8 @@ in
 
       exec-once = [
         "nm-applet --indicator"
+        "noctalia-shell"
+        "easyeffects -w"
 
         ##color##"hyprpaper"
         # TODO: could these autostart apps be systemd things

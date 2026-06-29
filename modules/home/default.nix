@@ -30,7 +30,7 @@
     #./positron.nix
     ./hyprland.nix
     #./stylix.nix
-    ./ashell.nix
+    #./ashell.nix
     ./foot.nix
     ./tmux.nix
     ./tidal-stylix.nix
