@@ -42,9 +42,14 @@
         network_indicator_format = "Icon";
       };
 
-
       appearance = {
         style = "Solid";
+      };
+      osd = {
+        enabled = true; # Disabled by default; set to true to enable the OSD overlay;
+        timeout = 1500; # Auto-hide delay in milliseconds;
+        show_volume_percentage = true; # Show percentage text next to volume/mic bar
+        show_brightness_percentage = true;# Show percentage text next to brightness bar
       };
     };
   };
