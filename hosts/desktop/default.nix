@@ -26,6 +26,7 @@
 
   home-manager.users.treyt = import ../../modules/home;
   home-manager.backupFileExtension = ".bak";
+  nixpkgs.config.allowUnfree = true;
 
   boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
   boot.kernelModules = [ "wl" ];

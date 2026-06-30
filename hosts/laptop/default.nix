@@ -42,13 +42,17 @@
     "video"
     "render"
   ];
-  security.sudo.extraRules = [{
-    users = [ "treyt" ];
-    commands = [{
-      command = "/run/current-system/sw/bin/podman";
-      options = [ "NOPASSWD" ];
-    }];
-  }];
+  security.sudo.extraRules = [
+    {
+      users = [ "treyt" ];
+      commands = [
+        {
+          command = "/run/current-system/sw/bin/podman";
+          options = [ "NOPASSWD" ];
+        }
+      ];
+    }
+  ];
 
   sops = {
     age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];

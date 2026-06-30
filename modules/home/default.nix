@@ -14,7 +14,7 @@
     ./nixcord.nix
     ./zsh.nix
     ./starship.nix
-    ./vscode.nix
+    #./vscode.nix
     ./kitty.nix
     ./canon.nix
     ./voxtype.nix

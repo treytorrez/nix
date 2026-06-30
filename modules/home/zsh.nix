@@ -26,9 +26,8 @@
       ls = "ls -FGAh --color=tty";
       ll = "ls --color=tty -l";
       #update = "echo \"rebuilding as $(hostname)\"; sudo nixos-rebuild switch --flake /etc/nixos#$(hostname)";
-      nixvim = "sudo nix run ~/nixvim-flake -- \"$@\"";
       psgrep = "ps aux | rg";
-      nvimprovements = "nvim /home/$(user)/Documents/personal/improvements.md";
+      nvimprovements = "nvim /home/$USER/Documents/personal/improvements.md";
       # Alias to manually regenerate the completion dump if ever needed
       recomp = "rm -f ~/.cache/zsh/compdump* && ZSH_COMPDUMP=~/.cache/zsh/compdump compinit -d ~/.cache/zsh/compdump";
       xo = "xdg-open";

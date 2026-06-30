@@ -196,12 +196,13 @@
       };
 
       # Notebook/Quarto support
-      quarto = {
-        enable = true;
-        lazyLoad.settings = {
-          ft = "quarto";
-        };
-      };
+      # TODO: fix
+      #      quarto = {
+      #        enable = true;
+      #        lazyLoad.settings = {
+      #          ft = "quarto";
+      #        };
+      #      };
 
       # LSP in code blocks
       otter = {

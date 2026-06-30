@@ -1,17 +1,18 @@
 { ... }:
 {
-  programs.nixcord = {
+  programs.nixcord.legcord = {
     enable = true;
-    discord.vencord.enable = false;
-    discord.equicord.enable = true;
-    quickCss = "/* css goes here */";
-    config = {
-      useQuickCss = true;
-      themeLinks = [ ];
-      frameless = true;
-      plugins = {
-        messageLatency.enable = true;
-      };
+
+    # Optionally bundle Vencord or Equicord (also installs userPlugins)
+    vencord.enable = true;
+    # equicord.enable = true;
+
+    settings = {
+      channel = "stable";
+      tray = "dynamic";
+      minimizeToTray = true;
+      mods = [ "vencord" "shelter" ];
+      #doneSetup = true;
     };
   };
 }
