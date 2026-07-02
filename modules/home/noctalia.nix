@@ -1,9 +1,11 @@
 { config, pkgs, ... }:
 {
-  programs.noctalia-shell = {
+  programs.noctalia = {
     enable = true;
-    systemd.enable = true;
-    launch_apps_as_systemd_services = true;
+    settings = {
+      systemd.enable = true;
+      launch_apps_as_systemd_services = true;
+    };
 
   };
 }

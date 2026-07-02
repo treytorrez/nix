@@ -151,6 +151,7 @@ with pkgs;
   i3
   wf-recorder
   proton-vpn
+  proton-pass
   osu-lazer-bin
   docker-compose
   thunar

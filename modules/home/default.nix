@@ -30,6 +30,7 @@
     ./nyxt.nix
     #./positron.nix
     ./hyprland.nix
+    ./noctalia.nix
     #./stylix.nix
     #./ashell.nix
     ./foot.nix
