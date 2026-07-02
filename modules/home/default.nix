@@ -27,6 +27,7 @@
     ./systemd.nix
     ./dunst.nix
     ./rofi.nix
+    ./nyxt.nix
     #./positron.nix
     ./hyprland.nix
     #./stylix.nix
