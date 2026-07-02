@@ -159,7 +159,6 @@ with pkgs;
   tigervnc
   bluetui
   playerctl
-
   # LLM
   hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.desktop
   llama-cpp
