@@ -16,7 +16,7 @@
 
 services.open-webui = {
     enable = true;
-    port = 8080;
+    port = 1234;
   };
 
   # 4. Install the Wayland session package
