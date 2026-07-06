@@ -106,8 +106,6 @@
         mockDevIcons = true;
       };
       mini-indentscope = {
-        enable = true;
-        indentscope = {
           enable = true;
           opts = {
             symbol = "│"; # your custom symbol
@@ -117,7 +115,6 @@
               '';
             };
           };
-        };
       };
 
       # Completion
