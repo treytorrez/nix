@@ -71,7 +71,7 @@ in
       #          "eDP-2, 1600x900@15, 0x0, 1.0"
       #        ])
       #      ];
-      monitor = "eDP-2, 2560x1600@75, 0x0, 1.60";
+      monitor = "eDP-2, 2560x1600@75, 0x0, 1.60, vrr, 1";
 
       input = {
         follow_mouse = 1;
