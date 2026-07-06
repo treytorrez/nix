@@ -4,7 +4,7 @@
   networking = {
     networkmanager.enable = true;
     hosts = {
-      "localhost:1234" = [ "chat.local" ];
+      "127.0.0.1:1234" = [ "chat.local" ];
     };
 
   };
