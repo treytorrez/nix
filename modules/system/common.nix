@@ -166,6 +166,7 @@ with pkgs;
   llama-cpp
   ollama
   open-webui
-
+  python314Packages.llm
+  python314Packages.llm-openrouter
 
 ]
