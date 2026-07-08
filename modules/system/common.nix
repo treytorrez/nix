@@ -129,6 +129,7 @@ with pkgs;
   #gnumeric
   doing
   anki-bin
+  mupdf
 
   # LIBRARIES
   hunspell

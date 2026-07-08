@@ -150,6 +150,7 @@
   # ------------------------------------------------------------
   home.packages = [
     pkgs.zsh-defer    # Required for deferred plugin loading
+    (import ../../packages/lsdot.nix { inherit pkgs; })
     # pkgs.zsh-bench   # Optional: for profiling startup time
   ];
 

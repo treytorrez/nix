@@ -7,10 +7,7 @@
     package = pkgs.rofi;
     modes = [
       "drun"
-      "run"
       "window"
-      "ssh"  
-      "combi"
     ];
     extraConfig = {
       show-icons = true;
