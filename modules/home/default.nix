@@ -26,7 +26,8 @@
     ./direnv.nix
     ./systemd.nix
     ./dunst.nix
-    ./rofi.nix
+    ./mew.nix
+    #./rofi.nix
     ./nyxt.nix
     #./positron.nix
     ./hyprland.nix

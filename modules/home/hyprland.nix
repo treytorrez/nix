@@ -8,8 +8,8 @@
 let
   mod = "SUPER";
   term = "foot";
-  menu = "rofi -show drun";
-  runner = "rofi -show run";
+  menu = "mew-run";
+  runner = "mew-run";
   browser_personal = "librewolf -P default";
   browser_school = "librewolf -P school";
 
@@ -32,7 +32,6 @@ in
 {
   home.packages = with pkgs; [
     hyprpaper
-    rofi
   ];
 
   wayland.windowManager.hyprland = {
@@ -81,7 +80,7 @@ in
       };
 
       bindr = [
-        "SUPER, Super_L, exec, pkill rofi || ${menu}"
+        "SUPER, Super_L, exec, pkill mew || ${menu}"
       ];
 
       # Regular binds (on press)
