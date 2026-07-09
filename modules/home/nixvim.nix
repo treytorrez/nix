@@ -10,7 +10,6 @@
   programs.nixvim = {
     enable = true;
     # some of the warnings say to do this
-    programs.nixvim.nixpkgs.source = inputs.nixpkgs;
     nixpkgs.config.allowUnfree = true;
 
     opts = {
@@ -45,7 +44,7 @@
 
     #colorschemes.gruvbox.enable = true;
 
-    globals.mapleader = " ";
+    lobals.mapleader = " ";
 
     plugins = {
       # Lazy loading infrastructure
