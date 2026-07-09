@@ -93,30 +93,26 @@ with pkgs;
   tidal-hifi
   sone
   feh
-  sxiv
   zoom-us
   pinta
   kdePackages.okular
+  mupdf
 
   # BROWSERS
   #firefoxpwa
-  qutebrowser
   nyxt
   brave
   chromium
-  google-chrome 
 
   # AUDIO
   pulseaudio
   pavucontrol
   easyeffects
-  roomeqwizard
 
   # SYSTEM UTILS
   wlr-randr
   brightnessctl
   wl-clipboard
-  xclip
   clipmenu
   webcamoid
   wev
@@ -129,7 +125,6 @@ with pkgs;
   #gnumeric
   doing
   anki-bin
-  mupdf
 
   # LIBRARIES
   hunspell
@@ -141,7 +136,6 @@ with pkgs;
 
   # SCHOOL
   # mathematica # https://www.balderholst.com/how-to/install-mathematica-on-nixos/
-  slack-cli
   slack
   #positron-bin
 

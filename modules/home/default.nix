@@ -25,7 +25,7 @@
     ./emacs.nix
     ./direnv.nix
     ./systemd.nix
-    ./dunst.nix
+    ./fnott.nix
     ./mew.nix
     #./rofi.nix
     ./nyxt.nix
