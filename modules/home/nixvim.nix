@@ -10,8 +10,7 @@
   programs.nixvim = {
     enable = true;
     # some of the warnings say to do this
-    # TODO: I think enabling this line would save download space, find a way to do it if possible
-    #programs.nixvim.nixpkgs.source = inputs.nixpkgs;
+    programs.nixvim.nixpkgs.source = inputs.nixpkgs;
     nixpkgs.config.allowUnfree = true;
 
     opts = {
