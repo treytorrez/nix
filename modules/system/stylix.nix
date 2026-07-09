@@ -20,9 +20,9 @@
 
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
   stylix.image = builtins.fetchurl {
-    url = "https://cdn.discordapp.com/attachments/1273453324988846210/1524365820925317201/GirlEDM_v12_2black.png?ex=6a50cd4d&is=6a4f7bcd&hm=5b902737a2045e34bc0f06d6f047fa5b86cd3250921f8de9cc5708dee4b882ab&";
-    name = "GirlEDM_v12_2black.png";
-    sha256 = "sha256:0iha2hm0zdqrydhmihmn9da6c79yl4pbvm4s3pdk1rzbycm31van";
+    url = "https://w.wallhaven.cc/full/p9/wallhaven-p9pd23.png";
+    name = "wallhaven-p9pd23.png";
+    sha256 = "036gqhbf6s5ddgvfbgn6iqbzgizssyf7820m5815b2gd748jw8zc";
   };
   stylix.fonts = {
     monospace = {

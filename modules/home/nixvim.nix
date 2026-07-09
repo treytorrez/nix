@@ -44,7 +44,7 @@
 
     #colorschemes.gruvbox.enable = true;
 
-    lobals.mapleader = " ";
+    globals.mapleader = " ";
 
     plugins = {
       # Lazy loading infrastructure
