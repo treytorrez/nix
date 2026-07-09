@@ -19,11 +19,11 @@
   };
 
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
-  stylix.image = builtins.fetchurl {
-    url = "https://w.wallhaven.cc/full/p9/wallhaven-p9pd23.png";
-    name = "wallhaven-p9pd23.png";
-    sha256 = "036gqhbf6s5ddgvfbgn6iqbzgizssyf7820m5815b2gd748jw8zc";
-  };
+  ###stylix.image = builtins.fetchurl {
+  ###url = "https://w.wallhaven.cc/full/p9/wallhaven-p9pd23.png";
+  ###name = "wallhaven-p9pd23.png";
+  ###sha256 = "036gqhbf6s5ddgvfbgn6iqbzgizssyf7820m5815b2gd748jw8zc";
+  ###};
   stylix.fonts = {
     monospace = {
       package = pkgs.nerd-fonts.atkynson-mono;
