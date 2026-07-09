@@ -41,6 +41,13 @@ in
 
     settings = {
       "$mod" = mod;
+      misc = {
+
+
+disable_splash_rendering = true;
+disable_hyprland_logo = true;
+
+      };
 
       general = {
         gaps_in = 2;
