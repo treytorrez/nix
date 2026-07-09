@@ -31,7 +31,7 @@ nixConfig = {
     # --- User environment ----------------------------------------------------
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
-      #inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # --- Theming -------------------------------------------------------------
