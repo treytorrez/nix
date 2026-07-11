@@ -11,7 +11,7 @@ let
       static uint32_t colors[][2] = {
           /*               fg              bg           */
           [SchemeNorm] = { 0x${c.base05}ff, 0x${c.base00}ff },
-          [SchemeSel]  = { 0x${c.base0B}ff, 0x${c.base0D}ff },
+          [SchemeSel]  = { 0x${c.base09}ff, 0x${c.base00}ff },
           [SchemeOut]  = { 0x000000ff,      0x00ffffff      },
       };
       static const char *output_name = NULL;
