@@ -155,6 +155,7 @@ with pkgs;
   tigervnc
   bluetui
   playerctl
+  hyprshade
 
   # LLM
   hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.desktop
