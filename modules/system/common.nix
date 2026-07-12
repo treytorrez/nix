@@ -162,6 +162,7 @@ with pkgs;
   llama-cpp
   ollama
   open-webui
+  tmuxai
   (llm.withPlugins{
     llm-openrouter = true;
       llm-cmd = true;

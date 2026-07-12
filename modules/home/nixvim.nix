@@ -9,6 +9,7 @@
   #fonts.font = ["nerd-fonts.atkynson-mono"];
   programs.nixvim = {
     enable = true;
+    nixpkgs.source = inputs.nixpkgs;
     # some of the warnings say to do this
     nixpkgs.config.allowUnfree = true;
 
@@ -43,6 +44,25 @@
     };
 
     #colorschemes.gruvbox.enable = true;
+
+    extraConfigLua = ''
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "VeryLazy",
+        callback = function()
+          local ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+          if ok then
+            local orig = cmp_nvim_lsp._on_insert_enter
+            cmp_nvim_lsp._on_insert_enter = function()
+              local ok2 = pcall(vim.lsp.get_clients)
+              if not ok2 then
+                return
+              end
+              orig()
+            end
+          end
+        end,
+      })
+    '';
 
     globals.mapleader = " ";
 

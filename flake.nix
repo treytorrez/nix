@@ -126,7 +126,7 @@ nixConfig = {
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { inherit nixcord voxtype nixvim; };
+              home-manager.extraSpecialArgs = { inherit inputs nixcord voxtype nixvim; };
               home-manager.sharedModules = [
                 voxtype.homeManagerModules.default
                 inputs.noctalia.homeModules.default
