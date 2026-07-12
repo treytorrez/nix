@@ -41,22 +41,26 @@ in
 
     settings = {
       "$mod" = mod;
+
+      config = { decoration = {
+        blur.enabled = false;
+        shadow.enabled = false;
+      }; };
+
       misc = {
 
-
-disable_splash_rendering = true;
-disable_hyprland_logo = true;
+        disable_splash_rendering = true;
+        disable_hyprland_logo = true;
 
       };
 
       general = {
         gaps_in = 2;
-        gaps_out = 2;
+        gaps_out = 0;
         border_size = 2;
         ##color##        "col.active_border" = "rgb(${gruvbox.bright_orange})";
         ##color##        "col.inactive_border" = "rgb(${gruvbox.gray_245})";
       };
-      # TODO: animations off
       animations = {
         enabled = false;
       };
@@ -81,9 +85,9 @@ disable_hyprland_logo = true;
 
       input = {
         follow_mouse = 1;
-      touchpad = {
-        natural_scroll = true;
-      };
+        touchpad = {
+          natural_scroll = true;
+        };
       };
 
       bindr = [

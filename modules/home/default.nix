@@ -37,6 +37,7 @@
     ./foot.nix
     ./tmux.nix
     ./tidal-stylix.nix
+    ./llm.nix
   ];
 
   fonts.fontconfig.enable = true;

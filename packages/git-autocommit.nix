@@ -42,7 +42,8 @@ pkgs.writeShellApplication {
       echo "Rebuild successful."
       # Commit only when there are actually staged changes
       if ! git diff --cached --quiet; then
-        git commit -m "Successful build on $HOST - $(date '+%Y-%m-%d %H:%M:%S')"
+        COMMIT_MSG=$(llm git describe-staged 2>/dev/null || echo "Successful build on $HOST - $(date '+%Y-%m-%d %H:%M:%S')")
+        echo "$COMMIT_MSG" | git commit -F -
         echo "Changes committed."
       else
         echo "No changes to commit."

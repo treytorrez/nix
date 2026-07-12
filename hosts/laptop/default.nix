@@ -54,7 +54,10 @@
   sops = {
     age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
     secrets = {
-      "openrouter-key".sopsFile = ../../secrets/openrouter.yaml;
+      "openrouter-key" = {
+        sopsFile = ../../secrets/openrouter.yaml;
+        owner = "treyt";
+      };
       "hermes-env".sopsFile = ../../secrets/hermes-env.yaml;
     };
   };

@@ -77,6 +77,7 @@
       lualine.enable = true;
       neoscroll.enable = true;
       auto-save.enable = true;
+      tiny-inline-diagnostic.enable = true;
       colorizer = {
         enable = true;
 
