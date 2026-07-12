@@ -49,7 +49,6 @@
     pkgs.black
     pkgs.ruff
     pkgs.rust-analyzer
-    pkgs.gopls
 
   ];
   nixpkgs.config.allowUnfree = true;

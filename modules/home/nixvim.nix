@@ -126,9 +126,6 @@
             { name = "nvim_lsp"; }
             { name = "path"; }
             { name = "buffer"; }
-            # TODO: how do I make this enabled without causing that huge error
-            # when anything besides a notebook opens?
-            { name = "otter"; } # For code blocks in notebooks
           ];
           mapping = {
             "<C-Space>" = "cmp.mapping.complete()";
@@ -136,6 +133,24 @@
             "<CR>" = "cmp.mapping.confirm({ select = true })";
             "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
             "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+          };
+        };
+        filetype = {
+          quarto = {
+            sources = [
+              { name = "nvim_lsp"; }
+              { name = "path"; }
+              { name = "buffer"; }
+              { name = "otter"; }
+            ];
+          };
+          markdown = {
+            sources = [
+              { name = "nvim_lsp"; }
+              { name = "path"; }
+              { name = "buffer"; }
+              { name = "otter"; }
+            ];
           };
         };
       };
@@ -465,7 +480,7 @@
       }
       {
         mode = "n";
-        key = "<leader>ld";
+        key = "<leader>ldi";
         action = "<cmd>lua vim.diagnostic.open_float()<cr>";
         options.desc = "View Diagnostic";
       }
