@@ -53,6 +53,7 @@ with pkgs;
   browsh
   w3m
   croc
+  gvfs
 
   # EDITORS
   neovim
