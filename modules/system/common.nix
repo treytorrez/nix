@@ -99,6 +99,7 @@ with pkgs;
   pinta
   kdePackages.okular
   mupdf
+  cmus
 
   # BROWSERS
   #firefoxpwa
