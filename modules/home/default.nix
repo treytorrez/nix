@@ -24,7 +24,7 @@
     ./xdg.nix
     ./emacs.nix
     ./direnv.nix
-    ./systemd.nix
+    #./systemd.nix
     ./fnott.nix
     ./mew.nix
     #./rofi.nix
