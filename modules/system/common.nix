@@ -100,6 +100,7 @@ with pkgs;
   kdePackages.okular
   mupdf
   cmus
+  lucida-downloader
 
   # BROWSERS
   #firefoxpwa
