@@ -5,7 +5,7 @@
 }:
 {
   services.hermes-agent = {
-    enable = true;
+    enable = false;
 
     settings = {
       model = {

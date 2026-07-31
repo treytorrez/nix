@@ -14,10 +14,10 @@
     wayland.enable = true;
   };
 
-services.open-webui = {
-    enable = true;
-    port = 1234;
-  };
+  #services.open-webui = {
+  #enable = true;
+  #port = 1234;
+  #};
 
   # 4. Install the Wayland session package
   #   environment.systemPackages = with pkgs; [
