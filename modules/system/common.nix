@@ -125,6 +125,7 @@ with pkgs;
 
   # PRODUCTIVITY
   libreoffice-qt6-fresh
+  ted
   protonmail-desktop
   #gnumeric
   doing
