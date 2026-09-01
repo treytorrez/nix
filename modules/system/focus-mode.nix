@@ -106,6 +106,60 @@ let
       done
   '';
 
+  # ---------------------------------------------------------------------------
+  # SELF-HEALING CLEANUP ("safety net")
+  #
+  # WHY THIS EXISTS (the edge case):
+  #   `nmcli connection modify` edits the SAVED connection profile on disk
+  #   (under /etc/NetworkManager/system-connections/), not just the live
+  #   interface. So when focus turns ON, it permanently stores "use
+  #   127.0.0.1" in that profile. The disengage script above restores it to
+  #   auto-DNS — but it only looks at the connections that happen to be
+  #   ACTIVE *right now* when focus turns OFF.
+  #
+  #   If the network changed mid-session (unplug ethernet, join new wifi,
+  #   suspend/resume, DHCP still negotiating), that "right now" snapshot can
+  #   miss the exact connection whose profile was redirected. Result: a saved
+  #   profile gets left pointing at 127.0.0.1 forever, and the next time you
+  #   connect to it you silently get unbound-only DNS again — the exact bug
+  #   we're fixing.
+  #
+  # FIX:
+  #   This cleanup ignores the idea of "current active connection" entirely.
+  #   It scans EVERY saved NM profile, and any profile whose stored DNS is
+  #   exactly "127.0.0.1" (our sentinel for "focus redirected this") with
+  #   ignore-auto-dns=yes gets reset back to auto-DHCP. It is idempotent and
+  #   safe to run anytime: it only touches profiles that match the sentinel,
+  #   so a profile whose DNS you have *deliberately* customized (e.g. to
+  #   1.1.1.1) is left alone.
+  #
+  # We wire this as EXECSTOPPOST, which systemd runs even if the main
+  # ExecStop already ran or the service was stopped abruptly — so no matter
+  # how focus ends, saved profiles are garbage-collected.
+  # ---------------------------------------------------------------------------
+  dnsCleanupScript = pkgs.writeShellScript "focus-dns-cleanup" ''
+    set -e
+    # Example BEFORE (a profile left broken by a mid-session network change):
+    #   $ nmcli -t -f ipv4.dns,ipv4.ignore-auto-dns connection show "Wired connection 2"
+    #   ipv4.dns:127.0.0.1               # <-- sentinel, focus left this behind
+    #   ipv4.ignore-auto-dns:yes
+    #
+    # Scan all SAVED profiles (active or not), not just active ones.
+    ${nmcli} -t --fields NAME connection show |
+      while IFS= read -r name; do
+        [ -n "$name" ] || continue
+        dns="$(${nmcli} -t --fields ipv4.dns connection show "$name" 2>/dev/null)"
+        ign="$(${nmcli} -t --fields ipv4.ignore-auto-dns connection show "$name" 2>/dev/null)"
+        # Only reset profiles that match our own sentinel. This protects
+        # profiles where the user manually set a specific DNS.
+        if [ "$dns" = "127.0.0.1" ] && [ "$ign" = "yes" ]; then
+          ${nmcli} connection modify "$name" ipv4.dns "" ipv4.ignore-auto-dns no 2>/dev/null || true
+          # If it happens to be active right now, re-apply so DNS is immediate.
+          ${nmcli} -nP connection up "$name" 2>/dev/null || true
+        fi
+      done
+  '';
+
 in {
   options.custom.focusMode = {
     enable = lib.mkEnableOption "focus mode";
@@ -172,7 +226,18 @@ in {
     systemd.targets.focus-mode = { description = "Focus Mode"; };
 
     # Re-point the active connection's DNS towards unbound while focus is on,
-    # restoring auto-DNS when it is turned off.
+    # restoring network-provided (auto-DHCP) DNS when it is turned off.
+    #
+    #   ExecStart    -> the active connection's profile is redirected to
+    #                  127.0.0.1 (engage). Only runs when focus turns ON.
+    #   ExecStop     -> the disengage script reverts whichever connection is
+    #                  ACTIVE right now back to auto-DNS. Runs when focus OFF.
+    #   ExecStopPost -> ALWAYS runs after the unit stops (even if ExecStop
+    #                  failed or was skipped). Runs the SELF-HEALING cleanup
+    #                  that scans every saved profile and resets any that were
+    #                  left pointing at the 127.0.0.1 sentinel. This closes
+    #                  the window where a mid-session network change could
+    #                  leave a saved profile stuck on unbound-only DNS.
     systemd.services.focus-dns = {
       description = "Focus mode: route DNS via unbound only while active";
       before    = [ "focus-block-web.service" ];
@@ -181,8 +246,9 @@ in {
       serviceConfig = {
         Type            = "oneshot";
         RemainAfterExit = true;
-        ExecStart = focusDnsScript;
-        ExecStop  = dnsDisengageScript;
+        ExecStart   = focusDnsScript;
+        ExecStop    = dnsDisengageScript;
+        ExecStopPost = dnsCleanupScript;
       };
     };
 
