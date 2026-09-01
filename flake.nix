@@ -26,7 +26,6 @@ nixConfig = {
     noctalia = {
       url = "github:noctalia-dev/noctalia/";
     };
-    hermes-agent.url = "github:NousResearch/hermes-agent";
 
     # --- User environment ----------------------------------------------------
     home-manager = {
@@ -95,7 +94,6 @@ nixConfig = {
       nix-on-droid,
       nixcord,
       canonSrc,
-      hermes-agent,
       voxtype,
       nixvim,
       sops-nix,
@@ -110,14 +108,13 @@ nixConfig = {
         hostname: system:
         nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs hostname hermes-agent noctalia; };
+          specialArgs = { inherit inputs hostname noctalia; };
 
           modules = [
             # Host-specific configuration
             ./hosts/${hostname}
 
             # System-wide modules
-            hermes-agent.nixosModules.default
             stylix.nixosModules.stylix
             sops-nix.nixosModules.sops
             home-manager.nixosModules.home-manager

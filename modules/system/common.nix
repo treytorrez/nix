@@ -1,6 +1,5 @@
 {
   pkgs,
-  hermes-agent,
   ...
 }:
 with pkgs;
@@ -161,9 +160,9 @@ with pkgs;
   bluetui
   playerctl
   hyprshade
+  kdePackages.kdeconnect-kde  
 
   # LLM
-  hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.desktop
   llama-cpp
   ollama
   open-webui

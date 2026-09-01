@@ -21,7 +21,6 @@
     ../../modules/system/ld.nix
     ../../modules/system/tailscale.nix
     ../../modules/system/ollama.nix
-    ../../modules/system/hermes-agent.nix
     ../../modules/system/searxng.nix
 
   ];
@@ -56,7 +55,6 @@
     age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
     secrets = {
       "openrouter-key".sopsFile = ../../secrets/openrouter.yaml;
-      "hermes-env".sopsFile = ../../secrets/hermes-env.yaml;
       "searxng-secret" = {
         sopsFile = ../../secrets/searxng.yaml;
         key = "secret_key";

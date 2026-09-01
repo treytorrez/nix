@@ -24,5 +24,4 @@ in
     target = ".tridactylrc";
     text = tridactylrc;
   };
-
 }

@@ -127,15 +127,19 @@
         mockDevIcons = true;
       };
       mini-indentscope = {
-          enable = true;
-          opts = {
-            symbol = "│"; # your custom symbol
-            draw = {
-              animation = pkgs.lib.mkLuaInline ''
-                return require("mini.indentscope").gen_animation.none()
-              '';
-            };
+        enable = true;
+        settings = {
+          symbol = "│"; # your custom symbol
+          draw = {
+            # NOTE: must be a plain Lua *expression*, NOT a `return`
+            # statement. nix wraps opts values in parentheses; a bare
+            # `(return ...)` is invalid Lua and makes the build fail with
+            # "unexpected symbol near 'return'".
+            animation = pkgs.lib.mkLuaInline ''
+              require("mini.indentscope").gen_animation.none()
+            '';
           };
+        };
       };
 
       # Completion

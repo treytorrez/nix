@@ -38,6 +38,7 @@
     ./tmux.nix
     ./tidal-stylix.nix
     ./llm.nix
+    ./tridactyl.nix
   ];
 
   fonts.fontconfig.enable = true;

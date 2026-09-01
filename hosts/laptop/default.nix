@@ -24,7 +24,6 @@
     ../../modules/system/podman.nix
     ../../modules/system/ollama.nix
     ../../modules/system/fingerprint-laptop.nix
-    #../../modules/system/hermes-agent.nix
     ../../modules/system/stylix.nix
 
   ];
@@ -58,7 +57,6 @@
         sopsFile = ../../secrets/openrouter.yaml;
         owner = "treyt";
       };
-      "hermes-env".sopsFile = ../../secrets/hermes-env.yaml;
     };
   };
 

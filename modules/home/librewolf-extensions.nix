@@ -37,7 +37,7 @@ in
   "uBlock0@raymondhill.net" =
     mkExt "uBlock0@raymondhill.net"
       "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi"
-      "sha256-R/eIofwsAUgwswuw75WIYVcBuYxSZfsZuM9Lp3mEn+s="
+      "sha256-F1dW10RoybpFhj9/wzPTvmcPgtWwZjFOkVgU3VR9FlI="
       { permissions = [ "internal:privateBrowsingAllowed" ]; };
 
   "CanvasBlocker@kkapsner.de" =

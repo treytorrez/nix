@@ -35,7 +35,7 @@
       set -g window-status-format ' #I #W '
       set -g window-status-current-format ' #I #W '
 
-      set -g pane-border-style fg=brightblack
+      set -g pane-border-style fg=brightblue
       set -g pane-active-border-style fg=green
     '';
   };
