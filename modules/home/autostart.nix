@@ -35,27 +35,6 @@
       };
     };
 
-    # Noctalia shell (long-running daemon)
-    noctalia-shell = {
-      Unit = {
-        Description = "Noctalia shell";
-        After = [ "graphical-session.target" ];
-        PartOf = [ "graphical-session.target" ];
-        StartLimitIntervalSec = 60;
-        StartLimitBurst = 3;
-        OnFailure = [ "notify-noctalia-shell.service" ];
-      };
-      Service = {
-        Type = "simple";
-        ExecStart = "${pkgs.noctalia-shell}/bin/noctalia-shell";
-        Restart = "on-failure";
-        RestartSec = 5;
-      };
-      Install = {
-        WantedBy = [ "graphical-session.target" ];
-      };
-    };
-
     # EasyEffects audio effects (long-running daemon)
     easyeffects = {
       Unit = {
@@ -108,14 +87,6 @@
       Service = {
         Type = "oneshot";
         ExecStart = "${pkgs.libnotify}/bin/notify-send" + " 'nm-applet failed' 'Hit restart limit, giving up' --urgency=critical";
-      };
-    };
-
-    notify-noctalia-shell = {
-      Unit.Description = "Notify noctalia-shell failure";
-      Service = {
-        Type = "oneshot";
-        ExecStart = "${pkgs.libnotify}/bin/notify-send" + " 'noctalia-shell failed' 'Hit restart limit, giving up' --urgency=critical";
       };
     };
 
