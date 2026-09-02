@@ -49,10 +49,10 @@ in
     settings = {
       "$mod" = mod;
 
-      config = { decoration = {
+      decoration = {
         blur.enabled = false;
         shadow.enabled = false;
-      }; };
+      };
 
       misc = {
 
