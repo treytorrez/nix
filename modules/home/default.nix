@@ -32,6 +32,7 @@
     #./positron.nix
     ./hyprland.nix
     ./noctalia.nix
+    ./autostart.nix
     #./stylix.nix
     #./ashell.nix
     ./foot.nix

@@ -39,6 +39,13 @@ in
     xwayland.enable = true;
     configType = "hyprlang";
 
+    # SDDM launches Hyprland via uwsm, which manages the graphical session
+    # (hyprland-session.target) itself. home-manager's systemd integration
+    # injects an exec-once that runs `systemctl --user stop
+    # hyprland-session.target` on startup, which kills the uwsm session and
+    # causes a black screen on login. Disable it so uwsm owns the session.
+    systemd.enable = false;
+
     settings = {
       "$mod" = mod;
 
@@ -169,10 +176,6 @@ in
       ];
 
       exec-once = [
-        "nm-applet --indicator"
-        "noctalia-shell"
-        "easyeffects -w"
-
         ##color##"hyprpaper"
         # TODO: could these autostart apps be systemd things
         #"ashell"

@@ -7,6 +7,7 @@
   stylix.enable = true;
 
   # for some reason the download for themes for gnome keep failing so i simply turned it off
+  # TODO: Try re-enabling this?
   stylix.targets.gnome.enable = false;
   #config.stylix.targets.librewolf.profileNames` is not set. Declare profile
   #names with 'config.stylix.targets.librewolf.profileNames = [
