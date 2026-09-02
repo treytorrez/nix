@@ -95,3 +95,29 @@ this is super weird but I *think* I have a way to manage hashes for extensions (
      };
    }
 ```
+
+---
+
+## DECISION (2026-09-01): Keep original plan — use `@` in input names.
+
+Verified empirically. The `ffext-<id>@addon.id` scheme works: flake inputs with
+`@` in the name are valid, land in flake.lock, and materialize as a store path
+containing the raw `.xpi` (no fetchurl / hand-maintained hash needed).
+
+**Accepted trade-off:** `nix flake update "ffext-...@addon.id"` FAILS for a
+single extension — the CLI rejects `@` as an attrpath element (also splits on
+`.`). I never selectively-update anyway, so accepting this avoids maintaining
+an `inputName -> addon id` mapping file. Always use the wholesale
+`nix flake update` and review the flake.lock diff in git.
+
+**Sanitized-name alternative (NOT chosen):** `ffext-ublock-origin` + an
+`inputName -> id` map enables `nix flake update ffext-ublock-origin`, but
+adds a mapping to maintain.
+
+**Known noise:** AMO occasionally re-signs artifacts, so `latest.xpi` content
+changes without a real version bump -> occasional meaningless hash diffs in
+flake.lock. Harmless; review the diff and don't be alarmed.
+
+**Also note:** `nix flake update` bumps nixpkgs/home-manager/etc. too. To get
+only-extension refreshes you'd need per-input names (not adopted). Accept the
+full update; it's infrequent.

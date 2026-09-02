@@ -18,7 +18,6 @@ with pkgs;
   busybox
   delta
   aria2
-  zellij
   curl
   wget
   ripgrep
@@ -41,9 +40,6 @@ with pkgs;
   pandoc
   fwupd
   p7zip
-  tabiew
-  typora
-  vifm
   neomutt
   mutt-wizard
   gettext
@@ -53,6 +49,7 @@ with pkgs;
   w3m
   croc
   gvfs
+  mdr
 
   # EDITORS
   neovim
@@ -72,11 +69,9 @@ with pkgs;
   uv
   arduino-ide
   arduino
-  codex
   opencode
   nixfmt
   python314
-  quartoMinimal
   direnv
   qtcreator
   android-tools
@@ -85,8 +80,6 @@ with pkgs;
   #R
 
   # LAUNCHERS
-  tofi
-  wofi
   wmenu
 
   # MEDIA
@@ -96,7 +89,6 @@ with pkgs;
   feh
   zoom-us
   pinta
-  kdePackages.okular
   mupdf
   cmus
   lucida-downloader
@@ -124,8 +116,8 @@ with pkgs;
 
   # PRODUCTIVITY
   libreoffice-qt6-fresh
-  ted
   protonmail-desktop
+  electron-mail
   #gnumeric
   doing
   anki-bin
@@ -136,7 +128,7 @@ with pkgs;
 
   # funsies :) heehee
   cbonsai
-  # asciiquarium
+  asciiquarium
 
   # SCHOOL
   # mathematica # https://www.balderholst.com/how-to/install-mathematica-on-nixos/
@@ -151,7 +143,6 @@ with pkgs;
   wf-recorder
   proton-vpn
   proton-pass
-  osu-lazer-bin
   docker-compose
   thunar
   hyprshot
