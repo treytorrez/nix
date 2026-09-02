@@ -2,6 +2,13 @@
 {
   # 1. Enable Hyprland
   programs.hyprland.enable = true;
+  # Launch Hyprland through uwsm. This transitively enables programs.uwsm,
+  # which installs uwsm's systemd USER units (wayland-session-bindpid@.service,
+  # wayland-session@.target, etc.) via systemd.packages. Without this, SDDM
+  # still offers the hyprland-uwsm.desktop session (the hyprland package ships
+  # it), but launching it fails instantly with "Unit not found" (systemctl
+  # exit 5) because the units don't exist -> black screen.
+  programs.hyprland.withUWSM = true;
   services.upower.enable = true;
   services.tlp.enable = true;
 
