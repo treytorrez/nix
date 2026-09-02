@@ -67,15 +67,15 @@ with pkgs;
   git
   lazygit
   uv
-  arduino-ide
-  arduino
   opencode
+  pi-coding-agent
   nixfmt
   python314
   direnv
   qtcreator
   android-tools
   gcc
+
   #rstudio
   #R
 
