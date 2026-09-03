@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   boot = {
     loader = {
@@ -23,6 +23,6 @@
       "systemd.show_status=auto"
     ];
 
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
   };
 }

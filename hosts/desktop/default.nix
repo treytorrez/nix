@@ -2,8 +2,18 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }:
+let
+pkgsUnstable = import inputs.nixpkgs-unstable {
+  system = pkgs.stdenv.hostPlatform.system;
+  config = {
+    allowUnfree = true;
+    allowInsecurePredicate = pkg: builtins.elem (lib.getName pkg) [ "broadcom-sta" ];
+  };
+};
+in
 {
   imports = [
     ./hardware-configuration.nix
@@ -31,6 +41,9 @@
 
   boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
   boot.kernelModules = [ "wl" ];
+  # You may have to pin this to avoid wifi breakage
+  # Pinned to unstable branch to grab a fix for the wifi
+  boot.kernelPackages = pkgsUnstable.linuxKernel.packages.linux_7_2;
   boot.blacklistedKernelModules = [
     "b43"
     "bcma"
