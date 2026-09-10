@@ -129,6 +129,8 @@ with pkgs;
   # funsies :) heehee
   cbonsai
   asciiquarium
+  prismlauncher
+
 
   # SCHOOL
   # mathematica # https://www.balderholst.com/how-to/install-mathematica-on-nixos/
