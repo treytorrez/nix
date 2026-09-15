@@ -122,7 +122,7 @@
 
        # Auto-start tmux (only if interactive and not already inside tmux)
         if [[ -z "$TMUX" && $- == *i* ]]; then
-          tmux attach || tmux new
+          tmux new-session -s main || tmux new-session -s main -t $()
         fi
       '';
 

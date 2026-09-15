@@ -105,6 +105,7 @@ in
       bind = [
         #"$mod, Return, exec, ${smartEnter}"
         "$mod, Return, exec, ${term}"
+        "$mod, SHIFT, Return, exec, ${term}"
         "$mod, Z, exec, ${browser_personal}"
         "$mod SHIFT, Z, exec, ${browser_school}"
         "$mod, D, exec, ${menu}"
