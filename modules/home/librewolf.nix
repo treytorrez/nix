@@ -36,20 +36,6 @@
                 }
               ];
             }
-            {
-              name = "BYUI";
-              toolbar = true;
-              bookmarks = [
-                {
-                  name = "Canvas";
-                  url = "https://byui.instructure.edu";
-                }
-                {
-                  name = "My BYUI";
-                  url = "https://my.byui.edu";
-                }
-              ];
-            }
           ];
         };
         # EXTENSIONS ==================================================
@@ -139,31 +125,14 @@
 
         };
         # TODO: add vertical tabs default
-        # TODO: shouldn't this ↓↓ make the corners of all the buttons sharp?
         userChrome = ''
           /* no rounding!! */
-          * { 
+          * {
             border-radius: 0px !important;
             font-family: ${config.stylix.fonts.monospace.name} !important;
           }
         '';
       };
-      school = {
-        id = 1;
-        bookmarks = { };
-
-      };
-      work = {
-        id = 2;
-        bookmarks = { };
-      };
-      pwas = {
-        id = 3;
-
-      };
-    };
-    policies = {
-      DefaultDownloadDirectory = "\${home}/Downloads";
     };
   };
 }

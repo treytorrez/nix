@@ -13,10 +13,12 @@
   # ---------------------------------------------------------------------------
   # INPUTS
   # ---------------------------------------------------------------------------
-nixConfig = {
-  extra-substituters = [ "https://noctalia.cachix.org" ];
-  extra-trusted-public-keys = [ "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4=" ];
-};
+  nixConfig = {
+    extra-substituters = [ "https://noctalia.cachix.org" ];
+    extra-trusted-public-keys = [
+      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+    ];
+  };
   inputs = {
     # --- Nixpkgs channels ----------------------------------------------------
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
@@ -57,7 +59,7 @@ nixConfig = {
 
     # --- Apps / Packages -----------------------------------------------------
     nixcord = {
-      url = "github:FlameFlag/nixcord";
+      url = "github:4evy/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixcraft = {
@@ -123,7 +125,14 @@ nixConfig = {
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { inherit inputs nixcord voxtype nixvim; };
+              home-manager.extraSpecialArgs = {
+                inherit
+                  inputs
+                  nixcord
+                  voxtype
+                  nixvim
+                  ;
+              };
               home-manager.sharedModules = [
                 voxtype.homeManagerModules.default
                 inputs.noctalia.homeModules.default

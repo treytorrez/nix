@@ -6,13 +6,13 @@
   ...
 }:
 let
-pkgsUnstable = import inputs.nixpkgs-unstable {
-  system = pkgs.stdenv.hostPlatform.system;
-  config = {
-    allowUnfree = true;
-    allowInsecurePredicate = pkg: builtins.elem (lib.getName pkg) [ "broadcom-sta" ];
+  pkgsUnstable = import inputs.nixpkgs-unstable {
+    system = pkgs.stdenv.hostPlatform.system;
+    config = {
+      allowUnfree = true;
+      allowInsecurePredicate = pkg: builtins.elem (lib.getName pkg) [ "broadcom-sta" ];
+    };
   };
-};
 in
 {
   imports = [
@@ -55,6 +55,10 @@ in
   boot.extraModprobeConfig = ''
     options snd-hda-intel model=imac27_122
   '';
-
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than +3";
+  };
   system.stateVersion = "26.05";
 }

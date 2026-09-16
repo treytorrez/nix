@@ -9,22 +9,24 @@
 #  Icon=utilities-terminal
 #  Categories=System;TerminalEmulator;
 #  Keywords=shell;prompt;command;commandline;cmd;
-{...}:
+{ ... }:
 {
 
-xdg.desktopEntries = {
+  xdg.desktopEntries = {
     st = {
       name = "Simple Terminal";
       genericName = "Terminal";
       comment = "Suckless terminal emulator for X";
-      exec ="st -t \"Simple Termina\" -f \"AtkynsonMono Nerd Font:style=Semibold:size=15\"";
+      exec = "st -t \"Simple Termina\" -f \"AtkynsonMono Nerd Font:style=Semibold:size=15\"";
       terminal = false;
       type = "Application";
       icon = "utilities-terminal";
-      categories = [ "System" "TerminalEmulator" ];
+      categories = [
+        "System"
+        "TerminalEmulator"
+      ];
       #keywords = [ "shell" "prompt" "command" "commandline" "cmd" ];
     };
   };
-
 
 }

@@ -22,9 +22,11 @@
     ./i3status-rust.nix
     ./lxqt.nix
     ./xdg.nix
-    ./emacs.nix
+    # emacs will have to wait for another day
+    # breaking build as of Sep 15 2026
+    #./emacs.nix
     ./direnv.nix
-    #./systemd.nix
+    ./systemd.nix
     ./fnott.nix
     ./mew.nix
     #./rofi.nix

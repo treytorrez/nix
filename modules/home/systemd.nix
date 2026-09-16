@@ -1,45 +1,34 @@
 { pkgs, ... }:
 {
   systemd.user = {
-    timers."time-recording-reminder" = {
-      Unit.Description = "Hourly time tracking reminder";
-      Timer = {
-        OnCalendar = "hourly";
-        Persistent = false;
+    timers = {
+      "automatic-nix-store-optimization" = {
+        Unit.Description = "Weekly deduplication of the Nix store with `nix store optimize`";
+        Timer = {
+          OnCalendar = "Mon *-*-* 04:00:00";
+          Persistent = true;
+        };
       };
-      Install.WantedBy = [ "timers.target" ];
     };
 
-    services."time-recording-reminder" = {
-      Unit.Description = "Time tracking notification";
-      Service = {
-        Type = "oneshot";
-        ExecStart =
-          let
-            notifyScript = pkgs.writeShellScript "time-reminder" ''
-              ${pkgs.libnotify}/bin/notify-send \
-                'What are you doing?' \
-                'Click a button to record your activity' \
-                --urgency=critical \
-                --action="big-data=Now: big-data" \
-                --action="procrastinating=Now: procrastinating" \
-                --action="finish=Finish" \
-                --wait | while read -r action; do
-                  case "$action" in
-                    "big-data")
-                      ${pkgs.doing}/bin/doing now big-data
-                      ;;
-                    "procrastinating")
-                      ${pkgs.doing}/bin/doing now procrastinating
-                      ;;
-                    "finish")
-                      ${pkgs.doing}/bin/doing finish
-                      ;;
-                  esac
-                done
-            '';
-          in
-          "${notifyScript}";
+    services = {
+      "nix-store-optimize" = {
+        Unit.Description = "Run `nix store optimize`";
+        Service = {
+          Type = "exec";
+          ExecStart =
+            let
+              safeStoreOptimize = pkgs.writeShellScript "safe-store-optimise" ''
+                ${pkgs.libnotify}/bin/notify-send \
+                'Beginning Nix store optimization' \
+                'Expect slowdowns, store optimization is computationally expensive';
+
+                nix store optimise
+              '';
+            in
+            "${safeStoreOptimize}";
+
+        };
       };
     };
   };
