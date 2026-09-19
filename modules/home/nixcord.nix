@@ -1,14 +1,17 @@
-{ ... }:
 {
-  programs.nixcord.goofcord = {
+  programs.nixcord.legcord = {
     enable = true;
 
-    # Defaults to Vencord; use "equicord" for Equicord's larger plugin set.
-    clientMod = "vencord";
+    # Optionally bundle Vencord or Equicord (also installs userPlugins)
+    vencord.enable = true;
+    # equicord.enable = true;
 
     settings = {
+      channel = "stable";
+      tray = "dynamic";
       minimizeToTray = true;
-      hardwareAcceleration = true;
+      mods = [ "vencord" ];
+      doneSetup = true;
     };
   };
 }
