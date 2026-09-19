@@ -38,6 +38,7 @@
     #./stylix.nix
     #./ashell.nix
     ./foot.nix
+    #./pi-coding-agent.nix
     ./tmux.nix
     ./tidal-stylix.nix
     ./llm.nix

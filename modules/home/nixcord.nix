@@ -1,17 +1,21 @@
+{ ... }:
 {
-  programs.nixcord.legcord = {
+  programs.nixcord = {
     enable = true;
+    legcord = {
+      enable = true;
 
-    # Optionally bundle Vencord or Equicord (also installs userPlugins)
-    vencord.enable = true;
-    # equicord.enable = true;
+      # Optionally bundle Vencord or Equicord (also installs userPlugins)
+      vencord.enable = true;
+      # equicord.enable = true;
 
-    settings = {
-      channel = "stable";
-      tray = "dynamic";
-      minimizeToTray = true;
-      mods = [ "vencord" ];
-      doneSetup = true;
+      settings = {
+        channel = "stable";
+        tray = "dynamic";
+        minimizeToTray = true;
+        mods = [ "vencord" ];
+        doneSetup = true;
+      };
     };
   };
 }
