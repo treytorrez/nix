@@ -150,17 +150,6 @@
         panel.shadow = false;
       };
 
-      theme = {
-        builtin = "Gruvbox";
-        community_palette = "Monochrome";
-        mode = "dark";
-        source = "builtin";
-        wallpaper_scheme = "m3-content";
-        templates = {
-          enable_builtin_templates = false;
-          enable_community_templates = false;
-        };
-      };
 
       wallpaper = {
         enabled = false;
