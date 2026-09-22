@@ -151,28 +151,6 @@
       };
 
 
-      wallpaper = {
-        enabled = false;
-        fill_color = "on_surface";
-        fill_mode = "center";
-        default.path = "${config.home.homeDirectory}/Pictures/Wallpapers/delete.png";
-        last.path = "${config.home.homeDirectory}/Pictures/Wallpapers/delete.png";
-        monitors.eDP-2.path = "${config.home.homeDirectory}/Pictures/Wallpapers/delete.png";
-        favorite = [
-          {
-            builtin_palette = "Gruvbox";
-            palette_source = "builtin";
-            path = "${config.home.homeDirectory}/Pictures/Wallpapers/delete.png";
-            theme_mode = "dark";
-          }
-          {
-            palette_source = "wallpaper";
-            path = "${config.home.homeDirectory}/Pictures/Wallpapers/fuck-my-computer.png";
-            theme_mode = "dark";
-            wallpaper_scheme = "m3-content";
-          }
-        ];
-      };
 
       widget = {
         audio_visualizer = {

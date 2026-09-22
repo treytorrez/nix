@@ -37,7 +37,7 @@ in
   "uBlock0@raymondhill.net" =
     mkExt "uBlock0@raymondhill.net"
       "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi"
-      "sha256-F1dW10RoybpFhj9/wzPTvmcPgtWwZjFOkVgU3VR9FlI="
+      "sha256-W3RBWGBFY3BkS9gPFhJehlsObDVrtd/PuEBpln6qUoc="
       { permissions = [ "internal:privateBrowsingAllowed" ]; };
 
   "CanvasBlocker@kkapsner.de" =
@@ -60,7 +60,7 @@ in
 
   "@testpilot-containers" =
     mkExt "@testpilot-containers" "https://addons.mozilla.org/firefox/downloads/file/4627302/latest.xpi"
-      "sha256-vz3jW4RL7PFmRJ8dkn+ZSiq6+4/Ezod+ynqMbNEk00o="
+      "sha256-VJJrbkJ01ZNaX8DapjIPHTcePS8aWHdGfKOrIqZcTyA="
       { permissions = [ "internal:privateBrowsingAllowed" ]; };
 
   "78272b6fa58f4a1abaac99321d503a20@proton.me" =

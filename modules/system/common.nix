@@ -60,9 +60,7 @@ with pkgs;
   #    ferrite # Added with NixPkgs overlay
 
   # DEVELOPMENT
-  piper-tts
   nodejs
-  agent-browser
   docker
   python3
   git
@@ -159,7 +157,6 @@ with pkgs;
   # LLM
   llama-cpp
   ollama
-  open-webui
   tmuxai
   (llm.withPlugins{
     llm-openrouter = true;

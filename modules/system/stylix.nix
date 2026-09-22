@@ -7,10 +7,6 @@
   stylix = {
     enable = true;
     autoEnable = true;
-
-    # for some reason the download for themes for gnome keep failing so i simply turned it off
-    # TODO: Try re-enabling this?
-    #stylix.targets.gnome.enable = false;
     #config.stylix.targets.librewolf.profileNames` is not set. Declare profile
     #names with 'config.stylix.targets.librewolf.profileNames = [
     #"<PROFILE_NAME>" ];'.
@@ -21,7 +17,7 @@
       size = 32;
     };
 
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/black-metal-venom.yaml";
     image = ../../media/future-cubes-dark-mode.jpg;
     fonts = {
       monospace = {

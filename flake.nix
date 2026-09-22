@@ -23,7 +23,7 @@
     # --- Nixpkgs channels ----------------------------------------------------
     # RESTORED (2026-09-18): rolling ref back after pinning the actual culprit,
     # linux-firmware (amdgpu regression, nixpkgs#562919) — see overlay below.
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # --- AI / Agents ---------------------------------------------------------
@@ -33,13 +33,13 @@
 
     # --- User environment ----------------------------------------------------
     home-manager = {
-      url = "github:nix-community/home-manager/release-26.05";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/home-manager";
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # --- Theming -------------------------------------------------------------
     stylix = {
-      url = "github:nix-community/stylix/release-26.05";
+      url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -51,7 +51,7 @@
 
     # --- Editors -------------------------------------------------------------
     nixvim = {
-      url = "github:nix-community/nixvim/nixos-26.05";
+      url = "github:nix-community/nixvim";
       #      inputs.nixpkgs.follows = "nixpkgs";
     };
     emacs-overlay = {
