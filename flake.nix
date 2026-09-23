@@ -27,14 +27,17 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # --- AI / Agents ---------------------------------------------------------
-    noctalia = {
-      url = "github:noctalia-dev/noctalia/";
-    };
+    lilbee.url = "github:tobocop2/lilbee";
+    lilbee.inputs.nixpkgs.follows = "nixpkgs";
 
     # --- User environment ----------------------------------------------------
     home-manager = {
       url = "github:nix-community/home-manager";
       #inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia/";
     };
 
     # --- Theming -------------------------------------------------------------
@@ -102,6 +105,7 @@
       nixvim,
       sops-nix,
       noctalia,
+    lilbee,
       ...
     }:
     let
@@ -146,6 +150,7 @@
                 (final: prev: {
                   canon = final.callPackage ./packages/canon.nix { canonSrc = inputs.canonSrc; };
                   nixvim = inputs.nixvim.packages.${final.system}.default;
+                  lilbee-bin = inputs.lilbee.packages.${system}.default;
                 })
                 # Third-party overlays
                 inputs.emacs-overlay.overlays.default

@@ -62,14 +62,12 @@ with pkgs;
   # DEVELOPMENT
   nodejs
   docker
-  python3
   git
   lazygit
   uv
   opencode
   pi-coding-agent
   nixfmt
-  python314
   direnv
   qtcreator
   android-tools
@@ -156,6 +154,7 @@ with pkgs;
 
   # LLM
   llama-cpp
+  lilbee-bin
   ollama
   tmuxai
   (llm.withPlugins{
