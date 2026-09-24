@@ -141,8 +141,9 @@ in
           }
 
           /*** Mozilla based browsers ***/
-          [contenteditable]::-moz-selection {
-            background: #ffb7b7; /* Firefox */
+          ::-moz-selection {
+              background-color: ${c.base08};
+              color: ${c.base05};
           }
         '';
       };
