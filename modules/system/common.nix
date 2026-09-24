@@ -94,7 +94,6 @@ with pkgs;
   #firefoxpwa
   nyxt
   brave
-  chromium
 
   # AUDIO
   pulseaudio
@@ -112,11 +111,9 @@ with pkgs;
   libnotify
 
   # PRODUCTIVITY
-  libreoffice-qt6-fresh
-  protonmail-desktop
+  libreoffice-qt
   electron-mail
   #gnumeric
-  doing
   anki-bin
 
   # LIBRARIES
