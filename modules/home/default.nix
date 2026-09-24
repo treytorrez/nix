@@ -43,6 +43,7 @@
     ./tidal-stylix.nix
     ./llm.nix
     ./tridactyl.nix
+    ./zed-editor.nix
   ];
 
   fonts.fontconfig.enable = true;
