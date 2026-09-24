@@ -7,6 +7,7 @@
   stylix = {
     enable = true;
     autoEnable = true;
+    polarity = "dark";
     #config.stylix.targets.librewolf.profileNames` is not set. Declare profile
     #names with 'config.stylix.targets.librewolf.profileNames = [
     #"<PROFILE_NAME>" ];'.
