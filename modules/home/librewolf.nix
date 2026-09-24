@@ -4,6 +4,9 @@
   config,
   ...
 }:
+let
+  c = config.lib.stylix.colors;
+in
 {
   programs.librewolf = {
     enable = true;
@@ -130,6 +133,17 @@
           * {
             border-radius: 0px !important;
             font-family: ${config.stylix.fonts.monospace.name} !important;
+          }
+          /*** Works on common browsers ***/
+          ::selection {
+              background-color: ${c.base08};
+              color: ${c.base05};
+          }
+
+          /*** Mozilla based browsers ***/
+          ::-moz-selection {
+              background-color: ${c.base08};
+              color: ${c.base05};
           }
         '';
       };
