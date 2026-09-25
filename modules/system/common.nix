@@ -11,6 +11,7 @@ with pkgs;
 
   # SHELLS
   zsh
+  plocate
   bash
 
   # SHELL UTILITIES

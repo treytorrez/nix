@@ -38,6 +38,7 @@
     sessionVariables = {
       MANPAGER = "bat -l man --strip-ansi always --style='-numbers'";
       EDITOR = "nvim -u NONE";
+      GPG_TTY = "$(tty)";
     };
 
     # ------------------------------------------------------------
