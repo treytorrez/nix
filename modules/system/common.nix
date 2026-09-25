@@ -149,6 +149,7 @@ with pkgs;
   hyprshade
   kdePackages.kdeconnect-kde  
 
+
   # LLM
   llama-cpp
   lilbee-bin

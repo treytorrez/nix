@@ -1,5 +1,6 @@
 { config, pkgs, ... }:
 {
+  services.passSecretService.enable = true;
   # 1. Enable Hyprland
   programs.hyprland.enable = true;
   # Launch Hyprland through uwsm. This transitively enables programs.uwsm,
