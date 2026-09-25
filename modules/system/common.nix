@@ -148,6 +148,8 @@ with pkgs;
   playerctl
   hyprshade
   kdePackages.kdeconnect-kde  
+  pinentry-all
+  gnupg
 
 
   # LLM
