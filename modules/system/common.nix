@@ -83,6 +83,8 @@ with pkgs;
   mpv
   tidal-hifi
   sone
+  high-tide
+  tonearm
   feh
   zoom-us
   pinta
