@@ -137,7 +137,6 @@ with pkgs;
   #ashell
   hyprland
   lightdm
-  i3
   wf-recorder
   proton-vpn
   proton-pass
@@ -145,11 +144,14 @@ with pkgs;
   thunar
   hyprshot
   remmina
-  tigervnc
   bluetui
   playerctl
   hyprshade
   kdePackages.kdeconnect-kde  
+  oo7 # For freedesktop.secrets management
+  oo7-pam
+  oo7-server
+  oo7-portal
 
   # LLM
   llama-cpp
