@@ -148,10 +148,8 @@ with pkgs;
   playerctl
   hyprshade
   kdePackages.kdeconnect-kde  
-  oo7 # For freedesktop.secrets management
-  oo7-pam
-  oo7-server
-  oo7-portal
+
+  oo7-server# For freedesktop.secrets management
 
   # LLM
   llama-cpp
