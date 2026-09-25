@@ -149,8 +149,6 @@ with pkgs;
   hyprshade
   kdePackages.kdeconnect-kde  
 
-  oo7-server# For freedesktop.secrets management
-
   # LLM
   llama-cpp
   lilbee-bin
