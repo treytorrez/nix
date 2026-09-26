@@ -4,7 +4,8 @@
     enable = true;
     enableCompletion = true;          # Kept enabled; we override the completion command below
     syntaxHighlighting.enable = true;
-    autosuggestion.enable = true;
+    #autosuggestion.enable = true;
+
 
     # ------------------------------------------------------------
     # OPTIMIZATION 1: Override completion initialization
@@ -89,9 +90,6 @@
           zcompile "$ZSH_COMPDUMP" 2>/dev/null
         fi
 
-        # Your custom function
-        batcanon() { canon "$@" | sed 's/ \([0-9]*\) /\1. /' | bat -l md --theme Nord --style=-numbers }
-
         # nix shell/run shortcuts
         ns() {
           local pkg="$1"; shift
@@ -151,6 +149,7 @@
   home.packages = [
     pkgs.zsh-defer    # Required for deferred plugin loading
     (import ../../packages/lsdot.nix { inherit pkgs; })
+    pkgs.deja
     # pkgs.zsh-bench   # Optional: for profiling startup time
   ];
 

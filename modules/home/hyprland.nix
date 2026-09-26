@@ -8,8 +8,8 @@
 let
   mod = "SUPER";
   term = "foot";
-  menu = "mew-run -p open:";
-  runner = "mew-run -p run:";
+  menu = "mew-run -i -p open:";
+  runner = "mew-run -i -p run:";
   browser_personal = "librewolf -P default";
   browser_school = "librewolf -P school";
 
