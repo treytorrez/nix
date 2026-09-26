@@ -56,7 +56,6 @@ with pkgs;
   neovim
   emacs
   nano
-  neovide
   zed-editor
   #    ferrite # Added with NixPkgs overlay
 

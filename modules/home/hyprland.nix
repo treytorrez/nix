@@ -8,8 +8,8 @@
 let
   mod = "SUPER";
   term = "foot";
-  menu = "mew-run";
-  runner = "mew-run";
+  menu = "mew-run -p open: ";
+  runner = "mew-run run: ";
   browser_personal = "librewolf -P default";
   browser_school = "librewolf -P school";
 
@@ -81,9 +81,9 @@ in
       # -> hl.config({ ... })
       config = {
         general = {
-          gaps_in = 2;
+          gaps_in = 0;
           gaps_out = 0;
-          border_size = 2;
+          border_size = 4;
           ##color## "col.active_border" = "rgb(${gruvbox.bright_orange})";
           ##color## "col.inactive_border" = "rgb(${gruvbox.gray_245})";
         };
@@ -121,8 +121,8 @@ in
         { _args = [ "${mod} + SHIFT + Z" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${browser_school}")'') ]; }
         { _args = [ "${mod} + D" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${menu}")'') ]; }
         { _args = [ "${mod} + SHIFT + D" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${runner}")'') ]; }
-        { _args = [ "${mod} + N" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("neovide")'') ]; }
-        { _args = [ "${mod} + SHIFT + N" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("neovide +'cd /etc/nixos/'")'') ]; }
+        { _args = [ "${mod} + N" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("footclient nvim")'') ]; }
+        { _args = [ "${mod} + SHIFT + N" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("footclient nvim cd /etc/nixos/")'') ]; }
         { _args = [ "${mod} + SPACE" (lib.generators.mkLuaInline ''hl.dsp.window.float({ action = "toggle" })'') ]; }
         { _args = [ "${mod} + SHIFT + Q" (lib.generators.mkLuaInline ''hl.dsp.window.close()'') ]; }
 
