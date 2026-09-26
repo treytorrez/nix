@@ -122,7 +122,7 @@ in
         { _args = [ "${mod} + D" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${menu}")'') ]; }
         { _args = [ "${mod} + SHIFT + D" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${runner}")'') ]; }
         { _args = [ "${mod} + N" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("footclient nvim")'') ]; }
-        { _args = [ "${mod} + SHIFT + N" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("footclient nvim cd /etc/nixos/")'') ]; }
+        { _args = [ "${mod} + SHIFT + N" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("footclient nvim /etc/nixos/")'') ]; }
         { _args = [ "${mod} + SPACE" (lib.generators.mkLuaInline ''hl.dsp.window.float({ action = "toggle" })'') ]; }
         { _args = [ "${mod} + SHIFT + Q" (lib.generators.mkLuaInline ''hl.dsp.window.close()'') ]; }
 

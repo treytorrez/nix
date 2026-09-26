@@ -6,8 +6,8 @@
 {
   stylix.enable = true;
 
-  # for some reason the download for themes for gnome keep failing so i simply turned it off
-  stylix.targets.gnome.enable = false;
+
+  #evaluation warning: treyt profile: stylix: librewolf: `config.stylix.targets.librewolf.profileNames` is not set. Declare profile names with 'config.stylix.targets.librewolf.profileNames = [ "<PROFILE_NAME>" ];'.
   stylix.targets.librewolf = {
     profileNames = [
       "default"

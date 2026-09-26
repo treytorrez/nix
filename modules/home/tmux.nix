@@ -14,8 +14,10 @@
       # tmux-fzf: replace default ? (list-keys) with fuzzy keybinding search
       #unbind ?
       #unbind F
-      #set-environment -g TMUX_FZF_LAUNCH_KEY "?"
+      set-environment -g TMUX_FZF_LAUNCH_KEY "?"
       set-environment -g TMUX_FZF_ORDER "session|window|pane|keybinding|command|clipboard|process"
+      set -g default-terminal "tmux-256color"
+      set -as terminal-overrides ",*:Tc"
 
       set -g allow-passthrough on
 
