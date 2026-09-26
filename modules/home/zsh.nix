@@ -138,6 +138,11 @@
           ${pkgs.starship}/bin/starship init zsh --print-full-init > "$STARSHIP_CACHE"
         fi
         source "$STARSHIP_CACHE"
+       # ----------- deja initialization -------------
+       # this command sources a large file that is stored in .local/share/deja/
+       # run down here to keep from bogging things down
+       # TODO: PR on nixpkgs to get that init.zsh in the nix store???
+       eval $(deja init zsh)
       '';
     in
       lib.mkMerge [ earlyInit generalInit promptInit ];
