@@ -142,7 +142,7 @@
        # this command sources a large file that is stored in .local/share/deja/
        # run down here to keep from bogging things down
        # TODO: PR on nixpkgs to get that init.zsh in the nix store???
-       export DEJA_HIGHLIGHT_STYLE='fg=2,italic'
+       export DEJA_HIGHLIGHT_STYLE='fg=standout,blink'
        eval $(deja init zsh)
       '';
     in
