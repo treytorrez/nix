@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
   programs.pi-coding-agent = {
     enable = true;
@@ -16,6 +16,7 @@
       };
     };
 
+    extraPackages = [ pkgs.nodejs ];
     settings = {
       defaultProvider = "openrouter";
       defaultModel = "z-ai/glm-5.3-flash";
