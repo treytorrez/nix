@@ -1,35 +1,53 @@
-{ lib, pkgs, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  starshipInit = pkgs.runCommand "starship-init.zsh" { } ''
+    ${pkgs.starship}/bin/starship init zsh --print-full-init > "$out"
+    ${pkgs.zsh}/bin/zsh -n "$out"
+  '';
+  direnvInit = pkgs.runCommand "direnv-init.zsh" { } ''
+    ${pkgs.direnv}/bin/direnv hook zsh > "$out"
+    ${pkgs.zsh}/bin/zsh -n "$out"
+  '';
+in
+{
+  programs.starship.enableZshIntegration = lib.mkForce false;
+  programs.direnv.enableZshIntegration = lib.mkForce false;
+
   programs.zsh = {
     enable = true;
-    enableCompletion = true; # Kept enabled; we override the completion command below
-    syntaxHighlighting.enable = true;
-    #autosuggestion.enable = true;
+    enableCompletion = true;
 
-    # ------------------------------------------------------------
-    # OPTIMIZATION 1: Override completion initialization
-    # ------------------------------------------------------------
-    # Home Manager normally runs `autoload -U compinit && compinit` at order 570.
-    # We replace it with a cached version that skips the expensive security audit
-    # and dump regeneration. This reduces compinit time from ~450ms to <10ms.
-    #
-    # The completion dump is now regenerated automatically on each rebuild via
-    # home.activation.recompZsh — no manual steps needed after switching.
+    # Dump name re-keys when the home package set changes; otherwise rescanned
+    # at most every 24h. Deferred so the first prompt paints before compinit.
     completionInit = ''
-      autoload -Uz compinit
-      compinit -C -d "$ZSH_COMPDUMP"
-      zmodload zsh/datetime
-      autoload -U calendar calendar_add
+      : ''${ZSH_COMPDUMP:="''${XDG_CACHE_HOME:-$HOME/.cache}/zsh/compdump-${builtins.unsafeDiscardStringContext (builtins.baseNameOf config.home.path)}-$ZSH_VERSION"}
+      autoload -Uz compinit calendar calendar_add
+      _init_completion() {
+        local -A st
+        zmodload -F zsh/stat b:zstat
+        if [[ -s "$ZSH_COMPDUMP" ]] && zstat -H st "$ZSH_COMPDUMP" && (( st[mtime] + 86400 > EPOCHSECONDS )); then
+          compinit -C -d "$ZSH_COMPDUMP"
+        else
+          mkdir -p "''${ZSH_COMPDUMP:h}"
+          compinit -i -d "$ZSH_COMPDUMP"
+          [[ ! -f "$ZSH_COMPDUMP" ]] || touch "$ZSH_COMPDUMP"
+        fi
+        [[ ! -s "$ZSH_COMPDUMP" || "$ZSH_COMPDUMP.zwc" -nt "$ZSH_COMPDUMP" ]] || zcompile "$ZSH_COMPDUMP"
+      }
+      zsh-defer -a _init_completion
     '';
 
     shellAliases = {
       ls = "ls -FGAh --color=tty";
       ll = "ls --color=tty -l";
-      #update = "echo \"rebuilding as $(hostname)\"; sudo nixos-rebuild switch --flake /etc/nixos#$(hostname)";
       psgrep = "ps aux | rg";
       nvimprovements = "nvim /home/$USER/Documents/personal/improvements.md";
-      # Alias to manually regenerate the completion dump if ever needed
-      recomp = "rm -f ~/.cache/zsh/compdump* && ZSH_COMPDUMP=~/.cache/zsh/compdump compinit -d ~/.cache/zsh/compdump";
+      recomp = ''rm -f -- "$ZSH_COMPDUMP" "$ZSH_COMPDUMP.zwc" && _init_completion'';
       xo = "xdg-open";
       gs = "git status";
       ga = "git add";
@@ -40,146 +58,73 @@
       EDITOR = "nvim -u NONE";
     };
 
-    # ------------------------------------------------------------
-    # OPTIMIZATION 2: Use initContent for fine-grained ordering
-    # ------------------------------------------------------------
-    # initContent allows us to place commands at specific phases of startup.
-    # Order values: 500 (early), 550 (before completion), 1000 (general), 1200 (after general), 1500 (last).
-    initContent =
-      let
-        # ---- Order 500: Very early setup ----
-        earlyInit = lib.mkOrder 500 ''
-          # Set the location for the completion dump file (used by completionInit)
-          : ''${ZSH_COMPDUMP:="$HOME/.cache/zsh/compdump"}
-          mkdir -p "$(dirname "$ZSH_COMPDUMP")"
-        '';
+    initContent = lib.mkMerge [
+      (lib.mkOrder 500 ''
+        if [[ -o interactive && -z "$TMUX" && -t 0 && -t 1 && "$TERM" != dumb ]]; then
+          exec ${pkgs.tmux}/bin/tmux new-session -A -s main
+        fi
+        source ${pkgs.zsh-defer}/share/zsh-defer/zsh-defer.plugin.zsh
+        zmodload zsh/datetime # EPOCHSECONDS + deja's EPOCHREALTIME
+        bindkey -v
+        KEYTIMEOUT=1
+        setopt promptsubst
+        PROMPT='%F{cyan}%~%f %# '
+      '')
 
-        # ---- Order 1000: General configuration (runs after completion) ----
-        generalInit = lib.mkOrder 1000 ''
-           # ------------------------------------------------------------
-           # OPTIMIZATION 3: Deferred loading of vi-mode plugin
-           # ------------------------------------------------------------
-           # zsh-vi-mode can be slow to source. Using zsh-defer loads it
-           # asynchronously after the prompt appears, making the shell feel instant.
-           if command -v zsh-defer >/dev/null; then
-             zsh-defer source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-           else
-             source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-           fi
+      (lib.mkOrder 1000 ''
+        source ${direnvInit}
 
-           # ------------------------------------------------------------
-           # OPTIMIZATION 4: Lazy direnv hook
-           # ------------------------------------------------------------
-           # The direnv hook runs on every shell start. We defer it until the
-           # first `cd` or prompt display, saving ~10-20ms at startup.
-           _lazy_direnv() {
-             unfunction _lazy_direnv
-             eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
-           }
-           autoload -Uz add-zsh-hook
-           add-zsh-hook chpwd _lazy_direnv
-           add-zsh-hook precmd _lazy_direnv
+        ns() {
+          local pkg="$1"; shift
+          nix shell "nixpkgs#$pkg" "$@"
+        }
+        nr() {
+          local pkg="$1"; shift
+          nix run "nixpkgs#$pkg" "$@"
+        }
 
-           # ------------------------------------------------------------
-           # OPTIMIZATION 5: Compile completion dump for faster loading
-           # ------------------------------------------------------------
-           # Zsh can load byte-compiled dump files much faster. This compiles
-           # the dump once after it's created.
-           if [[ -f "$ZSH_COMPDUMP" && ! -f "$ZSH_COMPDUMP.zwc" ]]; then
-             zcompile "$ZSH_COMPDUMP" 2>/dev/null
-           fi
-
-           # nix shell/run shortcuts
-           ns() {
-             local pkg="$1"; shift
-             nix shell "nixpkgs#$pkg" "$@"
-           }
-           nr() {
-             local pkg="$1"; shift
-             nix run "nixpkgs#$pkg" "$@"
-           }
-
-           # Warp directory - reads ~/.warprc (key:path format, backward compat)
-           wd() {
-             local config_file=''${HOME}/.warprc
-             if [[ $# -eq 0 ]]; then
-               while IFS=':' read -r key path; do
-                 [[ -n "$key" ]] && print -P "%F{green}$key%f -> $path"
-               done < "$config_file"
-               return
-             fi
-             local target
-             target=$(grep "^$1:" "$config_file" 2>/dev/null | cut -d':' -f2-)
-             if [[ -n "$target" ]]; then
-               cd "$target"
-             else
-               echo "wd: unknown warp point '$1'" >&2
-               return 1
-             fi
-           }
-
-          # Auto-start tmux (only if interactive and not already inside tmux)
-           if [[ -z "$TMUX" && $- == *i* ]]; then
-             tmux new-session -s main || tmux new-session -s main -t $()
-           fi
-        '';
-
-        # ---- Order 1200: Prompt setup (after most other config) ----
-        promptInit = lib.mkOrder 1200 ''
-          # ------------------------------------------------------------
-          # OPTIMIZATION 6: Cached Starship init
-          # ------------------------------------------------------------
-          # Starship's init script is generated once and cached. This avoids
-          # running `starship init zsh` on every shell start.
-          STARSHIP_CACHE="$HOME/.cache/starship/init.zsh"
-          if [[ ! -f "$STARSHIP_CACHE" ]] || [[ ${pkgs.starship}/bin/starship -nt "$STARSHIP_CACHE" ]]; then
-            mkdir -p "$(dirname "$STARSHIP_CACHE")"
-            ${pkgs.starship}/bin/starship init zsh --print-full-init > "$STARSHIP_CACHE"
+        # Warp directory - reads ~/.warprc (key:path format, backward compat)
+        wd() {
+          local config_file=''${HOME}/.warprc
+          if [[ $# -eq 0 ]]; then
+            local key target
+            while IFS=':' read -r key target; do
+              [[ -n "$key" ]] && print -P "%F{green}$key%f -> $target"
+            done < "$config_file"
+            return
           fi
-          source "$STARSHIP_CACHE"
-          # ----------- deja initialization -------------
-          # this command sources a large file that is stored in .local/share/deja/
-          # run down here to keep from bogging things down
-          # TODO: PR on nixpkgs to get that init.zsh in the nix store???
-          export DEJA_HIGHLIGHT_STYLE='fg=8,blink'
-          # ~/.zshrc
+          local target
+          target=$(grep "^$1:" "$config_file" 2>/dev/null | cut -d':' -f2-)
+          if [[ -n "$target" ]]; then
+            cd "$target"
+          else
+            echo "wd: unknown warp point '$1'" >&2
+            return 1
+          fi
+        }
+      '')
+
+      (lib.mkOrder 1500 ''
+        export DEJA_HIGHLIGHT_STYLE='fg=8,blink'
+        _init_deja() {
           if [[ -r "$HOME/.local/share/deja/init.zsh" ]]; then
             source "$HOME/.local/share/deja/init.zsh"
           else
-            eval "$(deja init zsh)"
+            eval "$(${pkgs.deja}/bin/deja init zsh)"
           fi
-        '';
-      in
-      lib.mkMerge [
-        earlyInit
-        generalInit
-        promptInit
-      ];
+        }
+        zsh-defer -a _init_deja
+        zsh-defer -a source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+        if [[ "$TERM" != dumb ]]; then
+          zsh-defer -12 source ${starshipInit}
+        fi
+      '')
+    ];
   };
 
-  # ------------------------------------------------------------
-  # Additional packages needed for optimizations
-  # ------------------------------------------------------------
   home.packages = [
-    pkgs.zsh-defer # Required for deferred plugin loading
     (import ../../packages/lsdot.nix { inherit pkgs; })
     pkgs.deja
-    # pkgs.zsh-bench   # Optional: for profiling startup time
   ];
-
-  # ------------------------------------------------------------
-  # Automatically regenerate the completion dump on each rebuild
-  # ------------------------------------------------------------
-  # Replaces the need to manually run `recomp` after every system update.
-  # $DRY_RUN_CMD is respected so `home-manager build` (dry run) won't mutate state.
-  home.activation.recompZsh = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    $DRY_RUN_CMD rm -f "$HOME/.cache/zsh/compdump"*
-    $DRY_RUN_CMD mkdir -p "$HOME/.cache/zsh"
-    $DRY_RUN_CMD ${pkgs.zsh}/bin/zsh -c '
-      ZSH_COMPDUMP="$HOME/.cache/zsh/compdump"
-      autoload -Uz compinit
-      compinit -d "$ZSH_COMPDUMP"
-      zcompile "$ZSH_COMPDUMP"
-    '
-  '';
 }
