@@ -61,7 +61,17 @@ in
     initContent = lib.mkMerge [
       (lib.mkOrder 500 ''
         if [[ -o interactive && -z "$TMUX" && -t 0 && -t 1 && "$TERM" != dumb ]]; then
-          exec ${pkgs.tmux}/bin/tmux new-session -A -s main
+          # Shared window list, independent viewports: every terminal gets its
+          # own session grouped with the detached "main" anchor (active window
+          # is per-session, so terminals don't mirror each other). The anchor
+          # costs one idle window but is never attached to directly, so tmux's
+          # unconditional client-detached hook can reap per-terminal sessions
+          # and windows survive all terminals closing.
+          # ponytail: manually `tmux attach -t main` + detach reaps the anchor;
+          # if-shell guards can't run tmux commands from hooks.
+          ${pkgs.tmux}/bin/tmux has-session -t '=main' 2>/dev/null ||
+            ${pkgs.tmux}/bin/tmux new-session -d -s main 2>/dev/null
+          exec ${pkgs.tmux}/bin/tmux new-session -A -s "main-''${TTY##*/}" -t '=main' \; new-window
         fi
         source ${pkgs.zsh-defer}/share/zsh-defer/zsh-defer.plugin.zsh
         zmodload zsh/datetime # EPOCHSECONDS + deja's EPOCHREALTIME

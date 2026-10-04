@@ -1,5 +1,8 @@
 { pkgs, ... }: {
-  home.packages = with pkgs; [ acpi fzf ];
+  home.packages = with pkgs; [
+    acpi
+    fzf
+  ];
 
   programs.tmux = {
     enable = true;
@@ -20,6 +23,13 @@
       set -as terminal-overrides ",*:Tc"
 
       set -g allow-passthrough on
+
+      # zsh.nix groups each terminal into its own session (no mirroring).
+      # Reap a terminal's session when its client goes away. Formats only
+      # expand in run-shell args inside hooks, so the kill goes through a
+      # nested tmux client (run-shell children inherit $TMUX). Unconditional:
+      # the "main" anchor is never attached to directly.
+      set-hook -g client-detached 'run-shell "tmux kill-session -t =#{session_name}"'
 
       set -g status-interval 30
       set -g status-left-length 30
