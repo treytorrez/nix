@@ -146,21 +146,6 @@
                 })
                 # Third-party overlays
                 inputs.emacs-overlay.overlays.default
-                # Workaround for nixpkgs#562919: linux-firmware amdgpu
-                # regression freezes/blacks the screen at boot on Radeon 680M.
-                # Roll back linux-firmware to the 20260810 release.
-                # Remove once the firmware regression is fixed upstream.
-                (final: prev: {
-                  linux-firmware = prev.linux-firmware.overrideAttrs (_: {
-                    version = "20260810";
-                    src = final.fetchFromGitLab {
-                      owner = "kernel-firmware";
-                      repo = "linux-firmware";
-                      tag = "20260810";
-                      hash = "sha256-P/fPpqaatp8Z2GV+I/OChiWGn6AhV+8w1RMFuX/LqHc=";
-                    };
-                  });
-                })
               ];
             }
           ];
