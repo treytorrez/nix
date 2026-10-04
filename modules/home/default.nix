@@ -7,38 +7,28 @@
 {
   imports = [
     nixcord.homeModules.nixcord
-    #./firefoxpwa.nix
     ./librewolf.nix
-    #./neovim.nix
     ./nixvim.nix
     ./nixcord.nix
     ./zsh.nix
     ./starship.nix
-    #./vscode.nix
     ./kitty.nix
-    ./canon.nix
     ./voxtype.nix
     ./i3.nix
     ./i3status-rust.nix
     ./lxqt.nix
     ./xdg.nix
-    # emacs will have to wait for another day
-    # breaking build as of Sep 15 2026
-    #./emacs.nix
+    ./emacs.nix
     ./direnv.nix
     ./systemd.nix
     ./fnott.nix
     ./mew.nix
-    #./rofi.nix
     ./nyxt.nix
-    #./positron.nix
     ./hyprland.nix
     ./noctalia.nix
     ./autostart.nix
-    #./stylix.nix
-    #./ashell.nix
     ./foot.nix
-    #./pi-coding-agent.nix
+    ./pi-coding-agent.nix
     ./tmux.nix
     ./tidal-stylix.nix
     ./llm.nix

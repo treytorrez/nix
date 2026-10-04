@@ -82,11 +82,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # --- Non-flake sources ---------------------------------------------------
-    canonSrc = {
-      url = "github:pgattic/canon";
-      flake = false;
-    };
   };
 
   # ---------------------------------------------------------------------------
@@ -100,7 +95,6 @@
       stylix,
       nix-on-droid,
       nixcord,
-      canonSrc,
       voxtype,
       nixvim,
       sops-nix,
@@ -141,14 +135,12 @@
               };
               home-manager.sharedModules = [
                 voxtype.homeManagerModules.default
-                inputs.noctalia.homeModules.default
                 nixvim.homeModules.nixvim
               ];
 
               nixpkgs.overlays = [
                 # Custom packages
                 (final: prev: {
-                  canon = final.callPackage ./packages/canon.nix { canonSrc = inputs.canonSrc; };
                   nixvim = inputs.nixvim.packages.${final.system}.default;
                   lilbee-bin = inputs.lilbee.packages.${system}.default;
                 })

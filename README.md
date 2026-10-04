@@ -1,6 +1,9 @@
+OUT OF DATE; FIX
+---
+
 # Trey's NixOS Flake
 
-Declarative, multi-host NixOS configuration powering a laptop, desktop, and server — plus a Nix-on-Droid mobile setup.
+Declarative, multi-host NixOS configuration powering a laptop, desktop, and server plus plans for a Nix-on-Droid mobile setup.
 
 ## Principles
 
@@ -13,13 +16,14 @@ Declarative, multi-host NixOS configuration powering a laptop, desktop, and serv
 
 ```bash
 # Update system (stages all changes, rebuilds, commits on success)
+# **Warning:** `update` stashes all changes on build failure. Run `git stash pop` to recover.
+# ./packages/git-autocommit.nix
 update
 
 # Or manually:
 sudo nixos-rebuild switch --flake .#<hostname>
 ```
 
-> **Warning:** `update` stashes all changes on build failure. Run `git stash pop` to recover.
 
 ## Structure
 
@@ -33,7 +37,7 @@ sudo nixos-rebuild switch --flake .#<hostname>
 ├── hosts/
 │   ├── laptop/               # AMD laptop — full dev setup
 │   ├── desktop/              # iMac 2013 — minimal desktop
-│   └── server/               # NVIDIA server — LLM server, search
+│   └── server/               # 2017 Dell Lattitude, will host services, builds, etc
 │
 ├── modules/
 │   ├── home/                 # Home-manager modules (user-level config)
@@ -49,9 +53,9 @@ sudo nixos-rebuild switch --flake .#<hostname>
 
 | Host | Hardware | Role | Highlights |
 |------|----------|------|------------|
-| **laptop** | AMD (ROCm) | Daily driver | Ollama, Hermes AI agent, fingerprint reader, full dev environment |
-| **desktop** | iMac 2013 | Legacy desktop | Broadcom WiFi, no LLM workloads |
-| **server** | NVIDIA (legacy 580) | Headless server | Ollama CUDA, Hermes, SearXNG, Docker, Tailscale |
+| **laptop** | AMD (ROCm) | Daily driver | Ollama, fingerprint reader, full dev environment |
+| **desktop** | iMac 2013 | Legacy desktop | Broadcom WiFi, kernel pinned at 7.1 |
+| **server** | NVIDIA (legacy 580) | Headless server | Ollama CUDA, Hermes, SearXNG, Docker, Tailscale (plans for headscale), eventual webserver |
 | **mobile** | Android (aarch64) | Phone | Nix-on-Droid, minimal CLI tools |
 
 ## System Modules (`modules/system/`)
@@ -63,19 +67,18 @@ Core infrastructure shared across machines:
 | `boot.nix` | systemd-boot, silent boot, Plymouth splash |
 | `locale.nix` | America/Boise, en_US.UTF-8 |
 | `networking.nix` | NetworkManager |
-| `desktop.nix` | SDDM + Hyprland, LXQt session, Ozone env |
+| `desktop.nix` | SDDM + Hyprland, 
 | `audio.nix` | PipeWire, ALSA, PulseAudio compat, 48kHz, 115% volume |
 | `programs.nix` | Flakes, Zsh, Steam, CUPS, OpenSSH |
-| `users.nix` | User `treyt`, passwordless sudo for rebuild |
+| `users.nix` | User `treyt`|
 | `fonts.nix` | AtkynsonMono Nerd Font as default monospace |
 | `stylix.nix` | Gruvbox-dark-hard theming, wallhaven wallpaper |
-| `focus-mode.nix` | Systemd-based distraction blocker (app block + DNS block) |
+| `focus-mode.nix` | Systemd-based distraction blocker (app block + DNS block) NEEDS FIX [9/12/26]|
 | `focus-blacklist.nix` | Blocked apps and domains for focus mode |
 | `ld.nix` | nix-ld for running non-Nix binaries |
 | `tailscale.nix` | Tailscale mesh VPN |
 | `podman.nix` | Rootless containers |
 | `ollama.nix` | Llama server (ROCm on laptop, CUDA on server) |
-| `hermes-agent.nix` | AI agent with Ollama backend, Docker sandbox (WIP) |
 | `searxng.nix` | Private meta-search engine (server only) |
 | `secrets.nix` | WiFi split configuration docs |
 | `fingerprint-laptop.nix` | Goodix fingerprint reader (laptop only) |
@@ -178,12 +181,6 @@ Managed with [sops-nix](https://github.com/Mic92/sops-nix). See `SECRETS.md` for
 | `hermes-env.yaml` | Hermes agent environment | laptop, server |
 | `wifi-*.yaml` | WiFi credentials | laptop, desktop |
 
-## Smart Enter Keybind
-
-`Super+Enter` is context-aware:
-
-- **If running inside tmux** — sends `tmux split-window` directly
-- **Otherwise** — spawns a new foot terminal
 
 ## Neovim (`nixvim.nix`)
 

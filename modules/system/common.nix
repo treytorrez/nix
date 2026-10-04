@@ -36,7 +36,6 @@ with pkgs;
   (import ../../packages/new-nix-shell.nix { inherit pkgs; })
   (import ../../packages/git-autocommit.nix { inherit pkgs; })
   gh
-  #canon # Added via nixpkgs overlay
   figlet
   pandoc
   fwupd
@@ -50,7 +49,7 @@ with pkgs;
   w3m
   croc
   gvfs
-  mdr
+  mdr # markdown render
 
   # EDITORS
   neovim
@@ -60,7 +59,6 @@ with pkgs;
   #    ferrite # Added with NixPkgs overlay
 
   # DEVELOPMENT
-  nodejs
   docker
   git
   lazygit
@@ -69,7 +67,6 @@ with pkgs;
   pi-coding-agent
   nixfmt
   direnv
-  qtcreator
   android-tools
   gcc
 
@@ -81,9 +78,6 @@ with pkgs;
 
   # MEDIA
   mpv
-  tidal-hifi
-  sone
-  high-tide
   tonearm
   feh
   zoom-us
@@ -131,10 +125,8 @@ with pkgs;
   # SCHOOL
   # mathematica # https://www.balderholst.com/how-to/install-mathematica-on-nixos/
   slack
-  #positron-bin
 
   # DESKTOP ENV
-  #ashell
   hyprland
   lightdm
   wf-recorder
