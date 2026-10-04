@@ -9,11 +9,25 @@ export ZSH_TEST_RC=${1:A}
 sandbox=$(mktemp -d)
 trap 'zpty -d 2>/dev/null; rm -rf -- "$sandbox"' EXIT
 export ZDOTDIR=$sandbox ZSH_COMPDUMP=$sandbox/compdump
-export ZSH_TEST_RESULT=$sandbox/result TMUX=startup-test TERM=xterm-256color
+export ZSH_TEST_RESULT=$sandbox/result ZSH_TEST_BUFFER=$sandbox/buffer
+export TMUX=startup-test TERM=xterm-256color
 
-print -r -- '
+cat > "$sandbox/.zshrc" <<'RC'
 source "$ZSH_TEST_RC"
 HISTFILE=$ZDOTDIR/history
+
+# Repro for: exit insert, re-enter insert, delete what was typed last insert.
+_vi_probe() {
+  BUFFER="abc" CURSOR=3
+  zle vi-cmd-mode
+  zle vi-insert
+  zle "${$(bindkey -M viins '^?')##* }"   # whatever Backspace is bound to
+  print -r -- "$BUFFER" > "$ZSH_TEST_BUFFER"
+  BUFFER="" CURSOR=0
+}
+autoload -Uz add-zle-hook-widget
+add-zle-hook-widget line-init _vi_probe
+
 _check_startup() {
   local result=FAIL
   if (( ${+_comps[git]} && $+functions[_deja_precmd] &&
@@ -21,20 +35,29 @@ _check_startup() {
      [[ -o promptsubst && -s "$ZSH_COMPDUMP.zwc" &&
         ${(M)precmd_functions:#_direnv_hook} == _direnv_hook &&
         ${(M)precmd_functions:#prompt_starship_precmd} == prompt_starship_precmd &&
-        "$(bindkey -lL main)" == "bindkey -A viins main" ]]; then
+        "$(bindkey -lL main)" == "bindkey -A viins main" &&
+        $+functions[zle-keymap-select] &&
+        "$(KEYMAP=vicmd zle-keymap-select)" == $'\e[2 q' &&
+        "$(KEYMAP=main zle-keymap-select)" == $'\e[6 q' &&
+        "${$(bindkey -M viins '^?')##* }" == backward-delete-char &&
+        "${$(bindkey -M vicmd '^?')##* }" == vi-backward-char &&
+        "$(<"$ZSH_TEST_BUFFER")" == ac ]]; then
     result=OK
   fi
   if [[ $result == FAIL ]]; then
     typeset -p precmd_functions
     print -r -- "git completion: ${_comps[git]}"
+    print -r -- "viins ^?: $(bindkey -M viins '^?')"
+    print -r -- "vicmd ^?: $(bindkey -M vicmd '^?')"
+    print -r -- "probe buffer: $(<"$ZSH_TEST_BUFFER")"
     bindkey -lL main
-    whence -w _deja_precmd _zsh_highlight prompt_starship_precmd
+    whence -w _deja_precmd _zsh_highlight prompt_starship_precmd zle-keymap-select
   fi
   print -r -- "$result" > "$ZSH_TEST_RESULT"
   exit
 }
 zsh-defer -a _check_startup
-' > "$sandbox/.zshrc"
+RC
 
 mtime() { zstat -H st "$ZSH_COMPDUMP" && print -- "${st[mtime]}" }
 zmodload -F zsh/stat b:zstat

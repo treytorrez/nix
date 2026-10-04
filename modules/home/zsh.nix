@@ -67,6 +67,29 @@ in
         zmodload zsh/datetime # EPOCHSECONDS + deja's EPOCHREALTIME
         bindkey -v
         KEYTIMEOUT=1
+        # Cursor shape is the mode indicator: beam in insert, block in
+        # normal/visual (DECSCUSR; tmux >=3.2 forwards it). zle init doesn't
+        # fire keymap-select, so precmd pins the beam for each new prompt.
+        zle-keymap-select() {
+          case $KEYMAP in
+            (main|viins) print -n -- '\e[6 q' ;;
+            (*) print -n -- '\e[2 q' ;;
+          esac
+        }
+        zle -N zle-keymap-select
+        _vi_prompt_beam() print -n -- '\e[6 q'
+        autoload -Uz add-zsh-hook
+        add-zsh-hook precmd _vi_prompt_beam
+        # Builtin vi delete widgets refuse to delete past the last insert-mode
+        # entry point (zshzle: vi-backward-delete-char), and ^? is unbound in
+        # viins by default. Bind unrestricted equivalents (vim's behavior);
+        # Backspace in normal mode moves left, like vim.
+        bindkey -M viins '^H' backward-delete-char
+        bindkey -M viins '^?' backward-delete-char
+        bindkey -M viins '^W' backward-kill-word
+        bindkey -M viins '^U' backward-kill-line
+        bindkey -M vicmd '^H' vi-backward-char
+        bindkey -M vicmd '^?' vi-backward-char
         setopt promptsubst
         PROMPT='%F{cyan}%~%f %# '
       '')

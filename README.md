@@ -112,7 +112,7 @@ Per-user configuration shared across all machines:
 | `foot.nix` | Minimal Wayland-native terminal (server mode) |
 | `kitty.nix` | GPU-accelerated terminal with Zsh/git integration |
 | `tmux.nix` | Terminal multiplexer — mouse, 24h clock, fzf integration |
-| `zsh.nix` | Optimized Zsh — cached compinit, deferred vi-mode, lazy direnv, auto-start tmux |
+| `zsh.nix` | Optimized Zsh — deferred compinit/deja/starship/sy-h, builtin vi-mode, prebuilt direnv+starship init, auto-start tmux |
 | `starship.nix` | Two-line prompt with git, language info, timing |
 | `direnv.nix` | Per-directory environment loader with nix-direnv |
 
