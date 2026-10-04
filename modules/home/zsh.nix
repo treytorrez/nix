@@ -2,10 +2,9 @@
 {
   programs.zsh = {
     enable = true;
-    enableCompletion = true;          # Kept enabled; we override the completion command below
+    enableCompletion = true; # Kept enabled; we override the completion command below
     syntaxHighlighting.enable = true;
     #autosuggestion.enable = true;
-
 
     # ------------------------------------------------------------
     # OPTIMIZATION 1: Override completion initialization
@@ -46,113 +45,123 @@
     # ------------------------------------------------------------
     # initContent allows us to place commands at specific phases of startup.
     # Order values: 500 (early), 550 (before completion), 1000 (general), 1200 (after general), 1500 (last).
-    initContent = let
-      # ---- Order 500: Very early setup ----
-      earlyInit = lib.mkOrder 500 ''
-        # Set the location for the completion dump file (used by completionInit)
-        : ''${ZSH_COMPDUMP:="$HOME/.cache/zsh/compdump"}
-        mkdir -p "$(dirname "$ZSH_COMPDUMP")"
-      '';
+    initContent =
+      let
+        # ---- Order 500: Very early setup ----
+        earlyInit = lib.mkOrder 500 ''
+          # Set the location for the completion dump file (used by completionInit)
+          : ''${ZSH_COMPDUMP:="$HOME/.cache/zsh/compdump"}
+          mkdir -p "$(dirname "$ZSH_COMPDUMP")"
+        '';
 
-      # ---- Order 1000: General configuration (runs after completion) ----
-      generalInit = lib.mkOrder 1000 ''
-        # ------------------------------------------------------------
-        # OPTIMIZATION 3: Deferred loading of vi-mode plugin
-        # ------------------------------------------------------------
-        # zsh-vi-mode can be slow to source. Using zsh-defer loads it
-        # asynchronously after the prompt appears, making the shell feel instant.
-        if command -v zsh-defer >/dev/null; then
-          zsh-defer source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-        else
-          source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-        fi
+        # ---- Order 1000: General configuration (runs after completion) ----
+        generalInit = lib.mkOrder 1000 ''
+           # ------------------------------------------------------------
+           # OPTIMIZATION 3: Deferred loading of vi-mode plugin
+           # ------------------------------------------------------------
+           # zsh-vi-mode can be slow to source. Using zsh-defer loads it
+           # asynchronously after the prompt appears, making the shell feel instant.
+           if command -v zsh-defer >/dev/null; then
+             zsh-defer source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+           else
+             source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+           fi
 
-        # ------------------------------------------------------------
-        # OPTIMIZATION 4: Lazy direnv hook
-        # ------------------------------------------------------------
-        # The direnv hook runs on every shell start. We defer it until the
-        # first `cd` or prompt display, saving ~10-20ms at startup.
-        _lazy_direnv() {
-          unfunction _lazy_direnv
-          eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
-        }
-        autoload -Uz add-zsh-hook
-        add-zsh-hook chpwd _lazy_direnv
-        add-zsh-hook precmd _lazy_direnv
+           # ------------------------------------------------------------
+           # OPTIMIZATION 4: Lazy direnv hook
+           # ------------------------------------------------------------
+           # The direnv hook runs on every shell start. We defer it until the
+           # first `cd` or prompt display, saving ~10-20ms at startup.
+           _lazy_direnv() {
+             unfunction _lazy_direnv
+             eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
+           }
+           autoload -Uz add-zsh-hook
+           add-zsh-hook chpwd _lazy_direnv
+           add-zsh-hook precmd _lazy_direnv
 
-        # ------------------------------------------------------------
-        # OPTIMIZATION 5: Compile completion dump for faster loading
-        # ------------------------------------------------------------
-        # Zsh can load byte-compiled dump files much faster. This compiles
-        # the dump once after it's created.
-        if [[ -f "$ZSH_COMPDUMP" && ! -f "$ZSH_COMPDUMP.zwc" ]]; then
-          zcompile "$ZSH_COMPDUMP" 2>/dev/null
-        fi
+           # ------------------------------------------------------------
+           # OPTIMIZATION 5: Compile completion dump for faster loading
+           # ------------------------------------------------------------
+           # Zsh can load byte-compiled dump files much faster. This compiles
+           # the dump once after it's created.
+           if [[ -f "$ZSH_COMPDUMP" && ! -f "$ZSH_COMPDUMP.zwc" ]]; then
+             zcompile "$ZSH_COMPDUMP" 2>/dev/null
+           fi
 
-        # nix shell/run shortcuts
-        ns() {
-          local pkg="$1"; shift
-          nix shell "nixpkgs#$pkg" "$@"
-        }
-        nr() {
-          local pkg="$1"; shift
-          nix run "nixpkgs#$pkg" "$@"
-        }
+           # nix shell/run shortcuts
+           ns() {
+             local pkg="$1"; shift
+             nix shell "nixpkgs#$pkg" "$@"
+           }
+           nr() {
+             local pkg="$1"; shift
+             nix run "nixpkgs#$pkg" "$@"
+           }
 
-        # Warp directory - reads ~/.warprc (key:path format, backward compat)
-        wd() {
-          local config_file=''${HOME}/.warprc
-          if [[ $# -eq 0 ]]; then
-            while IFS=':' read -r key path; do
-              [[ -n "$key" ]] && print -P "%F{green}$key%f -> $path"
-            done < "$config_file"
-            return
+           # Warp directory - reads ~/.warprc (key:path format, backward compat)
+           wd() {
+             local config_file=''${HOME}/.warprc
+             if [[ $# -eq 0 ]]; then
+               while IFS=':' read -r key path; do
+                 [[ -n "$key" ]] && print -P "%F{green}$key%f -> $path"
+               done < "$config_file"
+               return
+             fi
+             local target
+             target=$(grep "^$1:" "$config_file" 2>/dev/null | cut -d':' -f2-)
+             if [[ -n "$target" ]]; then
+               cd "$target"
+             else
+               echo "wd: unknown warp point '$1'" >&2
+               return 1
+             fi
+           }
+
+          # Auto-start tmux (only if interactive and not already inside tmux)
+           if [[ -z "$TMUX" && $- == *i* ]]; then
+             tmux new-session -s main || tmux new-session -s main -t $()
+           fi
+        '';
+
+        # ---- Order 1200: Prompt setup (after most other config) ----
+        promptInit = lib.mkOrder 1200 ''
+          # ------------------------------------------------------------
+          # OPTIMIZATION 6: Cached Starship init
+          # ------------------------------------------------------------
+          # Starship's init script is generated once and cached. This avoids
+          # running `starship init zsh` on every shell start.
+          STARSHIP_CACHE="$HOME/.cache/starship/init.zsh"
+          if [[ ! -f "$STARSHIP_CACHE" ]] || [[ ${pkgs.starship}/bin/starship -nt "$STARSHIP_CACHE" ]]; then
+            mkdir -p "$(dirname "$STARSHIP_CACHE")"
+            ${pkgs.starship}/bin/starship init zsh --print-full-init > "$STARSHIP_CACHE"
           fi
-          local target
-          target=$(grep "^$1:" "$config_file" 2>/dev/null | cut -d':' -f2-)
-          if [[ -n "$target" ]]; then
-            cd "$target"
+          source "$STARSHIP_CACHE"
+          # ----------- deja initialization -------------
+          # this command sources a large file that is stored in .local/share/deja/
+          # run down here to keep from bogging things down
+          # TODO: PR on nixpkgs to get that init.zsh in the nix store???
+          export DEJA_HIGHLIGHT_STYLE='fg=8,blink'
+          # ~/.zshrc
+          if [[ -r "$HOME/.local/share/deja/init.zsh" ]]; then
+            source "$HOME/.local/share/deja/init.zsh"
           else
-            echo "wd: unknown warp point '$1'" >&2
-            return 1
+            eval "$(deja init zsh)"
           fi
-        }
-
-       # Auto-start tmux (only if interactive and not already inside tmux)
-        if [[ -z "$TMUX" && $- == *i* ]]; then
-          tmux new-session -s main || tmux new-session -s main -t $()
-        fi
-      '';
-
-      # ---- Order 1200: Prompt setup (after most other config) ----
-      promptInit = lib.mkOrder 1200 ''
-        # ------------------------------------------------------------
-        # OPTIMIZATION 6: Cached Starship init
-        # ------------------------------------------------------------
-        # Starship's init script is generated once and cached. This avoids
-        # running `starship init zsh` on every shell start.
-        STARSHIP_CACHE="$HOME/.cache/starship/init.zsh"
-        if [[ ! -f "$STARSHIP_CACHE" ]] || [[ ${pkgs.starship}/bin/starship -nt "$STARSHIP_CACHE" ]]; then
-          mkdir -p "$(dirname "$STARSHIP_CACHE")"
-          ${pkgs.starship}/bin/starship init zsh --print-full-init > "$STARSHIP_CACHE"
-        fi
-        source "$STARSHIP_CACHE"
-       # ----------- deja initialization -------------
-       # this command sources a large file that is stored in .local/share/deja/
-       # run down here to keep from bogging things down
-       # TODO: PR on nixpkgs to get that init.zsh in the nix store???
-       export DEJA_HIGHLIGHT_STYLE='fg=8,blink'
-       eval $(deja init zsh)
-      '';
-    in
-      lib.mkMerge [ earlyInit generalInit promptInit ];
+        '';
+      in
+      lib.mkMerge [
+        earlyInit
+        generalInit
+        promptInit
+      ];
   };
 
   # ------------------------------------------------------------
   # Additional packages needed for optimizations
   # ------------------------------------------------------------
   home.packages = [
-    pkgs.zsh-defer    # Required for deferred plugin loading
+    pkgs.zsh-defer # Required for deferred plugin loading
     (import ../../packages/lsdot.nix { inherit pkgs; })
     pkgs.deja
     # pkgs.zsh-bench   # Optional: for profiling startup time
