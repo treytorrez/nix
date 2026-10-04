@@ -24,6 +24,7 @@
       packages = [
         "npm:pi-btw"
         "npm:@dietrichgebert/ponytail"
+        "git:github.com/Aitbytes/vibe-wise-pi"
       ];
       retry = {
         enabled = true;
