@@ -237,21 +237,24 @@ in
           _args = [
             "ALT + mouse:272"
             (lib.generators.mkLuaInline "hl.dsp.window.drag()")
-            (lib.generators.mkLuaInline "{ mouse = true }) ")
+            { mouse = true; }
           ];
         }
         {
           _args = [
             "ALT + mouse:272 hl.dsp.window.drag() { mouse = true, click = true })"
-            #            (lib.generators.mkLuaInline "hl.dsp.window.drag()")
-            #            (lib.generators.mkLuaInline "{ mouse = true, click = true })")
+            (lib.generators.mkLuaInline "hl.dsp.window.drag()")
+            {
+              mouse = true;
+              click = true;
+            }
           ];
         }
         {
           _args = [
             "ALT + mouse:273"
             (lib.generators.mkLuaInline "hl.dsp.window.drag()")
-            (lib.generators.mkLuaInline "{ mouse = true }")
+            { mouse = true; }
           ];
         }
         ###          "hl.config({
