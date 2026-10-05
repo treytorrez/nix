@@ -111,102 +111,386 @@ in
       # -> one hl.bind(...) per list entry
       bind = [
         # was bindr: releasing SUPER toggles the launcher
-        { _args = [ "${mod} + SUPER_L" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("pkill mew || ${menu}")'') { release = true; } ]; }
+        {
+          _args = [
+            "${mod} + SUPER_L"
+            (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("pkill mew || ${menu}")'')
+            { release = true; }
+          ];
+        }
 
         # Regular binds (on press)
         # (the smartEnter variant is still just a TODO — see the let block)
-        { _args = [ "${mod} + RETURN" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${term}")'') ]; }
-        { _args = [ "${mod} + SHIFT + RETURN" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${term}")'') ]; }
-        { _args = [ "${mod} + Z" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${browser_personal}")'') ]; }
-        { _args = [ "${mod} + SHIFT + Z" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${browser_school}")'') ]; }
-        { _args = [ "${mod} + D" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${menu}")'') ]; }
-        { _args = [ "${mod} + SHIFT + D" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${runner}")'') ]; }
-        { _args = [ "${mod} + N" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("footclient nvim")'') ]; }
-        { _args = [ "${mod} + SHIFT + N" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("footclient nvim '+cd /etc/nixos'")'') ]; }
-        { _args = [ "${mod} + SPACE" (lib.generators.mkLuaInline ''hl.dsp.window.float({ action = "toggle" })'') ]; }
-        { _args = [ "${mod} + SHIFT + Q" (lib.generators.mkLuaInline ''hl.dsp.window.close()'') ]; }
+        {
+          _args = [
+            "${mod} + RETURN"
+            (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${term}")'')
+          ];
+        }
+        {
+          _args = [
+            "${mod} + SHIFT + RETURN"
+            (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${term}")'')
+          ];
+        }
+        {
+          _args = [
+            "${mod} + Z"
+            (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${browser_personal}")'')
+          ];
+        }
+        {
+          _args = [
+            "${mod} + SHIFT + Z"
+            (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${browser_school}")'')
+          ];
+        }
+        {
+          _args = [
+            "${mod} + D"
+            (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${menu}")'')
+          ];
+        }
+        {
+          _args = [
+            "${mod} + SHIFT + D"
+            (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${runner}")'')
+          ];
+        }
+        {
+          _args = [
+            "${mod} + N"
+            (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("footclient nvim")'')
+          ];
+        }
+        {
+          _args = [
+            "${mod} + SHIFT + N"
+            (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("footclient nvim '+cd /etc/nixos'")'')
+          ];
+        }
+        {
+          _args = [
+            "${mod} + SPACE"
+            (lib.generators.mkLuaInline ''hl.dsp.window.float({ action = "toggle" })'')
+          ];
+        }
+        {
+          _args = [
+            "${mod} + SHIFT + Q"
+            (lib.generators.mkLuaInline "hl.dsp.window.close()")
+          ];
+        }
 
         # Focus
-        { _args = [ "${mod} + H" (lib.generators.mkLuaInline ''hl.dsp.focus({ direction = "l" })'') ]; }
-        { _args = [ "${mod} + J" (lib.generators.mkLuaInline ''hl.dsp.focus({ direction = "d" })'') ]; }
-        { _args = [ "${mod} + K" (lib.generators.mkLuaInline ''hl.dsp.focus({ direction = "u" })'') ]; }
-        { _args = [ "${mod} + L" (lib.generators.mkLuaInline ''hl.dsp.focus({ direction = "r" })'') ]; }
+        {
+          _args = [
+            "${mod} + H"
+            (lib.generators.mkLuaInline ''hl.dsp.focus({ direction = "l" })'')
+          ];
+        }
+        {
+          _args = [
+            "${mod} + J"
+            (lib.generators.mkLuaInline ''hl.dsp.focus({ direction = "d" })'')
+          ];
+        }
+        {
+          _args = [
+            "${mod} + K"
+            (lib.generators.mkLuaInline ''hl.dsp.focus({ direction = "u" })'')
+          ];
+        }
+        {
+          _args = [
+            "${mod} + L"
+            (lib.generators.mkLuaInline ''hl.dsp.focus({ direction = "r" })'')
+          ];
+        }
 
         # Move
-        { _args = [ "${mod} + SHIFT + H" (lib.generators.mkLuaInline ''hl.dsp.window.move({ direction = "l" })'') ]; }
-        { _args = [ "${mod} + SHIFT + J" (lib.generators.mkLuaInline ''hl.dsp.window.move({ direction = "d" })'') ]; }
-        { _args = [ "${mod} + SHIFT + K" (lib.generators.mkLuaInline ''hl.dsp.window.move({ direction = "u" })'') ]; }
-        { _args = [ "${mod} + SHIFT + L" (lib.generators.mkLuaInline ''hl.dsp.window.move({ direction = "r" })'') ]; }
-        { _args = [ "ALT    + mouse:272" (lib.generators.mkLuaInline ''hl.dsp.window.drag(), { mouse = true } '') ]; }
-        { _args = [ "ALT    + mouse:272" (lib.generators.mkLuaInline ''hl.dsp.window.drag(), { mouse = true, click = true } '') ]; }
-        { _args = [ "ALT    + mouse:273" (lib.generators.mkLuaInline ''hl.dsp.window.drag(), { mouse = true } '') ]; }
-    ###          "hl.config({
-  ###    binds {
-  ###        -- Fire a drag event only after dragging for more than 10px
-    ###        drag_threshold = 10
-    ###    }
-  ###})
-  ###
-  ###-- ALT + LMB: Move a window by dragging more than 10px.
-    ###hl.bind("ALT + mouse:272", hl.dsp.window.drag(), { mouse = true })
-  ###-- ALT + LMB (click): Floats a window by clicking
-          ###hl.bind("ALT + mouse:272", hl.dsp.window.float(), { mouse = true, click = true })
-          ###-- ALT + LMB: Resizes a window by dragging
-          ###hl.bind("ALT + mouse:273", hl.dsp.window.resize(), { mouse = true })
+        {
+          _args = [
+            "${mod} + SHIFT + H"
+            (lib.generators.mkLuaInline ''hl.dsp.window.move({ direction = "l" })'')
+          ];
+        }
+        {
+          _args = [
+            "${mod} + SHIFT + J"
+            (lib.generators.mkLuaInline ''hl.dsp.window.move({ direction = "d" })'')
+          ];
+        }
+        {
+          _args = [
+            "${mod} + SHIFT + K"
+            (lib.generators.mkLuaInline ''hl.dsp.window.move({ direction = "u" })'')
+          ];
+        }
+        {
+          _args = [
+            "${mod} + SHIFT + L"
+            (lib.generators.mkLuaInline ''hl.dsp.window.move({ direction = "r" })'')
+          ];
+        }
+        {
+          _args = [
+            "ALT + mouse:272"
+            (lib.generators.mkLuaInline "hl.dsp.window.drag()")
+            (lib.generators.mkLuaInline "{ mouse = true }) ")
+          ];
+        }
+        {
+          _args = [
+            "ALT + mouse:272"
+            (lib.generators.mkLuaInline "hl.dsp.window.drag()")
+            (lib.generators.mkLuaInline "{ mouse = true, click = true })")
+          ];
+        }
+        {
+          _args = [
+            "ALT + mouse:273"
+            (lib.generators.mkLuaInline "hl.dsp.window.drag()")
+            (lib.generators.mkLuaInline "{ mouse = true }")
+          ];
+        }
+        ###          "hl.config({
+        ###    binds {
+        ###        -- Fire a drag event only after dragging for more than 10px
+        ###        drag_threshold = 10
+        ###    }
+        ###})
+        ###
+        ###-- ALT + LMB: Move a window by dragging more than 10px.
+        ###hl.bind("ALT + mouse:272", hl.dsp.window.drag(), { mouse = true })
+        ###-- ALT + LMB (click): Floats a window by clicking
+        ###hl.bind("ALT + mouse:272", hl.dsp.window.float(), { mouse = true, click = true })
+        ###-- ALT + LMB: Resizes a window by dragging
+        ###hl.bind("ALT + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
         # Layout
         # "${mod}, F, fullscreen"
-        { _args = [ "${mod} + SHIFT + F" (lib.generators.mkLuaInline ''hl.dsp.window.fullscreen_state({ internal = 0, client = 2, action = "set" })'') ]; }
-        { _args = [ "${mod} + F" (lib.generators.mkLuaInline ''hl.dsp.window.fullscreen_state({ internal = 0, client = 0, action = "set" })'') ]; }
+        {
+          _args = [
+            "${mod} + SHIFT + F"
+            (lib.generators.mkLuaInline ''hl.dsp.window.fullscreen_state({ internal = 0, client = 2, action = "set" })'')
+          ];
+        }
+        {
+          _args = [
+            "${mod} + F"
+            (lib.generators.mkLuaInline ''hl.dsp.window.fullscreen_state({ internal = 0, client = 0, action = "set" })'')
+          ];
+        }
 
         # Workspaces
-        { _args = [ "${mod} + 1" (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = 1 })'') ]; }
-        { _args = [ "${mod} + 2" (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = 2 })'') ]; }
-        { _args = [ "${mod} + 3" (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = 3 })'') ]; }
-        { _args = [ "${mod} + 4" (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = 4 })'') ]; }
-        { _args = [ "${mod} + 5" (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = 5 })'') ]; }
-        { _args = [ "${mod} + 6" (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = 6 })'') ]; }
-        { _args = [ "${mod} + 7" (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = 7 })'') ]; }
-        { _args = [ "${mod} + 8" (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = 8 })'') ]; }
-        { _args = [ "${mod} + 9" (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = 9 })'') ]; }
-        { _args = [ "${mod} + 0" (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = 10 })'') ]; }
+        {
+          _args = [
+            "${mod} + 1"
+            (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = 1 })")
+          ];
+        }
+        {
+          _args = [
+            "${mod} + 2"
+            (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = 2 })")
+          ];
+        }
+        {
+          _args = [
+            "${mod} + 3"
+            (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = 3 })")
+          ];
+        }
+        {
+          _args = [
+            "${mod} + 4"
+            (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = 4 })")
+          ];
+        }
+        {
+          _args = [
+            "${mod} + 5"
+            (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = 5 })")
+          ];
+        }
+        {
+          _args = [
+            "${mod} + 6"
+            (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = 6 })")
+          ];
+        }
+        {
+          _args = [
+            "${mod} + 7"
+            (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = 7 })")
+          ];
+        }
+        {
+          _args = [
+            "${mod} + 8"
+            (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = 8 })")
+          ];
+        }
+        {
+          _args = [
+            "${mod} + 9"
+            (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = 9 })")
+          ];
+        }
+        {
+          _args = [
+            "${mod} + 0"
+            (lib.generators.mkLuaInline "hl.dsp.focus({ workspace = 10 })")
+          ];
+        }
 
-        { _args = [ "${mod} + SHIFT + 1" (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = 1, follow = true })'') ]; }
-        { _args = [ "${mod} + SHIFT + 2" (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = 2, follow = true })'') ]; }
-        { _args = [ "${mod} + SHIFT + 3" (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = 3, follow = true })'') ]; }
-        { _args = [ "${mod} + SHIFT + 4" (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = 4, follow = true })'') ]; }
-        { _args = [ "${mod} + SHIFT + 5" (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = 5, follow = true })'') ]; }
-        { _args = [ "${mod} + SHIFT + 6" (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = 6, follow = true })'') ]; }
-        { _args = [ "${mod} + SHIFT + 7" (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = 7, follow = true })'') ]; }
-        { _args = [ "${mod} + SHIFT + 8" (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = 8, follow = true })'') ]; }
-        { _args = [ "${mod} + SHIFT + 9" (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = 9, follow = true })'') ]; }
-        { _args = [ "${mod} + SHIFT + 0" (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = 10, follow = true })'') ]; }
+        {
+          _args = [
+            "${mod} + SHIFT + 1"
+            (lib.generators.mkLuaInline "hl.dsp.window.move({ workspace = 1, follow = true })")
+          ];
+        }
+        {
+          _args = [
+            "${mod} + SHIFT + 2"
+            (lib.generators.mkLuaInline "hl.dsp.window.move({ workspace = 2, follow = true })")
+          ];
+        }
+        {
+          _args = [
+            "${mod} + SHIFT + 3"
+            (lib.generators.mkLuaInline "hl.dsp.window.move({ workspace = 3, follow = true })")
+          ];
+        }
+        {
+          _args = [
+            "${mod} + SHIFT + 4"
+            (lib.generators.mkLuaInline "hl.dsp.window.move({ workspace = 4, follow = true })")
+          ];
+        }
+        {
+          _args = [
+            "${mod} + SHIFT + 5"
+            (lib.generators.mkLuaInline "hl.dsp.window.move({ workspace = 5, follow = true })")
+          ];
+        }
+        {
+          _args = [
+            "${mod} + SHIFT + 6"
+            (lib.generators.mkLuaInline "hl.dsp.window.move({ workspace = 6, follow = true })")
+          ];
+        }
+        {
+          _args = [
+            "${mod} + SHIFT + 7"
+            (lib.generators.mkLuaInline "hl.dsp.window.move({ workspace = 7, follow = true })")
+          ];
+        }
+        {
+          _args = [
+            "${mod} + SHIFT + 8"
+            (lib.generators.mkLuaInline "hl.dsp.window.move({ workspace = 8, follow = true })")
+          ];
+        }
+        {
+          _args = [
+            "${mod} + SHIFT + 9"
+            (lib.generators.mkLuaInline "hl.dsp.window.move({ workspace = 9, follow = true })")
+          ];
+        }
+        {
+          _args = [
+            "${mod} + SHIFT + 0"
+            (lib.generators.mkLuaInline "hl.dsp.window.move({ workspace = 10, follow = true })")
+          ];
+        }
 
         # Hyprland control
-        { _args = [ "${mod} + SHIFT + R" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("hyprctl reload")'') ]; }
-        { _args = [ "${mod} + SHIFT + E" (lib.generators.mkLuaInline ''hl.dsp.exit()'') ]; }
+        {
+          _args = [
+            "${mod} + SHIFT + R"
+            (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("hyprctl reload")'')
+          ];
+        }
+        {
+          _args = [
+            "${mod} + SHIFT + E"
+            (lib.generators.mkLuaInline "hl.dsp.exit()")
+          ];
+        }
         # (wiki warns uwsm users against `exit`; consider instead:
         #  (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("uwsm stop")''))
 
         # "${mod} TAB, L, hyprexpo:expo, select" (needs the hyprexpo plugin)
 
         # Enter resize submap
-        { _args = [ "${mod} + R" (lib.generators.mkLuaInline ''hl.dsp.submap("resize")'') ]; }
+        {
+          _args = [
+            "${mod} + R"
+            (lib.generators.mkLuaInline ''hl.dsp.submap("resize")'')
+          ];
+        }
 
         # Brightness
-        { _args = [ "XF86MonBrightnessUp" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("brightnessctl set 15%+")'') ]; }
-        { _args = [ "XF86MonBrightnessDown" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("brightnessctl set 15%-")'') ]; }
+        {
+          _args = [
+            "XF86MonBrightnessUp"
+            (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("brightnessctl set 15%+")'')
+          ];
+        }
+        {
+          _args = [
+            "XF86MonBrightnessDown"
+            (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("brightnessctl set 15%-")'')
+          ];
+        }
 
         # Volume
-        { _args = [ "XF86AudioRaiseVolume" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ +5%")'') ]; }
-        { _args = [ "XF86AudioLowerVolume" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ -5%")'') ]; }
-        { _args = [ "XF86AudioMute" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("pactl set-sink-mute @DEFAULT_SINK@ toggle")'') ]; }
+        {
+          _args = [
+            "XF86AudioRaiseVolume"
+            (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ +5%")'')
+          ];
+        }
+        {
+          _args = [
+            "XF86AudioLowerVolume"
+            (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ -5%")'')
+          ];
+        }
+        {
+          _args = [
+            "XF86AudioMute"
+            (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("pactl set-sink-mute @DEFAULT_SINK@ toggle")'')
+          ];
+        }
 
         # Media
-        { _args = [ "XF86AudioPlay" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("playerctl play-pause")'') ]; }
-        { _args = [ "XF86AudioStop" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("playerctl stop")'') ]; }
-        { _args = [ "XF86AudioNext" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("playerctl next")'') ]; }
-        { _args = [ "XF86AudioPrev" (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("playerctl previous")'') ]; }
+        {
+          _args = [
+            "XF86AudioPlay"
+            (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("playerctl play-pause")'')
+          ];
+        }
+        {
+          _args = [
+            "XF86AudioStop"
+            (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("playerctl stop")'')
+          ];
+        }
+        {
+          _args = [
+            "XF86AudioNext"
+            (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("playerctl next")'')
+          ];
+        }
+        {
+          _args = [
+            "XF86AudioPrev"
+            (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("playerctl previous")'')
+          ];
+        }
       ];
 
       # exec-once — both still disabled, as before:
