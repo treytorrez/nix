@@ -139,7 +139,7 @@ in
 
       (lib.mkOrder 1500 ''
         export DEJA_HIGHLIGHT_STYLE='fg=8,blink'
-        export DEJA_CYCLE_KEY=''
+        export DEJA_CYCLE_KEY="^[^I"
         _init_deja() {
           if [[ -r "$HOME/.local/share/deja/init.zsh" ]]; then
             source "$HOME/.local/share/deja/init.zsh"
