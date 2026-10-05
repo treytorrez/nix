@@ -7,6 +7,7 @@
 {
   imports = [
     nixcord.homeModules.nixcord
+    ./git.nix
     ./librewolf.nix
     ./nixvim.nix
     ./nixcord.nix
