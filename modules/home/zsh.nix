@@ -148,8 +148,8 @@ in
           fi
         }
         zsh-defer -a _init_deja
-        zsh-defer -a source <(${pkgs.fzf}/share/fzf/common.sh)
-        zsh-defer -a source <(${pkgs.fzf}/share/fzf/completion.zsh)
+        zsh-defer -a source ${pkgs.fzf}/share/fzf/common.sh
+        zsh-defer -a source ${pkgs.fzf}/share/fzf/completion.zsh
         zsh-defer -a source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
         if [[ "$TERM" != dumb ]]; then
