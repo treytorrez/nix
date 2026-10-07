@@ -107,6 +107,8 @@ in
       (lib.mkOrder 1000 ''
         source ${direnvInit}
 
+
+
         ns() {
           local pkg="$1"; shift
           nix shell "nixpkgs#$pkg" "$@"
@@ -149,6 +151,7 @@ in
         }
         zsh-defer -a _init_deja
         zsh-defer -a source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+        zsh-defer -a source <(fzf --zsh)
 
         if [[ "$TERM" != dumb ]]; then
           zsh-defer -12 source ${starshipInit}

@@ -236,41 +236,12 @@ in
         {
           _args = [
             "ALT + mouse:272"
-            (lib.generators.mkLuaInline "hl.dsp.window.drag()")
+            (lib.generators.mkLuaInline "hl.dsp.window.resize()")
             { mouse = true; }
           ];
         }
-        {
-          _args = [
-            "ALT + mouse:272 hl.dsp.window.drag() { mouse = true, click = true })"
-            (lib.generators.mkLuaInline "hl.dsp.window.drag()")
-            {
-              mouse = true;
-              click = true;
-            }
-          ];
-        }
-        {
-          _args = [
-            "ALT + mouse:273"
-            (lib.generators.mkLuaInline "hl.dsp.window.drag()")
-            { mouse = true; }
-          ];
-        }
-        ###          "hl.config({
-        ###    binds {
-        ###        -- Fire a drag event only after dragging for more than 10px
-        ###        drag_threshold = 10
-        ###    }
-        ###})
-        ###
-        ###-- ALT + LMB: Move a window by dragging more than 10px.
-        ###hl.bind("ALT + mouse:272", hl.dsp.window.drag(), { mouse = true })
-        ###-- ALT + LMB (click): Floats a window by clicking
-        ###hl.bind("ALT + mouse:272", hl.dsp.window.float(), { mouse = true, click = true })
-        ###-- ALT + LMB: Resizes a window by dragging
-        ###hl.bind("ALT + mouse:273", hl.dsp.window.resize(), { mouse = true })
-
+        
+        
         # Layout
         # "${mod}, F, fullscreen"
         {
