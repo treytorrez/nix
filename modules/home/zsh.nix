@@ -154,7 +154,7 @@ in
         if [[ "$TERM" != dumb ]]; then
           zsh-defer -12 source ${starshipInit}
         fi
-        ${pkgs.toilet} --font smbraille --termwidth --gay $(${pkgs.fortune} -n 50 -s)
+        toilet --font smbraille --termwidth --gay $(fortune -n 50 -s)
       '')
     ];
   };

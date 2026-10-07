@@ -122,6 +122,7 @@ with pkgs;
   prismlauncher
   cowsay
   fortune
+  toilet
 
 
   # SCHOOL
