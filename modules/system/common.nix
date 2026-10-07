@@ -120,6 +120,8 @@ with pkgs;
   cbonsai
   asciiquarium
   prismlauncher
+  cowsay
+  fortune
 
 
   # SCHOOL
