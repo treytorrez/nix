@@ -377,8 +377,8 @@
   # Emacs daemon: starts once at login, clients connect instantly.
   # Use `emacsclient -c` to open a new frame without cold-starting.
   services.emacs = {
-    enable  = true;
+    enable  = false;
     package = config.programs.emacs.finalPackage;
-    client.enable = true; # sets emacsclient as $EDITOR, adds desktop entries
+    client.enable = false; # sets emacsclient as $EDITOR, adds desktop entries
   };
 }
