@@ -2,8 +2,8 @@
   pkgs,
   ...
 }:
-with pkgs;
-[
+{
+  environment.systemPackages = with pkgs; [
   # TERMINALS
   kitty
   foot
@@ -149,8 +149,7 @@ with pkgs;
 
   # LLM
   llama-cpp
-  lilbee-bin
-  ollama
+  #lilbee-bin
   tmuxai
   (llm.withPlugins{
     llm-openrouter = true;
@@ -159,5 +158,26 @@ with pkgs;
     llm-docs = true;
     llm-git = true;
   })
+  # zram: compressed RAM swap — no disk needed (btrfs root is full anyway) and
+  # avoids btrfs swapfile NOCOW/fragmentation pitfalls entirely.
+  ];
 
-]
+  zramSwap = {
+  enable = true;
+  memoryPercent = 50; # ~7GiB compressed swap on 14GiB RAM
+};
+
+# Built-in weekly store dedup + GC (replaces the custom home-manager
+# systemd.nix timer/service).
+nix.optimise.automatic = true;
+
+# Shared local model store for inference tools. Drop GGUF/HF files in
+# /var/lib/models (writable by the `models` group).
+users.groups.models = { };
+users.users.treyt.extraGroups = [ "models" ];
+systemd.tmpfiles.rules = [ "d /var/lib/models 0775 root models -" ];
+environment.sessionVariables = {
+  HF_HOME = "/var/lib/models/hf"; # huggingface-cli, transformers, etc.
+  HF_HUB_CACHE = "/var/lib/models/hf/hub";
+  MODELS_DIR = "/var/lib/models"; # generic
+};

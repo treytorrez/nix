@@ -128,6 +128,12 @@ in
 
         };
         # TODO: add vertical tabs default
+        # memory: fewer content processes (default 8, each ~150-500MB).
+        # Slightly weaker tab isolation; raise back if you hit instability.
+        settings = {
+          "dom.ipc.processCount" = 2;
+          "browser.cache.memory.capacity" = 262144; # cap mem cache at 256MB
+        };
         userChrome = ''
           /* no rounding!! */
           * {

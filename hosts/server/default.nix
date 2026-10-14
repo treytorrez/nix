@@ -20,7 +20,7 @@
     ../../modules/system/focus-mode.nix
     ../../modules/system/ld.nix
     ../../modules/system/tailscale.nix
-    ../../modules/system/ollama.nix
+    ../../modules/system/llama-server.nix
     ../../modules/system/searxng.nix
 
   ];

@@ -21,14 +21,12 @@
   };
   inputs = {
     # --- Nixpkgs channels ----------------------------------------------------
-    # RESTORED (2026-09-18): rolling ref back after pinning the actual culprit,
-    # linux-firmware (amdgpu regression, nixpkgs#562919) — see overlay below.
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # --- AI / Agents ---------------------------------------------------------
-    lilbee.url = "github:tobocop2/lilbee";
-    lilbee.inputs.nixpkgs.follows = "nixpkgs";
+    #lilbee.url = "github:tobocop2/lilbee";
+    #lilbee.inputs.nixpkgs.follows = "nixpkgs";
 
     # --- User environment ----------------------------------------------------
     home-manager = {

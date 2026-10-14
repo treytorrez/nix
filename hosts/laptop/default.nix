@@ -22,7 +22,7 @@
     ../../modules/system/ld.nix
     ../../modules/system/tailscale.nix
     ../../modules/system/podman.nix
-    ../../modules/system/ollama.nix
+    ../../modules/system/llama-server.nix
     ../../modules/system/fingerprint-laptop.nix
     ../../modules/system/stylix.nix
 

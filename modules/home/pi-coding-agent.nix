@@ -8,10 +8,10 @@
     '';
     models = {
       providers = {
-        ollama = {
+        llama-cpp = {
           api = "openai-completions";
-          apiKey = "ollama";
-          baseUrl = "http://localhost:11434/v1";
+          apiKey = "none";
+          baseUrl = "http://localhost:8080/v1";
         };
       };
     };

@@ -21,7 +21,6 @@
     ./xdg.nix
     ./emacs.nix
     ./direnv.nix
-    ./systemd.nix
     ./fnott.nix
     ./mew.nix
     ./nyxt.nix

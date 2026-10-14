@@ -44,4 +44,8 @@
   '';
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   services.fwupd.enable = true;
+
+  # fwupd is dbus-activated; this makes it exit after 10 min instead of running
+  # 24/7 (~55MB). It re-activates on demand for `fwupdmgr`.
+  systemd.services.fwupd.serviceConfig.RuntimeMaxSec = "10min";
 }
