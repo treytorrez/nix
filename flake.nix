@@ -97,7 +97,6 @@
       nixvim,
       sops-nix,
       noctalia,
-    lilbee,
       ...
     }:
     let
@@ -140,7 +139,6 @@
                 # Custom packages
                 (final: prev: {
                   nixvim = inputs.nixvim.packages.${final.system}.default;
-                  lilbee-bin = inputs.lilbee.packages.${system}.default;
                 })
                 # Third-party overlays
                 inputs.emacs-overlay.overlays.default

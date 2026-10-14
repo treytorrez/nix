@@ -282,26 +282,6 @@
         "type": "github"
       }
     },
-    "lilbee": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1791059294,
-        "narHash": "sha256-xFl5SuHZiL6DDk9Rtt5llzkE7CBnidCXeup+W8zGmPo=",
-        "owner": "tobocop2",
-        "repo": "lilbee",
-        "rev": "6b8f0af5004d73469e3a92fd96c804aa48268c7b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tobocop2",
-        "repo": "lilbee",
-        "type": "github"
-      }
-    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -688,7 +668,6 @@
       "inputs": {
         "emacs-overlay": "emacs-overlay",
         "home-manager": "home-manager",
-        "lilbee": "lilbee",
         "nix-on-droid": "nix-on-droid",
         "nixcord": "nixcord",
         "nixcraft": "nixcraft",

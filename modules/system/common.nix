@@ -181,3 +181,4 @@ environment.sessionVariables = {
   HF_HUB_CACHE = "/var/lib/models/hf/hub";
   MODELS_DIR = "/var/lib/models"; # generic
 };
+}
