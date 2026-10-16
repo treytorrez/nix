@@ -148,7 +148,6 @@
 
 
   # LLM
-  llama-cpp
   #lilbee-bin
   tmuxai
   (llm.withPlugins{

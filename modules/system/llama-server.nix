@@ -1,34 +1,49 @@
 { pkgs, lib, hostname, ... }:
+let
+  # On laptop, both RX 6800S (gfx1032, dGPU) and Radeon 680M (gfx1035, iGPU) are
+  # exposed to ROCm. Having both visible triggers an amd_comgr multi-target bundle
+  # bug ("LLVM ERROR: CachedFileStream was not committed") and splits layers onto
+  # slow iGPU system RAM. Pinning HIP_VISIBLE_DEVICES=0 isolates the RX 6800S dGPU.
+  llama-cpp-wrapped = pkgs.symlinkJoin {
+    name = "llama-cpp-wrapped-${pkgs.llama-cpp.version}";
+    paths = [ pkgs.llama-cpp ];
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      for f in $out/bin/*; do
+        if [ -x "$f" ] && [[ "$f" != *.so* ]]; then
+          wrapProgram "$f" \
+            ${lib.optionalString (hostname == "laptop") "--set-default HIP_VISIBLE_DEVICES 0"} \
+            --set-default LLAMA_ARG_MODELS_DIR /var/lib/models \
+            --set-default HF_HOME /var/lib/models/hf \
+            --set-default HF_HUB_CACHE /var/lib/models/hf/hub
+        fi
+      done
+    '';
+  };
+in
 {
-  # User systemd service (system-level unit file, runs as each logged-in user).
-  # Deliberately NOT enabled at boot: a resident llama-server holds ~5GB
-  # RAM/VRAM 24/7. Start on demand with:
-  #   systemctl --user start llama-server
-  # Or make it permanent: `systemctl --user enable --now llama-server`
-  # Shared model store: /var/lib/models (HF_HOME etc. point there).
-  # For llama-server, pass --model /var/lib/models/<file>.gguf or edit below.
+  environment.systemPackages = [ llama-cpp-wrapped ];
+
+  environment.sessionVariables = {
+    LLAMA_ARG_MODELS_DIR = "/var/lib/models";
+  } // lib.optionalAttrs (hostname == "laptop") {
+    HIP_VISIBLE_DEVICES = "0";
+  };
+
+  # Runs in router mode (~18MB RAM idle): discovers all models in /var/lib/models
+  # and /var/lib/models/hf/hub, loads on demand, and unloads after 5m idle.
+  # OpenAI-compatible API at http://127.0.0.1:8080/v1
   #
-  # OpenAI-compatible API at http://localhost:8080/v1
-  #
-  # ollama models being replaced (GGUF needed, can't convert ollama blobs):
-  #   qwen3.5:9b, qwen3.5:4b, tinyllama:latest (were in /var/lib/ollama, deleted)
-  #   hf.co/empero-ai/Qwen3.8-9B-Distill-GGUF:Q4_K_M (recovered to ~/.local/share/llama.cpp/)
+  # Previous ollama models (for reference):
+  #   qwen3.5:9b, qwen3.5:4b, tinyllama:latest
+  #   Qwen3.8-9B-Distill-GGUF-Q4_K_M (in /var/lib/models/)
   systemd.user.services.llama-server = {
-    description = "llama.cpp OpenAI-compatible server";
+    description = "llama.cpp OpenAI-compatible router server";
     after = [ "network.target" ];
+    wantedBy = [ "default.target" ];
     serviceConfig = {
-      ExecStart = ''
-        ${pkgs.llama-cpp}/bin/llama-server \
-          --host 127.0.0.1 --port 8080 \
-          --model %h/.local/share/llama.cpp/Qwen3.8-9B-Distill-GGUF-Q4_K_M.gguf \
-          --ctx-size 16384 --ngl 99
-      '';
+      ExecStart = "${llama-cpp-wrapped}/bin/llama-server --host 127.0.0.1 --port 8080 --models-dir /var/lib/models --sleep-idle-seconds 300 --ctx-size 16384 -ngl 99";
       Restart = "on-failure";
-    };
-    # Missing gfx1032 kernels in the nix build cause
-    # "LLVM ERROR: CachedFileStream was not committed"; gfx1030 override fixes it.
-    environment = lib.optionalAttrs (hostname == "laptop") {
-      HSA_OVERRIDE_GFX_VERSION = "10.3.0";
     };
   };
 }
