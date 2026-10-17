@@ -9,7 +9,7 @@ in
   services.searx = {
     enable = true;
     redisCreateLocally = true;
-    settingsFile = settingsFile;
+    settingsPath = settingsFile;
   };
 
   sops.templates."searxng-settings" = {

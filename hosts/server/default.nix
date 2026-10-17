@@ -22,7 +22,7 @@
     ../../modules/system/tailscale.nix
     ../../modules/system/llama-server.nix
     ../../modules/system/searxng.nix
-
+    ../../modules/system/stylix.nix
   ];
 
   networking.hostName = "server";
@@ -54,11 +54,11 @@
   sops = {
     age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
     secrets = {
-      "openrouter-key".sopsFile = ../../secrets/openrouter.yaml;
-      "searxng-secret" = {
-        sopsFile = ../../secrets/searxng.yaml;
-        key = "secret_key";
+      "openrouter-key" = {
+        sopsFile = ../../secrets/openrouter.yaml;
+        owner = "treyt";
       };
+      "searxng-secret".sopsFile = ../../secrets/searxng.yaml;
     };
   };
 

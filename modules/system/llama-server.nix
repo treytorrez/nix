@@ -24,7 +24,16 @@ in
 {
   environment.systemPackages = [ llama-cpp-wrapped ];
 
+  # Shared local model store for inference tools. Drop GGUF/HF files in
+  # /var/lib/models (writable by the `models` group).
+  users.groups.models = { };
+  users.users.treyt.extraGroups = [ "models" ];
+  systemd.tmpfiles.rules = [ "d /var/lib/models 0775 root models -" ];
+
   environment.sessionVariables = {
+    HF_HOME = "/var/lib/models/hf";
+    HF_HUB_CACHE = "/var/lib/models/hf/hub";
+    MODELS_DIR = "/var/lib/models";
     LLAMA_ARG_MODELS_DIR = "/var/lib/models";
     LLAMA_BASE_URL = "http://127.0.0.1:8080";
   } // lib.optionalAttrs (hostname == "laptop") {

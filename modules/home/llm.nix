@@ -7,6 +7,7 @@
     TARGET="$HOME/.config/io.datasette.llm/keys.json"
     if [ -f "$KEY_FILE" ]; then
       KEY=$(cat "$KEY_FILE")
+      umask 077
       mkdir -p "$(dirname "$TARGET")"
       printf '{\n  "// Note": "This file stores secret API credentials. Do not share!",\n  "openrouter": "%s"\n}\n' "$KEY" > "$TARGET"
     fi

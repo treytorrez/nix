@@ -142,7 +142,8 @@
   bluetui
   playerctl
   hyprshade
-  kdePackages.kdeconnect-kde  
+  # KDE Connect derivation comes with a service file that will auto activate.
+  #kdePackages.kdeconnect-kde  
   pinentry-all
   gnupg
 
@@ -162,22 +163,11 @@
   ];
 
   zramSwap = {
-  enable = true;
-  memoryPercent = 50; # ~7GiB compressed swap on 14GiB RAM
-};
+    enable = true;
+    memoryPercent = 50; # ~7GiB compressed swap on 14GiB RAM
+  };
 
-# Built-in weekly store dedup + GC (replaces the custom home-manager
-# systemd.nix timer/service).
-nix.optimise.automatic = true;
-
-# Shared local model store for inference tools. Drop GGUF/HF files in
-# /var/lib/models (writable by the `models` group).
-users.groups.models = { };
-users.users.treyt.extraGroups = [ "models" ];
-systemd.tmpfiles.rules = [ "d /var/lib/models 0775 root models -" ];
-environment.sessionVariables = {
-  HF_HOME = "/var/lib/models/hf"; # huggingface-cli, transformers, etc.
-  HF_HUB_CACHE = "/var/lib/models/hf/hub";
-  MODELS_DIR = "/var/lib/models"; # generic
-};
+  # Built-in weekly store dedup + GC (replaces the custom home-manager
+  # systemd.nix timer/service).
+  nix.optimise.automatic = true;
 }
