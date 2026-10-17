@@ -43,7 +43,12 @@ in
     after = [ "network.target" ];
     wantedBy = [ "default.target" ];
     serviceConfig = {
-      ExecStart = "${llama-cpp-wrapped}/bin/llama-server --host 127.0.0.1 --port 8080 --models-dir /var/lib/models --sleep-idle-seconds 300 --ctx-size 16384 -ngl 99";
+      # ctx-size here is the source of truth: pi regenerates its model limits
+      # from what this server advertises (models-store.json is only a cache).
+      # 32K ctx + q8_0 KV cache (~halves KV size) keeps the 9B model within
+      # the RX 6800S's 8GB VRAM. Pi tools that need more must set per-model
+      # ctx via model presets or a dedicated single-model server instance.
+      ExecStart = "${llama-cpp-wrapped}/bin/llama-server --host 127.0.0.1 --port 8080 --models-dir /var/lib/models --sleep-idle-seconds 300 --ctx-size 32768 -ctk q8_0 -ctv q8_0 -ngl 99";
       Restart = "on-failure";
     };
   };
