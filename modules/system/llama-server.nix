@@ -26,6 +26,7 @@ in
 
   environment.sessionVariables = {
     LLAMA_ARG_MODELS_DIR = "/var/lib/models";
+    LLAMA_BASE_URL = "http://127.0.0.1:8080";
   } // lib.optionalAttrs (hostname == "laptop") {
     HIP_VISIBLE_DEVICES = "0";
   };
