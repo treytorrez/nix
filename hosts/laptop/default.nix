@@ -24,6 +24,7 @@
     ../../modules/system/podman.nix
     ../../modules/system/llama-server.nix
     ../../modules/system/fingerprint-laptop.nix
+    ../../modules/system/secrets.nix
     ../../modules/system/stylix.nix
 
   ];
@@ -53,17 +54,6 @@
       ];
     }
   ];
-
-  sops = {
-    age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-    secrets = {
-      "openrouter-key" = {
-        sopsFile = ../../secrets/openrouter.yaml;
-        owner = "treyt";
-      };
-    };
-  };
-
   nix.gc = {
     automatic = true;
     dates = "weekly";

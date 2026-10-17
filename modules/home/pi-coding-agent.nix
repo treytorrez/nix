@@ -16,6 +16,7 @@
         "npm:pi-btw"
         "npm:@dietrichgebert/ponytail"
         "git:github.com/Aitbytes/vibe-wise-pi"
+        "npm:pi-subagents"
       ];
       retry = {
         enabled = true;

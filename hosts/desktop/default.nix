@@ -29,6 +29,7 @@ in
     ../../modules/system/focus-blacklist.nix
     ../../modules/system/focus-mode.nix
     ../../modules/system/tailscale.nix
+    ../../modules/system/secrets.nix
     ../../modules/system/stylix.nix
   ];
 

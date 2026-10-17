@@ -22,6 +22,7 @@
     ../../modules/system/tailscale.nix
     ../../modules/system/llama-server.nix
     ../../modules/system/searxng.nix
+    ../../modules/system/secrets.nix
     ../../modules/system/stylix.nix
   ];
 
@@ -51,16 +52,9 @@
     "docker"
   ];
 
-  sops = {
-    age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-    secrets = {
-      "openrouter-key" = {
-        sopsFile = ../../secrets/openrouter.yaml;
-        owner = "treyt";
-      };
-      "searxng-secret".sopsFile = ../../secrets/searxng.yaml;
-    };
-  };
+  # Shared secrets (password, tailscale, openrouter, wifi) come from
+  # modules/system/secrets.nix; this host adds its own services' secrets.
+  sops.secrets."searxng-secret".sopsFile = ../../secrets/searxng.yaml;
 
   nix.gc = {
     automatic = true;
