@@ -149,6 +149,7 @@ in
         }
         zsh-defer -a _init_deja
         zsh-defer -a source ${pkgs.fzf}/share/fzf/key-bindings.zsh
+        zsh-defer -a source ${pkgs.fzf}/share/fzf/completions.zsh
         zsh-defer -a source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
         if [[ "$TERM" != dumb ]]; then
