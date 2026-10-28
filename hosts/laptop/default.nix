@@ -42,6 +42,7 @@
   users.users.treyt.extraGroups = [
     "video"
     "render"
+    "dialout"
   ];
   security.sudo.extraRules = [
     {
