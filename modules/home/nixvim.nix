@@ -78,10 +78,8 @@
       neoscroll.enable = true;
       auto-save.enable = true;
       tiny-inline-diagnostic.enable = true;
-      colorizer = {
-        enable = true;
-
-      };
+      luasnip.enable = true;
+      colorizer.enable = true;
       mini-surround.enable = true;
       which-key = {
         enable = true;
