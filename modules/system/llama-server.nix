@@ -1,4 +1,4 @@
-{ pkgs, lib, hostname, ... }:
+{ pkgs, lib, hostname, ... }: # TODO: this needs to start a router on boot that does not take up much RAM but will serve the models in /var/lib/models/ with the flags i have found to work best. ideally it would show models and also their "flagged" version (version launched with flags i.e. layers in RAM / on CPU) but with a different name. may require coordination with other AI-related modules as multiple services/whatever will interact
 let
   # On laptop, both RX 6800S (gfx1032, dGPU) and Radeon 680M (gfx1035, iGPU) are
   # exposed to ROCm. Having both visible triggers an amd_comgr multi-target bundle

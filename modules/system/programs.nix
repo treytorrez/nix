@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 {
-  nix.settings.experimental-features = [
+  nix.settings.experimental-features = [ # TODO: this should be somewhere else
     "nix-command"
     "flakes"
   ];

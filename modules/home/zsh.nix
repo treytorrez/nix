@@ -1,3 +1,4 @@
+# TODO: (maybe) this is really hard to read, possibly more readable?
 {
   config,
   lib,
@@ -42,7 +43,7 @@ in
       zsh-defer -a _init_completion
     '';
 
-    shellAliases = {
+    shellAliases = { # TODO: need an alias for `man -k . | fzf | sed 's/\(^.*\) ([0-9].*/\1/' | xargs -r man` for searching man pages. maybe a more clever way to do this
       ls = "ls -FGAh --color=tty";
       ll = "ls --color=tty -l";
       psgrep = "ps aux | rg";
@@ -58,7 +59,7 @@ in
       EDITOR = "nvim -u NONE";
     };
 
-    initContent = lib.mkMerge [
+    initContent = lib.mkMerge [ # TODO: this tmux autostart thing is very nice but makes it difficult when ssh-ing into a computer and you get nested tmux.need to prototype and test better ways. maybe a dedicated tmux user session and a dedicated tmux ssh session? very possibly overcomplicating it. need to establish how i want this to act and go from there
       (lib.mkOrder 500 ''
         if [[ -o interactive && -z "$TMUX" && -t 0 && -t 1 && "$TERM" != dumb ]]; then
           # Shared window list, independent viewports: every terminal gets its

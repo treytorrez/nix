@@ -312,6 +312,8 @@
           };
         };
         # Go
+        # `vim.lsp.enable` (which nixvim uses for `lsp.servers`) only starts
+        # the server when a buffer with one of these filetypes is opened.
         gopls = {
           enable = true;
           packageFallback = true;
@@ -320,8 +322,73 @@
             filetypes = [
               "go"
               "gomod"
+              "gowork"
+              "gotmpl"
             ];
-            root_markers = [ "go.mod" ];
+            root_markers = [
+              "go.work"
+              "go.mod"
+              ".git"
+            ];
+            settings = {
+              gopls = {
+                "ui.completion.usePlaceholders" = true;
+                "ui.semanticTokens" = true;
+                "ui.inlayhint.hints" = {
+                  assignVariableTypes = true;
+                  compositeLiteralFields = true;
+                  compositeLiteralTypes = true;
+                  constantValues = true;
+                  functionTypeParameters = true;
+                  parameterNames = true;
+                  rangeVariableTypes = true;
+                };
+                # Staticcheck is useful but relatively expensive. Enable it
+                # if you want more diagnostics at the cost of some CPU.
+                "ui.diagnostic.staticcheck" = false;
+                "ui.diagnostic.analyses" = {
+                  unusedparams = true;
+                  shadow = true;
+                };
+              };
+            };
+          };
+        };
+
+        # Rust
+        # rust-analyzer is the official, full-featured Rust LSP. It is also
+        # the heaviest part of this setup; `checkOnSave = false` keeps it
+        # lighter by not running `cargo check` on every save.
+        rust_analyzer = {
+          enable = true;
+          packageFallback = true;
+          # rust-analyzer needs cargo/rustc to understand Cargo projects,
+          # and rustfmt for formatting support.
+          cargo.enable = true;
+          rustc.enable = true;
+          rustfmt.enable = true;
+          config = {
+            cmd = [ "rust-analyzer" ];
+            filetypes = [ "rust" ];
+            root_markers = [
+              "Cargo.toml"
+              "rust-project.json"
+              ".git"
+            ];
+            settings = {
+              "rust-analyzer" = {
+                checkOnSave = false;
+                cargo.allFeatures = true;
+                procMacro.enable = true;
+                completion.autoimport.enable = true;
+                lens.enable = true;
+                inlayHints = {
+                  bindingModeHints.enable = true;
+                  closureReturnTypeHints.enable = "with_block";
+                  lifetimeElisionHints.enable = "skip_trivial";
+                };
+              };
+            };
           };
         };
 
@@ -354,28 +421,6 @@
               "flake.lock"
               "default.nix"
               "shell.nix"
-            ];
-          };
-        };
-
-        # R
-        air = {
-          enable = true;
-          packageFallback = true;
-          config = {
-            cmd = [
-              "air"
-              "language-server"
-            ];
-            filetypes = [
-              "r"
-              "rmd"
-              "quarto"
-            ];
-            root_markers = [
-              ".git"
-              "DESCRIPTION"
-              "renv.lock"
             ];
           };
         };
@@ -522,7 +567,7 @@
       }
 
       # ===== Disabled built-in keys =====
-      {
+      { # TODO: this stays disabled, enable ctrl+delete instead to maintain consistency with most other programs and keep me from exiting my tabs by accident
         mode = "i";
         key = "<C-w>";
         action = "<Nop>";

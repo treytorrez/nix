@@ -1,6 +1,6 @@
 { config, ... }:
 {
-  programs.noctalia = {
+  programs.noctalia = { # TODO: benchmark this vs mulitple independant tools that fill the same niche. notification daemon, status bar, idle lock screen, bluetooth management, volume or brightness OSD, and caffeine (may not be an exhaustive list). also, unsure if i prefer the style... yet to be seen
     enable = true;
 
     # Noctalia's systemd user service. This is a module option, not a key

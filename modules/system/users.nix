@@ -12,7 +12,7 @@
       "wheel"
       "input"
     ];
-    packages = with pkgs; [ kdePackages.kate ];
+    packages = with pkgs; [ kdePackages.kate ]; # TODO: why did i put this here
     shell = pkgs.zsh;
   };
   security.sudo.extraRules = [{

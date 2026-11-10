@@ -2,11 +2,11 @@
   config, pkgs, ...
 }:
 {
-  services.gnome.gnome-keyring = {
+  services.gnome.gnome-keyring = { # TODO: doesn't auto unlock
     enable = true;
   };
   # 1. Enable Hyprland
-  programs.hyprland.enable = true;
+  programs.hyprland.enable = true; # TODO: is `uwsm` still needed? need to learn more
   # Launch Hyprland through uwsm. This transitively enables programs.uwsm,
   # which installs uwsm's systemd USER units (wayland-session-bindpid@.service,
   # wayland-session@.target, etc.) via systemd.packages. Without this, SDDM

@@ -5,25 +5,25 @@
   ...
 }:
 {
-  imports = [
+  imports = [ # TODO: slim this way down for a headless server, err on the side of leaving things
     ./hardware-configuration.nix
     ../../modules/system/boot.nix
     ../../modules/system/locale.nix
     ../../modules/system/networking.nix
-    ../../modules/system/desktop.nix
+    ../../modules/system/desktop.nix            # mostly not needed for headless server, could be useful if I ever need a virtual machine? best to not worry about that far ahead for now
     ../../modules/system/audio.nix
-    ../../modules/system/programs.nix
-    ../../modules/system/packages.nix
-    ../../modules/system/users.nix
-    ../../modules/system/fonts.nix
-    ../../modules/system/focus-blacklist.nix
-    ../../modules/system/focus-mode.nix
-    ../../modules/system/ld.nix
-    ../../modules/system/tailscale.nix
-    ../../modules/system/llama-server.nix
-    ../../modules/system/searxng.nix
-    ../../modules/system/secrets.nix
-    ../../modules/system/stylix.nix
+    ../../modules/system/programs.nix           # definitely needs to be parsed down eventually but these don't usually start any services or do anything but take up a little space
+    ../../modules/system/packages.nix           # there was a reason i did this... maybe in a previous convo with llms
+    ../../modules/system/users.nix              # shouldn't need to be deleted
+    ../../modules/system/fonts.nix              # is this even useful if I use stylix? (/etc/nixos/modules/system/stylix.nix & /etc/nixos/modules/home/stylix.nix)
+    ../../modules/system/focus-blacklist.nix    # can't think of any reason this stays
+    ../../modules/system/focus-mode.nix         # can't think of any reason this stays
+    ../../modules/system/ld.nix                 # prob keep? may not need  (ideally i wouldn't)
+    ../../modules/system/tailscale.nix          # KEEP FOR NOW, will likely break so much stuff if removed. eventually migrate to headscale
+    ../../modules/system/llama-server.nix       # keep! will have to fine tune for a standalone server eventually
+    ../../modules/system/searxng.nix            # keep! not fully set up yet
+    ../../modules/system/secrets.nix            # very much keep, needs more work for better integration
+    ../../modules/system/stylix.nix             # does a server *really* need this? alternatively, would it hurt to keep? maybe builds are slower...
   ];
 
   networking.hostName = "server";
@@ -39,7 +39,7 @@
   hardware.nvidia = {
     open = false;
     modesetting.enable = true;
-    package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_580; # is this correct for the P6000 (i think) that's in there? should be
   };
 
   nix.settings = {

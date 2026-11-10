@@ -24,6 +24,10 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    # Pinned because `brave` was removed from nixpkgs-unstable on 2026-11-03.
+    # This is a nixos-26.05 revision that still provides brave 1.99.55.
+    nixpkgs-brave.url = "github:NixOS/nixpkgs/ac588ef1c914865dad517b337ea0eb9694a4021c";
+
     # --- AI / Agents ---------------------------------------------------------
     #lilbee.url = "github:tobocop2/lilbee";
     #lilbee.inputs.nixpkgs.follows = "nixpkgs";
@@ -139,6 +143,9 @@
                 # Custom packages
                 (final: prev: {
                   nixvim = inputs.nixvim.packages.${final.system}.default;
+                  # brave was removed from nixpkgs-unstable; pull it from the
+                  # pinned nixpkgs-brave input instead.
+                  brave = inputs.nixpkgs-brave.legacyPackages.${final.system}.brave;
                 })
                 # Third-party overlays
                 inputs.emacs-overlay.overlays.default

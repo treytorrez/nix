@@ -95,6 +95,46 @@ Allows for secure interconnection
 - Live data ( maybe not to the second, but live enough )
 - encrypted/secure
 
+    ### Actual on NixOS
+    The [install docs](https://actualbudget.org/docs/install) don't mention NixOS, but nixpkgs ships both an `actual-server` package and an official NixOS module (`nixos/modules/services/web-apps/actual.nix`, available in 26.05 and 25.11). The native module is the best option:
+
+    ```nix
+    services.actual = {
+      enable = true;
+      openFirewall = true;
+      settings = {
+        hostname = "0.0.0.0";
+        port = 5006;
+      };
+    };
+    ```
+
+    Then `nixos-rebuild switch` and open `http://<host>:5006` to set the server password.
+
+    - Module default port is **3000**; the docs/Docker use **5006**. Either works, just be consistent.
+    - If putting Caddy/nginx in front, use `openFirewall = false` and `hostname = "127.0.0.1"`.
+    - Secrets can go through `settings.<key>._secret = "/run/secrets/..."` so they never hit the Nix store.
+
+    **Why this over the documented options:**
+    - Declarative: service, user, data dir, and firewall live in `configuration.nix`
+    - Module supplies a hardened systemd unit (`DynamicUser`, `StateDirectory`, `ProtectSystem = strict`, empty `CapabilityBoundingSet`, etc.)
+    - Updates are just rebuilds with rollback, no `docker pull` drift or `npm update -g`
+    - No Docker or Node toolchain needed on the host; nixpkgs builds and caches it
+
+    **Other options:**
+    - Docker: only if I need upstream `latest`/`nightly` tags faster than nixpkgs, or already run everything in containers. On NixOS prefer `virtualisation.oci-containers` over a hand-run compose file.
+    - Server CLI (npm): worst fit. Global npm installs are imperative and fight the read-only store.
+    - Build from source: unnecessary unless contributing; large JS build.
+    - PikaPods / Fly.io: cloud hosting, ignores the NixOS box.
+    - Desktop app: not the server. AppImage is awkward on NixOS; just use the browser.
+
+    **Caveats:**
+    - Version is pinned to nixpkgs (currently 26.10.0); track `nixos-unstable` or override `services.actual.package` for day-one releases
+    - Data lives in `/var/lib/actual` (`server-files/` has `account.sqlite` with the hashed password/session token; `user-files/` has the budget blobs) -- back this up
+    - Don't change `dataDir` after it's working; it's tied to `StateDirectory` and can break startup
+    - `hostname` defaults to `::` (all interfaces), so expose it deliberately
+    - Module is community-maintained, not from the Actual team, so module bugs go to nixpkgs
+
 ## Personal Website / Blog
 - `nginx`
 - Simple HTML and JS; prob avoid frameworks for now

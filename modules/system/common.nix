@@ -84,7 +84,6 @@
   pinta
   mupdf
   cmus
-  lucida-downloader
 
   # BROWSERS
   #firefoxpwa

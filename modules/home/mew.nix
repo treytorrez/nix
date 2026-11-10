@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, ... }: #TODO: adapt a dmenu patch to allow this to appear center screen? or perhaps use another dmenu clone... speed and widespread support are my priorities here. something like rofi (i assume) is large and slow comparatively.
 let
   c = config.lib.stylix.colors;
 
