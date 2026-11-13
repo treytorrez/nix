@@ -19,7 +19,6 @@ programs.zed-editor = {
       };
     };
     hour_format= "hour12";
-    theme= "Base16 Black Metal (Bathory)";
     vim_mode= true;
   }
 ;

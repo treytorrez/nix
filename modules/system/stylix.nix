@@ -18,8 +18,8 @@
       size = 32;
     };
 
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/black-metal-bathory.yaml"; # TODO: need a better scheme with more actual colors, still prefer lowprofile/black/sleek styles. maybe ill just go back to gruvbox. hopefully that gruvbox wallpaper is somewhere in the repo history.
-    image = ../../media/future-cubes-dark-mode.jpg;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/darkmoss.yaml"; # TODO: need a better scheme with more actual colors, still prefer lowprofile/black/sleek styles. maybe ill just go back to gruvbox. hopefully that gruvbox wallpaper is somewhere in the repo history.
+    #image = ../../media/future-cubes-dark-mode.jpg;
     fonts = {
       monospace = {
         package = pkgs.nerd-fonts.atkynson-mono;
