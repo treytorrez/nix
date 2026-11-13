@@ -1,0 +1,205 @@
+--- a/config.def.h
++++ b/config.def.h
+@@ -25,3 +25,6 @@
+  * for example: " /?\"&[]"
+  */
+ static const char worddelimiters[] = " ";
++
++/* Size of the window border (logical pixels) */
++static unsigned int border_width = 0;
+--- a/mew.c
++++ b/mew.c
+@@ -24,7 +24,7 @@
+ 
+ #define TEXTW(X)              (drwl_font_getwidth(drw, (X)) + lrpad)
+ 
+-enum { SchemeNorm, SchemeSel, SchemeOut }; /* color schemes */
++enum { SchemeNorm, SchemeSel, SchemeOut, SchemeBorder }; /* color schemes */
+ 
+ struct item {
+ 	char *text;
+@@ -51,6 +51,7 @@
+ 
+ static char text[BUFSIZ] = "";
+ static int bh, mw, mh;
++static int bw; /* window border width */
+ static int inputw = 0, promptw;
+ static int centered_configured = 0;
+ static int32_t scale = 1;
+@@ -180,6 +181,7 @@
+ 	bh = drw->font->height + 2;
+ 	lines = MAX(lines, 0);
+ 	mh = (lines + 1) * bh;
++	bw = border_width * scale;
+ 	promptw = (prompt && *prompt) ? TEXTW(prompt) - lrpad / 4 : 0;
+ }
+ 
+@@ -282,7 +284,7 @@
+ 	else
+ 		drwl_setscheme(drw, colors[SchemeNorm]);
+ 
+-	return drwl_text(drw, x, y, w, bh, lrpad / 2, item->text, 0);
++	return drwl_text(drw, x + bw, y + bw, w, bh, lrpad / 2, item->text, 0) - bw;
+ }
+ 
+ static void
+@@ -291,29 +293,38 @@
+ 	unsigned int curpos;
+ 	struct item *item;
+ 	int x = 0, y = 0, w;
++	int ow = mw + 2 * bw, oh = mh + 2 * bw;
+ 	DrwBuf *buf;
+ 
+ 	errno = 0;
+-	if (!(buf = bufpool_getbuf(&pool, shm, mw, mh)))
++	if (!(buf = bufpool_getbuf(&pool, shm, ow, oh)))
+ 		die(errno ? "bufpool_getbuf:" : "no buffer available");
+ 	drwl_setimage(drw, buf->image);
+ 
+ 	drwl_setscheme(drw, colors[SchemeNorm]);
+-	drwl_rect(drw, 0, 0, mw, mh, 1, 1);
++	drwl_rect(drw, 0, 0, ow, oh, 1, 1);
++
++	if (bw) {
++		drwl_setscheme(drw, colors[SchemeBorder]);
++		drwl_rect(drw, 0, 0, ow, bw, 1, 0);
++		drwl_rect(drw, 0, oh - bw, ow, bw, 1, 0);
++		drwl_rect(drw, 0, 0, bw, oh, 1, 0);
++		drwl_rect(drw, ow - bw, 0, bw, oh, 1, 0);
++	}
+ 
+ 	if (prompt && *prompt) {
+ 		drwl_setscheme(drw, colors[SchemeSel]);
+-		x = drwl_text(drw, x, 0, promptw, bh, lrpad / 2, prompt, 0);
++		x = drwl_text(drw, x + bw, bw, promptw, bh, lrpad / 2, prompt, 0) - bw;
+ 	}
+ 	/* draw input field */
+ 	w = (lines > 0 || !matches) ? mw - x : inputw;
+ 	drwl_setscheme(drw, colors[SchemeNorm]);
+-	drwl_text(drw, x, 0, w, bh, lrpad / 2, text, 0);
++	drwl_text(drw, x + bw, bw, w, bh, lrpad / 2, text, 0);
+ 
+ 	curpos = TEXTW(text) - TEXTW(&text[cursor]);
+ 	if ((curpos += lrpad / 2 - 1) < w) {
+ 		drwl_setscheme(drw, colors[SchemeNorm]);
+-		drwl_rect(drw, x + curpos, (bh - drw->font->height) / 2 + 1,
++		drwl_rect(drw, x + curpos + bw, bw + (bh - drw->font->height) / 2 + 1,
+ 			2, drw->font->height - 2, 1, 0);
+ 	}
+ 
+@@ -327,7 +338,7 @@
+ 		w = TEXTW("<");
+ 		if (curr->left) {
+ 			drwl_setscheme(drw, colors[SchemeNorm]);
+-			drwl_text(drw, x, 0, w, bh, lrpad / 2, "<", 0);
++			drwl_text(drw, x + bw, bw, w, bh, lrpad / 2, "<", 0);
+ 		}
+ 		x += w;
+ 		for (item = curr; item != next; item = item->right)
+@@ -335,14 +346,14 @@
+ 		if (next) {
+ 			w = TEXTW(">");
+ 			drwl_setscheme(drw, colors[SchemeNorm]);
+-			drwl_text(drw, mw - w, 0, w, bh, lrpad / 2, ">", 0);
++			drwl_text(drw, mw - w + bw, bw, w, bh, lrpad / 2, ">", 0);
+ 		}
+ 	}
+ 
+ 	drwl_setimage(drw, NULL);
+ 	wl_surface_set_buffer_scale(surface, scale);
+ 	wl_surface_attach(surface, buf->wl_buf, 0, 0);
+-	wl_surface_damage_buffer(surface, 0, 0, mw, mh);
++	wl_surface_damage_buffer(surface, 0, 0, ow, oh);
+ 	wl_surface_commit(surface);
+ }
+ 
+@@ -792,24 +803,25 @@
+ {
+ 	if (centered && !centered_configured) {
+ 		/* first configure reports the full output width; shrink and center */
+-		int w = MIN(MAX(max_textw() + promptw, min_width * scale),
+-			width * scale);
++		int avail = MAX((int)(width * scale) - 2 * bw, 0);
++		int w = MIN(MAX(max_textw() + promptw, min_width * scale), avail);
+ 
+ 		centered_configured = 1;
+-		mh = height * scale;
++		mh = MAX((int)(height * scale) - 2 * bw, 0);
+ 		zwlr_layer_surface_v1_ack_configure(layer_surface, serial);
+-		zwlr_layer_surface_v1_set_size(layer_surface, w / scale, mh / scale);
++		zwlr_layer_surface_v1_set_size(layer_surface,
++			(w + 2 * bw) / scale, (mh + 2 * bw) / scale);
+ 		zwlr_layer_surface_v1_set_anchor(layer_surface, 0);
+ 		/* leave mw at 0 so the next configure takes the normal path */
+ 		wl_surface_commit(surface);
+ 		return;
+ 	}
+ 
+-	if (mw / scale == width && mh / scale == height)
++	if ((mw + 2 * bw) / scale == width && (mh + 2 * bw) / scale == height)
+ 		return;
+ 
+-	mw = width * scale;
+-	mh = height * scale;
++	mw = MAX((int)(width * scale) - 2 * bw, 0);
++	mh = MAX((int)(height * scale) - 2 * bw, 0);
+ 	inputw = mw / 3; /* input width: ~33% of output width */
+ 	match();
+ 	zwlr_layer_surface_v1_ack_configure(layer_surface, serial);
+@@ -843,7 +855,7 @@
+ 			ZWLR_LAYER_SURFACE_V1_ANCHOR_LEFT |
+ 			ZWLR_LAYER_SURFACE_V1_ANCHOR_RIGHT);
+ 	}
+-	zwlr_layer_surface_v1_set_size(layer_surface, 0, mh / scale);
++	zwlr_layer_surface_v1_set_size(layer_surface, 0, (mh + 2 * bw) / scale);
+ 	redraw();
+ }
+ 
+@@ -1031,7 +1043,7 @@
+ 
+ 	layer_surface = zwlr_layer_shell_v1_get_layer_surface(layer_shell,
+ 				surface, output, ZWLR_LAYER_SHELL_V1_LAYER_OVERLAY, "mew");
+-	zwlr_layer_surface_v1_set_size(layer_surface, 0, mh);
++	zwlr_layer_surface_v1_set_size(layer_surface, 0, mh + 2 * bw);
+ 	if (centered) {
+ 		/* start full width; the configure handler then shrinks and centers */
+ 		zwlr_layer_surface_v1_set_anchor(layer_surface,
+@@ -1052,7 +1064,7 @@
+ static void
+ usage(void)
+ {
+-	die("usage: mew [-bceiv] [-l lines] [-p prompt] [-f font] [-o output]\n"
++	die("usage: mew [-bceiv] [-bw width] [-l lines] [-p prompt] [-f font] [-o output]\n"
+ 	    "           [-nb color] [-nf color] [-sb color] [-sf color]");
+ }
+ 
+@@ -1077,6 +1089,8 @@
+ 			fstrstr = cistrstr;
+ 		} else if (i + 1 == argc)
+ 			usage();
++		else if (!strcmp(argv[i], "-bw"))
++			border_width = atoi(argv[++i]);
+ 		else if (!strcmp(argv[i], "-l"))
+ 			lines = atoi(argv[++i]);
+ 		else if (!strcmp(argv[i], "-o"))
+--- a/mew.1
++++ b/mew.1
+@@ -4,6 +4,8 @@
+ .SH SYNOPSIS
+ .B mew
+ .RB [ \-bceiv ]
++.RB [ \-bw
++.IR width ]
+ .RB [ \-l
+ .IR lines ]
+ .RB [ \-o
+@@ -37,6 +39,9 @@
+ .B \-b
+ appear at the bottom of the screen.
+ .TP
++.BI \-bw " width"
++defines the window border width.
++.TP
+ .B \-c
+ appear centered on the screen.
+ .TP
