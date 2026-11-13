@@ -20,7 +20,7 @@ let
       static uint32_t colors[][2] = {
           /*               fg              bg           */
           [SchemeNorm] = { 0x${c.base05}ff, 0x${c.base00}ff },
-          [SchemeSel]  = { 0x${c.base08}ff, 0x${c.base00}ff },
+          [SchemeSel]  = { 0x${c.base12}ff, 0x${c.base00}ff },
           [SchemeOut]  = { 0x${c.base04}ff, 0x${c.base00}ff },
           [SchemeBorder] = { 0x${c.base03}ff, 0x${c.base03}ff },
       };

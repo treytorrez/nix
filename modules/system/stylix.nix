@@ -18,7 +18,9 @@
       size = 32;
     };
 
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/darkmoss.yaml"; # TODO: need a better scheme with more actual colors, still prefer lowprofile/black/sleek styles. maybe ill just go back to gruvbox. hopefully that gruvbox wallpaper is somewhere in the repo history.
+    # Base24 scheme; base16.nix maps base10-base17 onto base00-base0F when a
+    # target only understands base16.
+    base16Scheme = "${pkgs.base24-schemes}/share/themes/ic-orange-ppl.yaml";
     #image = ../../media/future-cubes-dark-mode.jpg;
     fonts = {
       monospace = {
