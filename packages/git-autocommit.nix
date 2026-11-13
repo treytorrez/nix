@@ -38,7 +38,7 @@ pkgs.writeShellApplication {
       echo "No changes to commit – rebuilding anyway…"
     fi
 
-    if sudo nixos-rebuild switch --flake ".#$HOST"; then
+    if sudo nixos-rebuild switch --flake ".#$HOST" --keep-going; then
       echo "Rebuild successful."
       # Commit only when there are actually staged changes
       if ! git diff --cached --quiet; then

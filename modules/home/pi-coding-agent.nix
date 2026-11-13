@@ -10,12 +10,10 @@
     extraPackages = [ pkgs.nodejs ];
     settings = {
       defaultProvider = "openrouter";
-      defaultModel = "z-ai/glm-5.3-flash";
-      defaultThinkingLevel = "medium";
+      defaultModel = "deepseek/deepseek-flash-latest";
+      defaultThinkingLevel = "low";
       packages = [
         "npm:pi-btw"
-        "npm:@dietrichgebert/ponytail"
-        "git:github.com/Aitbytes/vibe-wise-pi"
         "npm:pi-subagents"
       ];
       retry = {

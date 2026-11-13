@@ -1,11 +1,15 @@
-{ config, pkgs, ... }: #TODO: adapt a dmenu patch to allow this to appear center screen? or perhaps use another dmenu clone... speed and widespread support are my priorities here. something like rofi (i assume) is large and slow comparatively.
+{ config, pkgs, ... }:
 let
   c = config.lib.stylix.colors;
 
   patchedMew = pkgs.mew.overrideAttrs (old: {
+    # Wayland port of dmenu's center patch; see mew-center.patch.
+    patches = (old.patches or [ ]) ++ [ ./mew-center.patch ];
     preBuild = (old.preBuild or "") + ''
       cat > config.def.h <<EOF
       static int top              = 1;
+      static int centered         = 1;
+      static int min_width        = 500;
       static const char *fonts[]  = { "${config.stylix.fonts.monospace.name}:size=14" };
       static const char *prompt   = NULL;
       static uint32_t colors[][2] = {
