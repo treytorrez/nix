@@ -14,7 +14,7 @@ let
       static int top              = 1;
       static int centered         = 1;
       static int min_width        = 500;
-      static unsigned int alpha   = 0xa6;
+      static unsigned int alpha   = 0xb8;
       static const char *fonts[]  = { "${config.stylix.fonts.monospace.name}:size=14" };
       static const char *prompt   = NULL;
       static uint32_t colors[][2] = {
