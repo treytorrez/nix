@@ -227,43 +227,43 @@
       };
 
       # Jupyter kernel
-      molten = {
-        enable = true;
-        python3Dependencies =
-          p: with p; [
-            pynvim
-            jupyter-client
-            cairosvg
-            ipython
-            nbformat
-            ipykernel
-            # Add R kernel support
-          ];
-        settings = {
-          image_provider = "image.nvim";
-          auto_open_output = true;
-          enter_output_behavior = "open_and_enter";
-          output_win_max_height = 20;
-          wrap_output = true;
-          virt_text_output = true;
-        };
-        #---
-        # Molten doesn't lazy load commands apparently :(
-        #---
-        #        lazyLoad.settings = {
-        #          cmd = [
-        #            "MoltenInit"
-        #            "MoltenEvaluateOperator"
-        #            "MoltenEvaluateLine"
-        #            "MoltenEvaluateVisual"
-        #            "MoltenReevaluateCell"
-        #            "MoltenDelete"
-        #            "MoltenShowOutput"
-        #            "MoltenHideOutput"
-        #          ];
-        #        };
+      #molten = {
+      #enable = true;
+      #python3Dependencies =
+      #p: with p; [
+      #pynvim
+      #jupyter-client
+      #cairosvg
+      #ipython
+      #nbformat
+      #ipykernel
+      ## Add R kernel support
+      #];
+      #settings = {
+      #image_provider = "image.nvim";
+      #auto_open_output = true;
+      #enter_output_behavior = "open_and_enter";
+      #output_win_max_height = 20;
+      #wrap_output = true;
+      #virt_text_output = true;
+      #};
+      ##---
+      ## Molten doesn't lazy load commands apparently :(
+      ##---
+      ##        lazyLoad.settings = {
+      ##          cmd = [
+      ##            "MoltenInit"
+      ##            "MoltenEvaluateOperator"
+      ##            "MoltenEvaluateLine"
+      ##            "MoltenEvaluateVisual"
+      ##            "MoltenReevaluateCell"
+      ##            "MoltenDelete"
+      ##            "MoltenShowOutput"
+      ##            "MoltenHideOutput"
+      ##          ];
+      ##        };
+      #};
       };
-    };
 
     # LSP Configuration
     lsp = {
@@ -393,11 +393,11 @@
         };
 
         # Python
-        pylsp = {
+        basedpyright = {
           enable = true;
           packageFallback = true;
           config = {
-            cmd = [ "pylsp" ];
+            cmd = [ "basedpyright" ];
             filetypes = [ "python" ];
             root_markers = [
               "pyproject.toml"
