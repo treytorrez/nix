@@ -263,7 +263,7 @@
       ##          ];
       ##        };
       #};
-      };
+    };
 
     # LSP Configuration
     lsp = {
@@ -397,7 +397,10 @@
           enable = true;
           packageFallback = true;
           config = {
-            cmd = [ "basedpyright-langserver --stdio" ];
+            cmd = [
+              "basedpyright-langserver"
+              "--stdio"
+            ];
             filetypes = [ "python" ];
             root_markers = [
               "pyproject.toml"
@@ -567,7 +570,8 @@
       }
 
       # ===== Disabled built-in keys =====
-      { # TODO: this stays disabled, enable ctrl+delete instead to maintain consistency with most other programs and keep me from exiting my tabs by accident
+      {
+        # TODO: this stays disabled, enable ctrl+delete instead to maintain consistency with most other programs and keep me from exiting my tabs by accident
         mode = "i";
         key = "<C-w>";
         action = "<Nop>";
