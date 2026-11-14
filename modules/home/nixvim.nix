@@ -397,7 +397,7 @@
           enable = true;
           packageFallback = true;
           config = {
-            cmd = [ "basedpyright" ];
+            cmd = [ "basedpyright-langserver --stdio" ];
             filetypes = [ "python" ];
             root_markers = [
               "pyproject.toml"
