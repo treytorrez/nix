@@ -20,7 +20,7 @@
 
     # Base24 scheme; base16.nix maps base10-base17 onto base00-base0F when a
     # target only understands base16.
-    base16Scheme = "${pkgs.base24-schemes}/share/themes/ic-orange-ppl.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
     #image = ../../media/future-cubes-dark-mode.jpg;
     fonts = {
       monospace = {

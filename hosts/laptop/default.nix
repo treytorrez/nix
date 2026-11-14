@@ -32,6 +32,7 @@
   networking.hostName = "laptop";
   nixpkgs.config.allowUnfree = true;
 
+  documentation.dev.enable = true;
   home-manager.users.treyt = import ../../modules/home;
   home-manager.backupFileExtension = ".bak";
 
