@@ -33,6 +33,10 @@ in
     hyprpaper
   ];
 
+  # Stylix feeds the generated wallpaper into services.hyprpaper.settings;
+  # this just runs the daemon.
+  services.hyprpaper.enable = true;
+
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
