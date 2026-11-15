@@ -46,7 +46,7 @@
     pkgs.black
     pkgs.ruff
     pkgs.rust-analyzer
-
+    (import ../../packages/nr.nix { inherit pkgs; })
   ];
   home.stateVersion = "25.11";
 }

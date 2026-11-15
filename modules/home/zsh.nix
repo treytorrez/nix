@@ -112,10 +112,6 @@ in
           local pkg="$1"; shift
           nix shell "nixpkgs#$pkg" "$@"
         }
-        nr() {
-          local pkg="$1"; shift
-          nix run "nixpkgs#$pkg" "$@"
-        }
 
         # Warp directory - reads ~/.warprc (key:path format, backward compat)
         wd() {
